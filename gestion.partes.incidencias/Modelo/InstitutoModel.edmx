@@ -1,0 +1,711 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="tfgModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="alumno">
+          <Key>
+            <PropertyRef Name="nia" />
+          </Key>
+          <Property Name="nia" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="15" />
+          <Property Name="apellido1" Type="varchar" MaxLength="15" />
+          <Property Name="apellido2" Type="varchar" MaxLength="15" />
+          <Property Name="codigo_grupo" Type="varchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="grupo">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="motivo_amonestacion">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="motivo" Type="varchar" MaxLength="40" />
+          <Property Name="descripcion" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="permiso">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="permisos_rol">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="codigo_rol" Type="varchar" MaxLength="15" />
+          <Property Name="codigo_permiso" Type="varchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="profesor">
+          <Key>
+            <PropertyRef Name="dni" />
+          </Key>
+          <Property Name="dni" Type="varchar" MaxLength="9" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="15" />
+          <Property Name="apellido1" Type="varchar" MaxLength="15" />
+          <Property Name="apellido2" Type="varchar" MaxLength="15" />
+          <Property Name="contrasenya" Type="varchar" MaxLength="32" />
+          <Property Name="tutor_grupo" Type="varchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="registro">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_tipo_registro" Type="int" />
+          <Property Name="id_motivo_amonestacion" Type="int" />
+          <Property Name="fecha_suceso" Type="datetime" Precision="0" />
+          <Property Name="nia_alumno" Type="int" />
+          <Property Name="dni_profesor" Type="varchar" MaxLength="9" />
+          <Property Name="fecha_registro" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" />
+          <Property Name="dni_profesor_registro" Type="varchar" MaxLength="9" />
+          <Property Name="sancionado" Type="bool" />
+        </EntityType>
+        <EntityType Name="rol">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="roles_profesor">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dni_profesor" Type="varchar" MaxLength="9" />
+          <Property Name="codigo_rol" Type="varchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="tipo_registro">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="40" />
+        </EntityType>
+        <Association Name="fk_codigo_grupo">
+          <End Role="grupo" Type="Self.grupo" Multiplicity="0..1" />
+          <End Role="alumno" Type="Self.alumno" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="grupo">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="alumno">
+              <PropertyRef Name="codigo_grupo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_codigo_permiso">
+          <End Role="permiso" Type="Self.permiso" Multiplicity="0..1" />
+          <End Role="permisos_rol" Type="Self.permisos_rol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="permiso">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="permisos_rol">
+              <PropertyRef Name="codigo_permiso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_codigo_rol">
+          <End Role="rol" Type="Self.rol" Multiplicity="0..1" />
+          <End Role="permisos_rol" Type="Self.permisos_rol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="rol">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="permisos_rol">
+              <PropertyRef Name="codigo_rol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_codigo_rol_profesor">
+          <End Role="rol" Type="Self.rol" Multiplicity="0..1" />
+          <End Role="roles_profesor" Type="Self.roles_profesor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="rol">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="roles_profesor">
+              <PropertyRef Name="codigo_rol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_dni_profesor">
+          <End Role="profesor" Type="Self.profesor" Multiplicity="0..1" />
+          <End Role="roles_profesor" Type="Self.roles_profesor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="profesor">
+              <PropertyRef Name="dni" />
+            </Principal>
+            <Dependent Role="roles_profesor">
+              <PropertyRef Name="dni_profesor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_dni_profesor_registro">
+          <End Role="profesor" Type="Self.profesor" Multiplicity="0..1" />
+          <End Role="registro" Type="Self.registro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="profesor">
+              <PropertyRef Name="dni" />
+            </Principal>
+            <Dependent Role="registro">
+              <PropertyRef Name="dni_profesor_registro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_motivo_amonestacion">
+          <End Role="motivo_amonestacion" Type="Self.motivo_amonestacion" Multiplicity="0..1" />
+          <End Role="registro" Type="Self.registro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="motivo_amonestacion">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="registro">
+              <PropertyRef Name="id_motivo_amonestacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_nia_alumno">
+          <End Role="alumno" Type="Self.alumno" Multiplicity="0..1" />
+          <End Role="registro" Type="Self.registro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="alumno">
+              <PropertyRef Name="nia" />
+            </Principal>
+            <Dependent Role="registro">
+              <PropertyRef Name="nia_alumno" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_profesor_tutor_grupo">
+          <End Role="grupo" Type="Self.grupo" Multiplicity="0..1" />
+          <End Role="profesor" Type="Self.profesor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="grupo">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="profesor">
+              <PropertyRef Name="tutor_grupo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_registro_dni_profesor">
+          <End Role="profesor" Type="Self.profesor" Multiplicity="0..1" />
+          <End Role="registro" Type="Self.registro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="profesor">
+              <PropertyRef Name="dni" />
+            </Principal>
+            <Dependent Role="registro">
+              <PropertyRef Name="dni_profesor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tipo_registro">
+          <End Role="tipo_registro" Type="Self.tipo_registro" Multiplicity="0..1" />
+          <End Role="registro" Type="Self.registro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipo_registro">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="registro">
+              <PropertyRef Name="id_tipo_registro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="tfgModelStoreContainer">
+          <EntitySet Name="alumno" EntityType="Self.alumno" Schema="tfg" store:Type="Tables" />
+          <EntitySet Name="grupo" EntityType="Self.grupo" Schema="tfg" store:Type="Tables" />
+          <EntitySet Name="motivo_amonestacion" EntityType="Self.motivo_amonestacion" Schema="tfg" store:Type="Tables" />
+          <EntitySet Name="permiso" EntityType="Self.permiso" Schema="tfg" store:Type="Tables" />
+          <EntitySet Name="permisos_rol" EntityType="Self.permisos_rol" Schema="tfg" store:Type="Tables" />
+          <EntitySet Name="profesor" EntityType="Self.profesor" Schema="tfg" store:Type="Tables" />
+          <EntitySet Name="registro" EntityType="Self.registro" Schema="tfg" store:Type="Tables" />
+          <EntitySet Name="rol" EntityType="Self.rol" Schema="tfg" store:Type="Tables" />
+          <EntitySet Name="roles_profesor" EntityType="Self.roles_profesor" Schema="tfg" store:Type="Tables" />
+          <EntitySet Name="tipo_registro" EntityType="Self.tipo_registro" Schema="tfg" store:Type="Tables" />
+          <AssociationSet Name="fk_codigo_grupo" Association="Self.fk_codigo_grupo">
+            <End Role="grupo" EntitySet="grupo" />
+            <End Role="alumno" EntitySet="alumno" />
+          </AssociationSet>
+          <AssociationSet Name="fk_codigo_permiso" Association="Self.fk_codigo_permiso">
+            <End Role="permiso" EntitySet="permiso" />
+            <End Role="permisos_rol" EntitySet="permisos_rol" />
+          </AssociationSet>
+          <AssociationSet Name="fk_codigo_rol" Association="Self.fk_codigo_rol">
+            <End Role="rol" EntitySet="rol" />
+            <End Role="permisos_rol" EntitySet="permisos_rol" />
+          </AssociationSet>
+          <AssociationSet Name="fk_codigo_rol_profesor" Association="Self.fk_codigo_rol_profesor">
+            <End Role="rol" EntitySet="rol" />
+            <End Role="roles_profesor" EntitySet="roles_profesor" />
+          </AssociationSet>
+          <AssociationSet Name="fk_dni_profesor" Association="Self.fk_dni_profesor">
+            <End Role="profesor" EntitySet="profesor" />
+            <End Role="roles_profesor" EntitySet="roles_profesor" />
+          </AssociationSet>
+          <AssociationSet Name="fk_dni_profesor_registro" Association="Self.fk_dni_profesor_registro">
+            <End Role="profesor" EntitySet="profesor" />
+            <End Role="registro" EntitySet="registro" />
+          </AssociationSet>
+          <AssociationSet Name="fk_motivo_amonestacion" Association="Self.fk_motivo_amonestacion">
+            <End Role="motivo_amonestacion" EntitySet="motivo_amonestacion" />
+            <End Role="registro" EntitySet="registro" />
+          </AssociationSet>
+          <AssociationSet Name="fk_nia_alumno" Association="Self.fk_nia_alumno">
+            <End Role="alumno" EntitySet="alumno" />
+            <End Role="registro" EntitySet="registro" />
+          </AssociationSet>
+          <AssociationSet Name="fk_profesor_tutor_grupo" Association="Self.fk_profesor_tutor_grupo">
+            <End Role="grupo" EntitySet="grupo" />
+            <End Role="profesor" EntitySet="profesor" />
+          </AssociationSet>
+          <AssociationSet Name="fk_registro_dni_profesor" Association="Self.fk_registro_dni_profesor">
+            <End Role="profesor" EntitySet="profesor" />
+            <End Role="registro" EntitySet="registro" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tipo_registro" Association="Self.fk_tipo_registro">
+            <End Role="tipo_registro" EntitySet="tipo_registro" />
+            <End Role="registro" EntitySet="registro" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="tfgModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="alumno">
+          <Key>
+            <PropertyRef Name="nia" />
+          </Key>
+          <Property Name="nia" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="apellido1" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="apellido2" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="codigo_grupo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="grupo" Relationship="Self.fk_codigo_grupo" FromRole="alumno" ToRole="grupo" />
+          <NavigationProperty Name="registro" Relationship="Self.fk_nia_alumno" FromRole="alumno" ToRole="registro" />
+        </EntityType>
+        <EntityType Name="grupo">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="alumno" Relationship="Self.fk_codigo_grupo" FromRole="grupo" ToRole="alumno" />
+          <NavigationProperty Name="profesor" Relationship="Self.fk_profesor_tutor_grupo" FromRole="grupo" ToRole="profesor" />
+        </EntityType>
+        <EntityType Name="motivo_amonestacion">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="motivo" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="registro" Relationship="Self.fk_motivo_amonestacion" FromRole="motivo_amonestacion" ToRole="registro" />
+        </EntityType>
+        <EntityType Name="permiso">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="permisos_rol" Relationship="Self.fk_codigo_permiso" FromRole="permiso" ToRole="permisos_rol" />
+        </EntityType>
+        <EntityType Name="permisos_rol">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="codigo_rol" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="codigo_permiso" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="permiso" Relationship="Self.fk_codigo_permiso" FromRole="permisos_rol" ToRole="permiso" />
+          <NavigationProperty Name="rol" Relationship="Self.fk_codigo_rol" FromRole="permisos_rol" ToRole="rol" />
+        </EntityType>
+        <EntityType Name="profesor">
+          <Key>
+            <PropertyRef Name="dni" />
+          </Key>
+          <Property Name="dni" Type="String" MaxLength="9" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="apellido1" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="apellido2" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="contrasenya" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="tutor_grupo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="grupo" Relationship="Self.fk_profesor_tutor_grupo" FromRole="profesor" ToRole="grupo" />
+          <NavigationProperty Name="roles_profesor" Relationship="Self.fk_dni_profesor" FromRole="profesor" ToRole="roles_profesor" />
+          <NavigationProperty Name="registro" Relationship="Self.fk_dni_profesor_registro" FromRole="profesor" ToRole="registro" />
+          <NavigationProperty Name="registro1" Relationship="Self.fk_registro_dni_profesor" FromRole="profesor" ToRole="registro" />
+        </EntityType>
+        <EntityType Name="registro">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_tipo_registro" Type="Int32" />
+          <Property Name="id_motivo_amonestacion" Type="Int32" />
+          <Property Name="fecha_suceso" Type="DateTime" />
+          <Property Name="nia_alumno" Type="Int32" />
+          <Property Name="dni_profesor" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_registro" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dni_profesor_registro" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
+          <Property Name="sancionado" Type="Boolean" />
+          <NavigationProperty Name="alumno" Relationship="Self.fk_nia_alumno" FromRole="registro" ToRole="alumno" />
+          <NavigationProperty Name="motivo_amonestacion" Relationship="Self.fk_motivo_amonestacion" FromRole="registro" ToRole="motivo_amonestacion" />
+          <NavigationProperty Name="profesor" Relationship="Self.fk_dni_profesor_registro" FromRole="registro" ToRole="profesor" />
+          <NavigationProperty Name="profesor1" Relationship="Self.fk_registro_dni_profesor" FromRole="registro" ToRole="profesor" />
+          <NavigationProperty Name="tipo_registro" Relationship="Self.fk_tipo_registro" FromRole="registro" ToRole="tipo_registro" />
+        </EntityType>
+        <EntityType Name="rol">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="permisos_rol" Relationship="Self.fk_codigo_rol" FromRole="rol" ToRole="permisos_rol" />
+          <NavigationProperty Name="roles_profesor" Relationship="Self.fk_codigo_rol_profesor" FromRole="rol" ToRole="roles_profesor" />
+        </EntityType>
+        <EntityType Name="roles_profesor">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dni_profesor" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
+          <Property Name="codigo_rol" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="profesor" Relationship="Self.fk_dni_profesor" FromRole="roles_profesor" ToRole="profesor" />
+          <NavigationProperty Name="rol" Relationship="Self.fk_codigo_rol_profesor" FromRole="roles_profesor" ToRole="rol" />
+        </EntityType>
+        <EntityType Name="tipo_registro">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="registro" Relationship="Self.fk_tipo_registro" FromRole="tipo_registro" ToRole="registro" />
+        </EntityType>
+        <Association Name="fk_codigo_grupo">
+          <End Role="grupo" Type="Self.grupo" Multiplicity="0..1" />
+          <End Role="alumno" Type="Self.alumno" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="grupo">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="alumno">
+              <PropertyRef Name="codigo_grupo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_nia_alumno">
+          <End Role="alumno" Type="Self.alumno" Multiplicity="0..1" />
+          <End Role="registro" Type="Self.registro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="alumno">
+              <PropertyRef Name="nia" />
+            </Principal>
+            <Dependent Role="registro">
+              <PropertyRef Name="nia_alumno" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_profesor_tutor_grupo">
+          <End Role="grupo" Type="Self.grupo" Multiplicity="0..1" />
+          <End Role="profesor" Type="Self.profesor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="grupo">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="profesor">
+              <PropertyRef Name="tutor_grupo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_motivo_amonestacion">
+          <End Role="motivo_amonestacion" Type="Self.motivo_amonestacion" Multiplicity="0..1" />
+          <End Role="registro" Type="Self.registro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="motivo_amonestacion">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="registro">
+              <PropertyRef Name="id_motivo_amonestacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_codigo_permiso">
+          <End Role="permiso" Type="Self.permiso" Multiplicity="0..1" />
+          <End Role="permisos_rol" Type="Self.permisos_rol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="permiso">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="permisos_rol">
+              <PropertyRef Name="codigo_permiso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_codigo_rol">
+          <End Role="rol" Type="Self.rol" Multiplicity="0..1" />
+          <End Role="permisos_rol" Type="Self.permisos_rol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="rol">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="permisos_rol">
+              <PropertyRef Name="codigo_rol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_dni_profesor">
+          <End Role="profesor" Type="Self.profesor" Multiplicity="0..1" />
+          <End Role="roles_profesor" Type="Self.roles_profesor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="profesor">
+              <PropertyRef Name="dni" />
+            </Principal>
+            <Dependent Role="roles_profesor">
+              <PropertyRef Name="dni_profesor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_dni_profesor_registro">
+          <End Role="profesor" Type="Self.profesor" Multiplicity="0..1" />
+          <End Role="registro" Type="Self.registro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="profesor">
+              <PropertyRef Name="dni" />
+            </Principal>
+            <Dependent Role="registro">
+              <PropertyRef Name="dni_profesor_registro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_registro_dni_profesor">
+          <End Role="profesor" Type="Self.profesor" Multiplicity="0..1" />
+          <End Role="registro" Type="Self.registro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="profesor">
+              <PropertyRef Name="dni" />
+            </Principal>
+            <Dependent Role="registro">
+              <PropertyRef Name="dni_profesor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tipo_registro">
+          <End Role="tipo_registro" Type="Self.tipo_registro" Multiplicity="0..1" />
+          <End Role="registro" Type="Self.registro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipo_registro">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="registro">
+              <PropertyRef Name="id_tipo_registro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_codigo_rol_profesor">
+          <End Role="rol" Type="Self.rol" Multiplicity="0..1" />
+          <End Role="roles_profesor" Type="Self.roles_profesor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="rol">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="roles_profesor">
+              <PropertyRef Name="codigo_rol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="tfgEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="alumno" EntityType="Self.alumno" />
+          <EntitySet Name="grupo" EntityType="Self.grupo" />
+          <EntitySet Name="motivo_amonestacion" EntityType="Self.motivo_amonestacion" />
+          <EntitySet Name="permiso" EntityType="Self.permiso" />
+          <EntitySet Name="permisos_rol" EntityType="Self.permisos_rol" />
+          <EntitySet Name="profesor" EntityType="Self.profesor" />
+          <EntitySet Name="registro" EntityType="Self.registro" />
+          <EntitySet Name="rol" EntityType="Self.rol" />
+          <EntitySet Name="roles_profesor" EntityType="Self.roles_profesor" />
+          <EntitySet Name="tipo_registro" EntityType="Self.tipo_registro" />
+          <AssociationSet Name="fk_codigo_grupo" Association="Self.fk_codigo_grupo">
+            <End Role="grupo" EntitySet="grupo" />
+            <End Role="alumno" EntitySet="alumno" />
+          </AssociationSet>
+          <AssociationSet Name="fk_nia_alumno" Association="Self.fk_nia_alumno">
+            <End Role="alumno" EntitySet="alumno" />
+            <End Role="registro" EntitySet="registro" />
+          </AssociationSet>
+          <AssociationSet Name="fk_profesor_tutor_grupo" Association="Self.fk_profesor_tutor_grupo">
+            <End Role="grupo" EntitySet="grupo" />
+            <End Role="profesor" EntitySet="profesor" />
+          </AssociationSet>
+          <AssociationSet Name="fk_motivo_amonestacion" Association="Self.fk_motivo_amonestacion">
+            <End Role="motivo_amonestacion" EntitySet="motivo_amonestacion" />
+            <End Role="registro" EntitySet="registro" />
+          </AssociationSet>
+          <AssociationSet Name="fk_codigo_permiso" Association="Self.fk_codigo_permiso">
+            <End Role="permiso" EntitySet="permiso" />
+            <End Role="permisos_rol" EntitySet="permisos_rol" />
+          </AssociationSet>
+          <AssociationSet Name="fk_codigo_rol" Association="Self.fk_codigo_rol">
+            <End Role="rol" EntitySet="rol" />
+            <End Role="permisos_rol" EntitySet="permisos_rol" />
+          </AssociationSet>
+          <AssociationSet Name="fk_dni_profesor" Association="Self.fk_dni_profesor">
+            <End Role="profesor" EntitySet="profesor" />
+            <End Role="roles_profesor" EntitySet="roles_profesor" />
+          </AssociationSet>
+          <AssociationSet Name="fk_dni_profesor_registro" Association="Self.fk_dni_profesor_registro">
+            <End Role="profesor" EntitySet="profesor" />
+            <End Role="registro" EntitySet="registro" />
+          </AssociationSet>
+          <AssociationSet Name="fk_registro_dni_profesor" Association="Self.fk_registro_dni_profesor">
+            <End Role="profesor" EntitySet="profesor" />
+            <End Role="registro" EntitySet="registro" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tipo_registro" Association="Self.fk_tipo_registro">
+            <End Role="tipo_registro" EntitySet="tipo_registro" />
+            <End Role="registro" EntitySet="registro" />
+          </AssociationSet>
+          <AssociationSet Name="fk_codigo_rol_profesor" Association="Self.fk_codigo_rol_profesor">
+            <End Role="rol" EntitySet="rol" />
+            <End Role="roles_profesor" EntitySet="roles_profesor" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="tfgModelStoreContainer" CdmEntityContainer="tfgEntities">
+          <EntitySetMapping Name="alumno">
+            <EntityTypeMapping TypeName="tfgModel.alumno">
+              <MappingFragment StoreEntitySet="alumno">
+                <ScalarProperty Name="nia" ColumnName="nia" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido1" ColumnName="apellido1" />
+                <ScalarProperty Name="apellido2" ColumnName="apellido2" />
+                <ScalarProperty Name="codigo_grupo" ColumnName="codigo_grupo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="grupo">
+            <EntityTypeMapping TypeName="tfgModel.grupo">
+              <MappingFragment StoreEntitySet="grupo">
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="motivo_amonestacion">
+            <EntityTypeMapping TypeName="tfgModel.motivo_amonestacion">
+              <MappingFragment StoreEntitySet="motivo_amonestacion">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="motivo" ColumnName="motivo" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="permiso">
+            <EntityTypeMapping TypeName="tfgModel.permiso">
+              <MappingFragment StoreEntitySet="permiso">
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="permisos_rol">
+            <EntityTypeMapping TypeName="tfgModel.permisos_rol">
+              <MappingFragment StoreEntitySet="permisos_rol">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="codigo_rol" ColumnName="codigo_rol" />
+                <ScalarProperty Name="codigo_permiso" ColumnName="codigo_permiso" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="profesor">
+            <EntityTypeMapping TypeName="tfgModel.profesor">
+              <MappingFragment StoreEntitySet="profesor">
+                <ScalarProperty Name="dni" ColumnName="dni" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido1" ColumnName="apellido1" />
+                <ScalarProperty Name="apellido2" ColumnName="apellido2" />
+                <ScalarProperty Name="contrasenya" ColumnName="contrasenya" />
+                <ScalarProperty Name="tutor_grupo" ColumnName="tutor_grupo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="registro">
+            <EntityTypeMapping TypeName="tfgModel.registro">
+              <MappingFragment StoreEntitySet="registro">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_tipo_registro" ColumnName="id_tipo_registro" />
+                <ScalarProperty Name="id_motivo_amonestacion" ColumnName="id_motivo_amonestacion" />
+                <ScalarProperty Name="fecha_suceso" ColumnName="fecha_suceso" />
+                <ScalarProperty Name="nia_alumno" ColumnName="nia_alumno" />
+                <ScalarProperty Name="dni_profesor" ColumnName="dni_profesor" />
+                <ScalarProperty Name="fecha_registro" ColumnName="fecha_registro" />
+                <ScalarProperty Name="dni_profesor_registro" ColumnName="dni_profesor_registro" />
+                <ScalarProperty Name="sancionado" ColumnName="sancionado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="rol">
+            <EntityTypeMapping TypeName="tfgModel.rol">
+              <MappingFragment StoreEntitySet="rol">
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="roles_profesor">
+            <EntityTypeMapping TypeName="tfgModel.roles_profesor">
+              <MappingFragment StoreEntitySet="roles_profesor">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="dni_profesor" ColumnName="dni_profesor" />
+                <ScalarProperty Name="codigo_rol" ColumnName="codigo_rol" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tipo_registro">
+            <EntityTypeMapping TypeName="tfgModel.tipo_registro">
+              <MappingFragment StoreEntitySet="tipo_registro">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

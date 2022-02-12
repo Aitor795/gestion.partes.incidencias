@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c8ed57951add47698f63d26aa7536854" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="tfgModel.alumno" Width="1.5" PointX="2" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="tfgModel.grupo" Width="1.5" PointX="2" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="tfgModel.motivo_amonestacion" Width="1.5" PointX="9.25" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="tfgModel.permiso" Width="1.5" PointX="10.875" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="tfgModel.permisos_rol" Width="1.5" PointX="8.875" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="tfgModel.profesor" Width="1.5" PointX="4.5" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="tfgModel.registro" Width="1.5" PointX="6.875" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="tfgModel.rol" Width="1.5" PointX="6.75" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="tfgModel.roles_profesor" Width="1.5" PointX="4.5" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="tfgModel.tipo_registro" Width="1.5" PointX="9.25" PointY="2.75" IsExpanded="true" />
+        <AssociationConnector Association="tfgModel.fk_codigo_grupo" ManuallyRouted="false" />
+        <AssociationConnector Association="tfgModel.fk_nia_alumno" ManuallyRouted="false" />
+        <AssociationConnector Association="tfgModel.fk_profesor_tutor_grupo" ManuallyRouted="false" />
+        <AssociationConnector Association="tfgModel.fk_motivo_amonestacion" ManuallyRouted="false" />
+        <AssociationConnector Association="tfgModel.fk_codigo_permiso" ManuallyRouted="false" />
+        <AssociationConnector Association="tfgModel.fk_codigo_rol" ManuallyRouted="false" />
+        <AssociationConnector Association="tfgModel.fk_dni_profesor" ManuallyRouted="false" />
+        <AssociationConnector Association="tfgModel.fk_dni_profesor_registro" ManuallyRouted="false" />
+        <AssociationConnector Association="tfgModel.fk_registro_dni_profesor" ManuallyRouted="false" />
+        <AssociationConnector Association="tfgModel.fk_tipo_registro" ManuallyRouted="false" />
+        <AssociationConnector Association="tfgModel.fk_codigo_rol_profesor" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
