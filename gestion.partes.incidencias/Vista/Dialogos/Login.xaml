@@ -16,5 +16,9 @@
         </material:Card>
         <TextBox x:Name="txtUser" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                  material:HintAssist.Hint="Nombre de usuario" Margin="20" FontSize="18" />
+
+        <PasswordBox x:Name="txtPassword" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"
+                 material:HintAssist.Hint="Contraseña" Margin="20" FontSize="18" />
+        <Button Margin="20" Content="Login" x:Name="btnLogin" Click="BtnLogin_Click" />
     </StackPanel>
 </Window>
