@@ -19,9 +19,9 @@ namespace gestion.partes.incidencias.Servicio
         /*
          * Método que comprueba las credenciales del usuario en la base de datos
          */
-        public Boolean login(String dni, String contrasenya)
+        public bool login(string dni, string contrasenya)
         {
-            Boolean correcto = true;
+            bool correcto = true;
             try
             {
                 profesor = contexto.Set<profesor>().Where(p => p.dni == dni).FirstOrDefault();

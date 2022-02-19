@@ -1,28 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using gestion.partes.incidencias.Modelo;
+using MahApps.Metro.Controls;
 
 namespace gestion.partes.incidencias
 {
     /// <summary>
     /// Lógica de interacción para MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : MetroWindow
     {
-        public MainWindow()
+        private tfgEntities _tfgEnt;
+        private profesor _profesor;
+        public MainWindow(tfgEntities tfgEnt, profesor profesor)
         {
             InitializeComponent();
+            _profesor = profesor;
+            _tfgEnt = tfgEnt;
         }
     }
 }

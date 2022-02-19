@@ -1,6 +1,5 @@
 ﻿using gestion.partes.incidencias.Modelo;
-using gestion.partes.incidencias.MVVM;
-using System;
+using gestion.partes.incidencias.Servicio;
 using System.Windows;
 using System.Windows.Media;
 
@@ -12,12 +11,14 @@ namespace gestion.partes.incidencias.Vista.Dialogos
     public partial class Login : Window
     {
         private tfgEntities tfgEnt;
-        private MVProfesor mvProfesor;
+        private ProfesorServicio profesorServicio;
         public Login()
         {
             InitializeComponent();
             tfgEnt = new tfgEntities();
-            mvProfesor = new MVProfesor(tfgEnt);
+            profesorServicio = new ProfesorServicio(tfgEnt);
+            SplashScreen bienvenida = new SplashScreen("/Recursos/Imagenes/Ulquiorra 3.jpg");
+            bienvenida.Show(true);
         }
 
         private void BtnLogin_Click(object sender, RoutedEventArgs e)
@@ -25,10 +26,10 @@ namespace gestion.partes.incidencias.Vista.Dialogos
             string dni = txtDNI.Text;
             string pass = txtPassword.Password;
 
-            if (mvProfesor.login(dni, pass))
+            if (profesorServicio.login(dni, pass))
             {
-             //   MainWindow ventanaPrincipal = new MainWindow(invEnt, serverUsr.usuLogin);
-             //   ventanaPrincipal.Show();
+                MainWindow ventanaPrincipal = new MainWindow(tfgEnt, profesorServicio.profesor);
+                ventanaPrincipal.Show();
                 this.Close();
             }
             else

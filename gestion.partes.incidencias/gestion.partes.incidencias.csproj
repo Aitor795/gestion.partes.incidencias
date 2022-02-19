@@ -295,6 +295,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Resource Include="Recursos\Imagenes\Ulquiorra 3.jpg" />
     <Resource Include="Resources\Entypo-license.txt" />
     <Resource Include="Resources\Entypo.ttf" />
     <Resource Include="Resources\WindowsIcons-license.txt" />
