@@ -14,8 +14,8 @@
             <TextBlock Text="IES HENRI MATISSE" Foreground="White" FontSize="20" 
                        HorizontalAlignment="Center"/>
         </material:Card>
-        <TextBox x:Name="txtUser" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                 material:HintAssist.Hint="Nombre de usuario" Margin="20" FontSize="18" />
+        <TextBox x:Name="txtDNI" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                 material:HintAssist.Hint="DNI del profesor" Margin="20" FontSize="18" />
 
         <PasswordBox x:Name="txtPassword" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"
                  material:HintAssist.Hint="Contraseña" Margin="20" FontSize="18" />

@@ -22,10 +22,10 @@ namespace gestion.partes.incidencias.Vista.Dialogos
 
         private void BtnLogin_Click(object sender, RoutedEventArgs e)
         {
-            String usr = txtUser.Text;
-            String pass = txtPassword.Password;
+            string dni = txtDNI.Text;
+            string pass = txtPassword.Password;
 
-            if (mvProfesor.login(usr, pass))
+            if (mvProfesor.login(dni, pass))
             {
              //   MainWindow ventanaPrincipal = new MainWindow(invEnt, serverUsr.usuLogin);
              //   ventanaPrincipal.Show();
@@ -33,9 +33,9 @@ namespace gestion.partes.incidencias.Vista.Dialogos
             }
             else
             {
-                txtUser.BorderBrush = new SolidColorBrush(Colors.Red);
+                txtDNI.BorderBrush = new SolidColorBrush(Colors.Red);
                 txtPassword.BorderBrush = new SolidColorBrush(Colors.Red);
-                txtUser.Foreground = new SolidColorBrush(Colors.Red);
+                txtDNI.Foreground = new SolidColorBrush(Colors.Red);
                 txtPassword.Foreground = new SolidColorBrush(Colors.Red);
             }
         }
