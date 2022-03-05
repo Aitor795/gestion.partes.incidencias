@@ -3,9 +3,9 @@ using System.Data.Entity;
 
 namespace gestion.partes.incidencias.Servicio
 {
-    class MotivoAmonestacionServicio : ServicioGenerico<motivo_amonestacion>
+    class MotivoRegistroServicio : ServicioGenerico<motivo_registro>
     {
-        public MotivoAmonestacionServicio(DbContext context) : base(context)
+        public MotivoRegistroServicio(DbContext context) : base(context)
         {
             // Constructor vacío
         }

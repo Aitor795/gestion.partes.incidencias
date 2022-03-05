@@ -27,7 +27,7 @@ namespace gestion.partes.incidencias.Modelo
     
         public virtual DbSet<alumno> alumno { get; set; }
         public virtual DbSet<grupo> grupo { get; set; }
-        public virtual DbSet<motivo_amonestacion> motivo_amonestacion { get; set; }
+        public virtual DbSet<motivo_registro> motivo_registro { get; set; }
         public virtual DbSet<permiso> permiso { get; set; }
         public virtual DbSet<permisos_rol> permisos_rol { get; set; }
         public virtual DbSet<profesor> profesor { get; set; }

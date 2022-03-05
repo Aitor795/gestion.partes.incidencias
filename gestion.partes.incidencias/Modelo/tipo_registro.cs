@@ -17,12 +17,15 @@ namespace gestion.partes.incidencias.Modelo
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tipo_registro()
         {
+            this.motivo_registro = new HashSet<motivo_registro>();
             this.registro = new HashSet<registro>();
         }
     
         public int id { get; set; }
         public string descripcion { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<motivo_registro> motivo_registro { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<registro> registro { get; set; }
     }

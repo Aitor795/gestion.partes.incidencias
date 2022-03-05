@@ -194,12 +194,57 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Modelo\alumno.cs">
+      <DependentUpon>InstitutoEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\grupo.cs">
+      <DependentUpon>InstitutoEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\InstitutoEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InstitutoEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\InstitutoEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InstitutoEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\InstitutoEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InstitutoEntities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\motivo_registro.cs">
+      <DependentUpon>InstitutoEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\permiso.cs">
+      <DependentUpon>InstitutoEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\permisos_rol.cs">
+      <DependentUpon>InstitutoEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\profesor.cs">
+      <DependentUpon>InstitutoEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\registro.cs">
+      <DependentUpon>InstitutoEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\rol.cs">
+      <DependentUpon>InstitutoEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\roles_profesor.cs">
+      <DependentUpon>InstitutoEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\tipo_registro.cs">
+      <DependentUpon>InstitutoEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="MVVM\MVGrupo.cs" />
-    <Compile Include="MVVM\MVMotivoAmonestacion.cs" />
+    <Compile Include="MVVM\MVMotivoRegistro.cs" />
     <Compile Include="MVVM\MVRegistros.cs" />
     <Compile Include="Servicio\GrupoServicio.cs" />
     <Compile Include="Servicio\IServicioGenerico.cs" />
-    <Compile Include="Servicio\MotivoAmonestacionServicio.cs" />
+    <Compile Include="Servicio\MotivoRegistroServicio.cs" />
     <Compile Include="Servicio\ProfesorServicio.cs" />
     <Compile Include="Servicio\RegistroServicio.cs" />
     <Compile Include="Servicio\ServicioGenerico.cs" />
@@ -244,51 +289,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Modelo\alumno.cs">
-      <DependentUpon>InstitutoModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Modelo\grupo.cs">
-      <DependentUpon>InstitutoModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Modelo\InstitutoModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>InstitutoModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Modelo\InstitutoModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>InstitutoModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Modelo\InstitutoModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>InstitutoModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Modelo\motivo_amonestacion.cs">
-      <DependentUpon>InstitutoModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Modelo\permiso.cs">
-      <DependentUpon>InstitutoModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Modelo\permisos_rol.cs">
-      <DependentUpon>InstitutoModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Modelo\profesor.cs">
-      <DependentUpon>InstitutoModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Modelo\registro.cs">
-      <DependentUpon>InstitutoModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Modelo\rol.cs">
-      <DependentUpon>InstitutoModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Modelo\roles_profesor.cs">
-      <DependentUpon>InstitutoModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Modelo\tipo_registro.cs">
-      <DependentUpon>InstitutoModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="MVVM\MVBase.cs" />
     <Compile Include="MVVM\MVProfesor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -312,16 +312,26 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="Modelo\InstitutoModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>InstitutoModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="Modelo\InstitutoModel.edmx.diagram">
-      <DependentUpon>InstitutoModel.edmx</DependentUpon>
-    </None>
+    <Content Include="Modelo\InstitutoEntities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>InstitutoEntities.edmx</DependentUpon>
+      <LastGenOutput>InstitutoEntities.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Modelo\InstitutoEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>InstitutoEntities.edmx</DependentUpon>
+      <LastGenOutput>InstitutoEntities.cs</LastGenOutput>
+    </Content>
     <Content Include="NLog.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <EntityDeploy Include="Modelo\InstitutoEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>InstitutoEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Modelo\InstitutoEntities.edmx.diagram">
+      <DependentUpon>InstitutoEntities.edmx</DependentUpon>
+    </None>
     <None Include="NLog.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -333,18 +343,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Modelo\InstitutoModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>InstitutoModel.edmx</DependentUpon>
-      <LastGenOutput>InstitutoModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Modelo\InstitutoModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>InstitutoModel.edmx</DependentUpon>
-      <LastGenOutput>InstitutoModel.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

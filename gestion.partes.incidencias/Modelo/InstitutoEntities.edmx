@@ -22,11 +22,12 @@
           <Property Name="codigo" Type="varchar" MaxLength="15" Nullable="false" />
           <Property Name="nombre" Type="varchar" MaxLength="20" />
         </EntityType>
-        <EntityType Name="motivo_amonestacion">
+        <EntityType Name="motivo_registro">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_tipo_registro" Type="int" />
           <Property Name="motivo" Type="varchar" MaxLength="40" />
           <Property Name="descripcion" Type="varchar" MaxLength="255" />
         </EntityType>
@@ -62,7 +63,7 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="id_tipo_registro" Type="int" />
-          <Property Name="id_motivo_amonestacion" Type="int" />
+          <Property Name="id_motivo_registro" Type="int" />
           <Property Name="fecha_suceso" Type="datetime" Precision="0" />
           <Property Name="nia_alumno" Type="int" />
           <Property Name="dni_profesor" Type="varchar" MaxLength="9" />
@@ -164,18 +165,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_motivo_amonestacion">
-          <End Role="motivo_amonestacion" Type="Self.motivo_amonestacion" Multiplicity="0..1" />
-          <End Role="registro" Type="Self.registro" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="motivo_amonestacion">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="registro">
-              <PropertyRef Name="id_motivo_amonestacion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
+        <!--Errores durante la generación:
+advertencia 6035: La relación 'fk_motivo_registro' tiene columnas que no forman parte de la clave de la tabla en el lado principal de la relación. Se excluyó la relación.
+        <Association Name="fk_motivo_registro" />-->
         <Association Name="fk_nia_alumno">
           <End Role="alumno" Type="Self.alumno" Multiplicity="0..1" />
           <End Role="registro" Type="Self.registro" Multiplicity="*" />
@@ -224,10 +216,22 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk_tipo_registro2">
+          <End Role="tipo_registro" Type="Self.tipo_registro" Multiplicity="0..1" />
+          <End Role="motivo_registro" Type="Self.motivo_registro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipo_registro">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="motivo_registro">
+              <PropertyRef Name="id_tipo_registro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="tfgModelStoreContainer">
           <EntitySet Name="alumno" EntityType="Self.alumno" Schema="tfg" store:Type="Tables" />
           <EntitySet Name="grupo" EntityType="Self.grupo" Schema="tfg" store:Type="Tables" />
-          <EntitySet Name="motivo_amonestacion" EntityType="Self.motivo_amonestacion" Schema="tfg" store:Type="Tables" />
+          <EntitySet Name="motivo_registro" EntityType="Self.motivo_registro" Schema="tfg" store:Type="Tables" />
           <EntitySet Name="permiso" EntityType="Self.permiso" Schema="tfg" store:Type="Tables" />
           <EntitySet Name="permisos_rol" EntityType="Self.permisos_rol" Schema="tfg" store:Type="Tables" />
           <EntitySet Name="profesor" EntityType="Self.profesor" Schema="tfg" store:Type="Tables" />
@@ -259,10 +263,6 @@
             <End Role="profesor" EntitySet="profesor" />
             <End Role="registro" EntitySet="registro" />
           </AssociationSet>
-          <AssociationSet Name="fk_motivo_amonestacion" Association="Self.fk_motivo_amonestacion">
-            <End Role="motivo_amonestacion" EntitySet="motivo_amonestacion" />
-            <End Role="registro" EntitySet="registro" />
-          </AssociationSet>
           <AssociationSet Name="fk_nia_alumno" Association="Self.fk_nia_alumno">
             <End Role="alumno" EntitySet="alumno" />
             <End Role="registro" EntitySet="registro" />
@@ -278,6 +278,10 @@
           <AssociationSet Name="fk_tipo_registro" Association="Self.fk_tipo_registro">
             <End Role="tipo_registro" EntitySet="tipo_registro" />
             <End Role="registro" EntitySet="registro" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tipo_registro2" Association="Self.fk_tipo_registro2">
+            <End Role="tipo_registro" EntitySet="tipo_registro" />
+            <End Role="motivo_registro" EntitySet="motivo_registro" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -306,14 +310,15 @@
           <NavigationProperty Name="alumno" Relationship="Self.fk_codigo_grupo" FromRole="grupo" ToRole="alumno" />
           <NavigationProperty Name="profesor" Relationship="Self.fk_profesor_tutor_grupo" FromRole="grupo" ToRole="profesor" />
         </EntityType>
-        <EntityType Name="motivo_amonestacion">
+        <EntityType Name="motivo_registro">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_tipo_registro" Type="Int32" />
           <Property Name="motivo" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
           <Property Name="descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="registro" Relationship="Self.fk_motivo_amonestacion" FromRole="motivo_amonestacion" ToRole="registro" />
+          <NavigationProperty Name="tipo_registro" Relationship="Self.fk_tipo_registro2" FromRole="motivo_registro" ToRole="tipo_registro" />
         </EntityType>
         <EntityType Name="permiso">
           <Key>
@@ -354,7 +359,7 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="id_tipo_registro" Type="Int32" />
-          <Property Name="id_motivo_amonestacion" Type="Int32" />
+          <Property Name="id_motivo_registro" Type="Int32" />
           <Property Name="fecha_suceso" Type="DateTime" />
           <Property Name="nia_alumno" Type="Int32" />
           <Property Name="dni_profesor" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
@@ -362,7 +367,6 @@
           <Property Name="dni_profesor_registro" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
           <Property Name="sancionado" Type="Boolean" />
           <NavigationProperty Name="alumno" Relationship="Self.fk_nia_alumno" FromRole="registro" ToRole="alumno" />
-          <NavigationProperty Name="motivo_amonestacion" Relationship="Self.fk_motivo_amonestacion" FromRole="registro" ToRole="motivo_amonestacion" />
           <NavigationProperty Name="profesor" Relationship="Self.fk_dni_profesor_registro" FromRole="registro" ToRole="profesor" />
           <NavigationProperty Name="profesor1" Relationship="Self.fk_registro_dni_profesor" FromRole="registro" ToRole="profesor" />
           <NavigationProperty Name="tipo_registro" Relationship="Self.fk_tipo_registro" FromRole="registro" ToRole="tipo_registro" />
@@ -392,6 +396,7 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="descripcion" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="motivo_registro" Relationship="Self.fk_tipo_registro2" FromRole="tipo_registro" ToRole="motivo_registro" />
           <NavigationProperty Name="registro" Relationship="Self.fk_tipo_registro" FromRole="tipo_registro" ToRole="registro" />
         </EntityType>
         <Association Name="fk_codigo_grupo">
@@ -430,15 +435,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_motivo_amonestacion">
-          <End Role="motivo_amonestacion" Type="Self.motivo_amonestacion" Multiplicity="0..1" />
-          <End Role="registro" Type="Self.registro" Multiplicity="*" />
+        <Association Name="fk_tipo_registro2">
+          <End Role="tipo_registro" Type="Self.tipo_registro" Multiplicity="0..1" />
+          <End Role="motivo_registro" Type="Self.motivo_registro" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="motivo_amonestacion">
+            <Principal Role="tipo_registro">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="registro">
-              <PropertyRef Name="id_motivo_amonestacion" />
+            <Dependent Role="motivo_registro">
+              <PropertyRef Name="id_tipo_registro" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -529,7 +534,7 @@
         <EntityContainer Name="tfgEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="alumno" EntityType="Self.alumno" />
           <EntitySet Name="grupo" EntityType="Self.grupo" />
-          <EntitySet Name="motivo_amonestacion" EntityType="Self.motivo_amonestacion" />
+          <EntitySet Name="motivo_registro" EntityType="Self.motivo_registro" />
           <EntitySet Name="permiso" EntityType="Self.permiso" />
           <EntitySet Name="permisos_rol" EntityType="Self.permisos_rol" />
           <EntitySet Name="profesor" EntityType="Self.profesor" />
@@ -549,9 +554,9 @@
             <End Role="grupo" EntitySet="grupo" />
             <End Role="profesor" EntitySet="profesor" />
           </AssociationSet>
-          <AssociationSet Name="fk_motivo_amonestacion" Association="Self.fk_motivo_amonestacion">
-            <End Role="motivo_amonestacion" EntitySet="motivo_amonestacion" />
-            <End Role="registro" EntitySet="registro" />
+          <AssociationSet Name="fk_tipo_registro2" Association="Self.fk_tipo_registro2">
+            <End Role="tipo_registro" EntitySet="tipo_registro" />
+            <End Role="motivo_registro" EntitySet="motivo_registro" />
           </AssociationSet>
           <AssociationSet Name="fk_codigo_permiso" Association="Self.fk_codigo_permiso">
             <End Role="permiso" EntitySet="permiso" />
@@ -607,10 +612,11 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="motivo_amonestacion">
-            <EntityTypeMapping TypeName="tfgModel.motivo_amonestacion">
-              <MappingFragment StoreEntitySet="motivo_amonestacion">
+          <EntitySetMapping Name="motivo_registro">
+            <EntityTypeMapping TypeName="tfgModel.motivo_registro">
+              <MappingFragment StoreEntitySet="motivo_registro">
                 <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_tipo_registro" ColumnName="id_tipo_registro" />
                 <ScalarProperty Name="motivo" ColumnName="motivo" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
               </MappingFragment>
@@ -650,7 +656,7 @@
               <MappingFragment StoreEntitySet="registro">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="id_tipo_registro" ColumnName="id_tipo_registro" />
-                <ScalarProperty Name="id_motivo_amonestacion" ColumnName="id_motivo_amonestacion" />
+                <ScalarProperty Name="id_motivo_registro" ColumnName="id_motivo_registro" />
                 <ScalarProperty Name="fecha_suceso" ColumnName="fecha_suceso" />
                 <ScalarProperty Name="nia_alumno" ColumnName="nia_alumno" />
                 <ScalarProperty Name="dni_profesor" ColumnName="dni_profesor" />

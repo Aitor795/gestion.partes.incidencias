@@ -49,7 +49,7 @@
             <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding listaRegistrosTabla}" x:Name="dgArticulos" Background="Bisque">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="TIPO DE REGISTRO" Binding="{Binding tipo_registro.descripcion}" />
-                    <DataGridTextColumn Header="MOTIVO AMONESTACIÓN" Binding="{Binding motivo_amonestacion.motivo}" />
+                    <DataGridTextColumn Header="MOTIVO" Binding="{Binding motivo_registro.motivo}" />
                     <DataGridTemplateColumn Header="FECHA DE SUCESO" >
 
                         <DataGridTemplateColumn.CellTemplate>

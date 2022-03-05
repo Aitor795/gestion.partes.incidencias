@@ -16,7 +16,7 @@ namespace gestion.partes.incidencias.Modelo
     {
         public int id { get; set; }
         public Nullable<int> id_tipo_registro { get; set; }
-        public Nullable<int> id_motivo_amonestacion { get; set; }
+        public Nullable<int> id_motivo_registro { get; set; }
         public Nullable<System.DateTime> fecha_suceso { get; set; }
         public Nullable<int> nia_alumno { get; set; }
         public string dni_profesor { get; set; }
@@ -25,7 +25,6 @@ namespace gestion.partes.incidencias.Modelo
         public Nullable<bool> sancionado { get; set; }
     
         public virtual alumno alumno { get; set; }
-        public virtual motivo_amonestacion motivo_amonestacion { get; set; }
         public virtual profesor profesor { get; set; }
         public virtual profesor profesor1 { get; set; }
         public virtual tipo_registro tipo_registro { get; set; }
