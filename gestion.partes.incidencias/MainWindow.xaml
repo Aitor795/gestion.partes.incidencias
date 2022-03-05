@@ -20,4 +20,41 @@
             </Button>
         </mah:WindowCommands>
     </mah:MetroWindow.RightWindowCommands>
+    <DockPanel>
+        <Grid DockPanel.Dock="Left">
+            <mah:HamburgerMenu ItemTemplate="{StaticResource MenuItemTemplate}"
+                               ItemClick="HamburgerMenu_ItemClick"
+                        OptionsItemTemplate="{StaticResource MenuItemTemplate}"
+                               x:Name="hamMenuPrincipal">
+                <!--  Items  -->
+                <mah:HamburgerMenu.ItemsSource>
+                    <mah:HamburgerMenuItemCollection>
+                        <!--
+                        <mah:HamburgerMenuGlyphItem Glyph="&#xE77b;" Label="Usuario" Tag="Usuario"/>
+
+                        <mah:HamburgerMenuGlyphItem Glyph="&#xE8A9;" Label="Articulos" Tag="Articulos"/>
+
+                        <mah:HamburgerMenuGlyphItem Glyph="&#59959;" Label="Listar Modelos" Tag="ListarModelos"/>
+                        -->
+
+                        <mah:HamburgerMenuGlyphItem Glyph="&#xE8B7;" Label="Listar Registros" Tag="ListarRegistros"/>
+                        <!--
+                        <mah:HamburgerMenuGlyphItem Glyph="&#59158;" Label="Listar Usuarios" Tag="ListarUsuarios"/>
+                        -->
+                    </mah:HamburgerMenuItemCollection>
+                </mah:HamburgerMenu.ItemsSource>
+
+                <!-- Options 
+                <mah:HamburgerMenu.OptionsItemsSource>
+                    <mah:HamburgerMenuItemCollection>
+                        <mah:HamburgerMenuGlyphItem Glyph="&#xE8BD;" Label="Informes" Tag="Informes">
+
+                        </mah:HamburgerMenuGlyphItem>
+                    </mah:HamburgerMenuItemCollection>
+                </mah:HamburgerMenu.OptionsItemsSource>
+                -->
+            </mah:HamburgerMenu>
+
+        </Grid>
+    </DockPanel>
 </mah:MetroWindow>

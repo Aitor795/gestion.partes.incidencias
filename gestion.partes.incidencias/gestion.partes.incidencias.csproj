@@ -196,12 +196,17 @@
     </ApplicationDefinition>
     <Compile Include="MVVM\MVGrupo.cs" />
     <Compile Include="MVVM\MVMotivoAmonestacion.cs" />
+    <Compile Include="MVVM\MVRegistros.cs" />
     <Compile Include="Servicio\GrupoServicio.cs" />
     <Compile Include="Servicio\IServicioGenerico.cs" />
     <Compile Include="Servicio\MotivoAmonestacionServicio.cs" />
     <Compile Include="Servicio\ProfesorServicio.cs" />
+    <Compile Include="Servicio\RegistroServicio.cs" />
     <Compile Include="Servicio\ServicioGenerico.cs" />
     <Compile Include="Servicio\TipoRegistroServicio.cs" />
+    <Compile Include="Vista\ControlesUsuario\UCListaRegistros.xaml.cs">
+      <DependentUpon>UCListaRegistros.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vista\Dialogos\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
@@ -228,6 +233,10 @@
     <Page Include="Resources\IconsNonShared.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Vista\ControlesUsuario\UCListaRegistros.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Vista\Dialogos\Login.xaml">
       <SubType>Designer</SubType>
