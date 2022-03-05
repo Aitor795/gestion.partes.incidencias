@@ -5,13 +5,17 @@ descripcion VARCHAR(40) COMMENT 'descripcion del tipo del registro'
 
 ALTER TABLE tipo_registro COMMENT 'tabla maestra con los tipo de registro';
 
-CREATE TABLE motivo_amonestacion (
+CREATE TABLE motivo_registro (
 id INT PRIMARY KEY AUTO_INCREMENT COMMENT 'identificador único',
-motivo VARCHAR(40) COMMENT 'motivo de la amonestación',
-descripcion VARCHAR(255) COMMENT 'descripición del motivo de la amonestación'
+id_tipo_registro INT COMMENT 'FK al maestro de tipos de registro',
+motivo VARCHAR(40) COMMENT 'motivo del registro',
+descripcion VARCHAR(255) COMMENT 'descripición del motivo del registro'
 );
 
-ALTER TABLE motivo_amonestacion COMMENT 'tabla maestra con los posibles motivos de amonestación';
+ALTER TABLE motivo_registro COMMENT 'tabla maestra con los posibles motivos del registro';
+ALTER TABLE motivo_registro
+ADD CONSTRAINT fk_tipo_registro2
+FOREIGN KEY (id_tipo_registro) REFERENCES tipo_registro(id);
 
 -- TODO: Preguntar la codificación de los grupos.
 
@@ -41,7 +45,7 @@ dni VARCHAR(9) PRIMARY KEY COMMENT 'identificador del profesor',
 nombre VARCHAR(15) COMMENT 'nombre del profesor',
 apellido1 VARCHAR(15) COMMENT 'apellido 1',
 apellido2 VARCHAR(15) COMMENT 'apellido 2',
-contrasenya VARCHAR(32) COMMENT 'contraseña del profesor',
+contrasenya VARCHAR(32) COMMENT 'contraseña profesordel profesor',
 tutor_grupo VARCHAR(15) COMMENT 'grupo del que es tutor'
 );
 
@@ -54,7 +58,7 @@ FOREIGN KEY (tutor_grupo) REFERENCES grupo(codigo);
 CREATE TABLE registro (
 id INT PRIMARY KEY AUTO_INCREMENT COMMENT 'identificador único',
 id_tipo_registro INT COMMENT 'FK al maestro de tipos de registro',
-id_motivo_amonestacion INT COMMENT 'FK al maestro de motivos de amonestación',
+id_motivo_registro INT COMMENT 'FK al maestro de motivos de registro',
 fecha_suceso DATETIME COMMENT 'fecha en la que se realiza el suceso',
 nia_alumno INT COMMENT 'FK a la tabla de alumnos',
 dni_profesor VARCHAR(9) COMMENT 'FK al profesor que presencia el suceso',
@@ -70,8 +74,8 @@ ADD CONSTRAINT fk_tipo_registro
 FOREIGN KEY (id_tipo_registro) REFERENCES tipo_registro(id);
 
 ALTER TABLE registro
-ADD CONSTRAINT fk_motivo_amonestacion
-FOREIGN KEY (id_motivo_amonestacion) REFERENCES motivo_amonestacion(id);
+ADD CONSTRAINT fk_motivo_registro
+FOREIGN KEY (id_tipo_registro, id_motivo_registro) REFERENCES motivo_registro(id_tipo_registro, id);
 
 ALTER TABLE registro
 ADD CONSTRAINT fk_nia_alumno
