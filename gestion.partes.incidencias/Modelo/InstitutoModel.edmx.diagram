@@ -4,20 +4,21 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="2abff0f66d37455799ffbf4c0312aa1e" Name="Diagram1" ZoomLevel="73">
-        <EntityTypeShape EntityType="tfgModel.alumno" Width="1.5" PointX="6.5" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="tfgModel.grupo" Width="1.5" PointX="4.125" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="tfgModel.motivo_registro" Width="1.5" PointX="9.125" PointY="7.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="tfgModel.permiso" Width="1.5" PointX="2.125" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="tfgModel.permisos_rol" Width="1.5" PointX="2" PointY="7.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="tfgModel.profesor" Width="1.5" PointX="6.5" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="tfgModel.registro" Width="1.5" PointX="9.25" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="tfgModel.rol" Width="1.5" PointX="4" PointY="7.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="tfgModel.roles_profesor" Width="1.5" PointX="6.5" PointY="7.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="tfgModel.tipo_registro" Width="1.5" PointX="9.25" PointY="5" IsExpanded="true" />
+      <Diagram DiagramId="f7333a09ea0d4fe49b4918b42c3da178" Name="Diagram1">
+        <EntityTypeShape EntityType="tfgModel.alumno" Width="1.5" PointX="3" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="tfgModel.grupo" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="tfgModel.motivo_registro" Width="1.5" PointX="3" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="tfgModel.permiso" Width="1.5" PointX="3" PointY="16.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="tfgModel.permisos_rol" Width="1.5" PointX="5.25" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="tfgModel.profesor" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="tfgModel.registro" Width="1.5" PointX="5.25" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="tfgModel.rol" Width="1.5" PointX="3" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="tfgModel.roles_profesor" Width="1.5" PointX="5.25" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="tfgModel.tipo_registro" Width="1.5" PointX="0.75" PointY="10" IsExpanded="true" />
         <AssociationConnector Association="tfgModel.fk_codigo_grupo" ManuallyRouted="false" />
         <AssociationConnector Association="tfgModel.fk_nia_alumno" ManuallyRouted="false" />
         <AssociationConnector Association="tfgModel.fk_profesor_tutor_grupo" ManuallyRouted="false" />
+        <AssociationConnector Association="tfgModel.fk_motivo_registro" ManuallyRouted="false" />
         <AssociationConnector Association="tfgModel.fk_tipo_registro2" ManuallyRouted="false" />
         <AssociationConnector Association="tfgModel.fk_codigo_permiso" ManuallyRouted="false" />
         <AssociationConnector Association="tfgModel.fk_codigo_rol" ManuallyRouted="false" />

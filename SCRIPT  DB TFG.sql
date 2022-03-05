@@ -75,7 +75,7 @@ FOREIGN KEY (id_tipo_registro) REFERENCES tipo_registro(id);
 
 ALTER TABLE registro
 ADD CONSTRAINT fk_motivo_registro
-FOREIGN KEY (id_tipo_registro, id_motivo_registro) REFERENCES motivo_registro(id_tipo_registro, id);
+FOREIGN KEY (id_motivo_registro) REFERENCES motivo_registro(id);
 
 ALTER TABLE registro
 ADD CONSTRAINT fk_nia_alumno

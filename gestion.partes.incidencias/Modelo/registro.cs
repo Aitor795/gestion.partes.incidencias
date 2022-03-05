@@ -25,6 +25,7 @@ namespace gestion.partes.incidencias.Modelo
         public Nullable<bool> sancionado { get; set; }
     
         public virtual alumno alumno { get; set; }
+        public virtual motivo_registro motivo_registro { get; set; }
         public virtual profesor profesor { get; set; }
         public virtual profesor profesor1 { get; set; }
         public virtual tipo_registro tipo_registro { get; set; }

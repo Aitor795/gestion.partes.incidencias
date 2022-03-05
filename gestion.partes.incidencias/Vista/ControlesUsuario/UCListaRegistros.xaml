@@ -75,7 +75,7 @@
 
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <CheckBox IsChecked="{Binding sancionado}" />
+                                <CheckBox IsChecked="{Binding sancionado}" IsEnabled="False" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
 

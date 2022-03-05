@@ -195,49 +195,49 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Modelo\alumno.cs">
-      <DependentUpon>InstitutoEntities.tt</DependentUpon>
+      <DependentUpon>InstitutoModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelo\grupo.cs">
-      <DependentUpon>InstitutoEntities.tt</DependentUpon>
+      <DependentUpon>InstitutoModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Modelo\InstitutoEntities.Context.cs">
+    <Compile Include="Modelo\InstitutoModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>InstitutoEntities.Context.tt</DependentUpon>
+      <DependentUpon>InstitutoModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Modelo\InstitutoEntities.cs">
+    <Compile Include="Modelo\InstitutoModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>InstitutoEntities.tt</DependentUpon>
+      <DependentUpon>InstitutoModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Modelo\InstitutoEntities.Designer.cs">
+    <Compile Include="Modelo\InstitutoModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>InstitutoEntities.edmx</DependentUpon>
+      <DependentUpon>InstitutoModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Modelo\motivo_registro.cs">
-      <DependentUpon>InstitutoEntities.tt</DependentUpon>
+      <DependentUpon>InstitutoModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelo\permiso.cs">
-      <DependentUpon>InstitutoEntities.tt</DependentUpon>
+      <DependentUpon>InstitutoModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelo\permisos_rol.cs">
-      <DependentUpon>InstitutoEntities.tt</DependentUpon>
+      <DependentUpon>InstitutoModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelo\profesor.cs">
-      <DependentUpon>InstitutoEntities.tt</DependentUpon>
+      <DependentUpon>InstitutoModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelo\registro.cs">
-      <DependentUpon>InstitutoEntities.tt</DependentUpon>
+      <DependentUpon>InstitutoModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelo\rol.cs">
-      <DependentUpon>InstitutoEntities.tt</DependentUpon>
+      <DependentUpon>InstitutoModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelo\roles_profesor.cs">
-      <DependentUpon>InstitutoEntities.tt</DependentUpon>
+      <DependentUpon>InstitutoModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelo\tipo_registro.cs">
-      <DependentUpon>InstitutoEntities.tt</DependentUpon>
+      <DependentUpon>InstitutoModel.tt</DependentUpon>
     </Compile>
     <Compile Include="MVVM\MVGrupo.cs" />
     <Compile Include="MVVM\MVMotivoRegistro.cs" />
@@ -312,25 +312,25 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Content Include="Modelo\InstitutoEntities.Context.tt">
+    <Content Include="Modelo\InstitutoModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>InstitutoEntities.edmx</DependentUpon>
-      <LastGenOutput>InstitutoEntities.Context.cs</LastGenOutput>
+      <DependentUpon>InstitutoModel.edmx</DependentUpon>
+      <LastGenOutput>InstitutoModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Modelo\InstitutoEntities.tt">
+    <Content Include="Modelo\InstitutoModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>InstitutoEntities.edmx</DependentUpon>
-      <LastGenOutput>InstitutoEntities.cs</LastGenOutput>
+      <DependentUpon>InstitutoModel.edmx</DependentUpon>
+      <LastGenOutput>InstitutoModel.cs</LastGenOutput>
     </Content>
     <Content Include="NLog.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <EntityDeploy Include="Modelo\InstitutoEntities.edmx">
+    <EntityDeploy Include="Modelo\InstitutoModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>InstitutoEntities.Designer.cs</LastGenOutput>
+      <LastGenOutput>InstitutoModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Modelo\InstitutoEntities.edmx.diagram">
-      <DependentUpon>InstitutoEntities.edmx</DependentUpon>
+    <None Include="Modelo\InstitutoModel.edmx.diagram">
+      <DependentUpon>InstitutoModel.edmx</DependentUpon>
     </None>
     <None Include="NLog.xsd">
       <SubType>Designer</SubType>

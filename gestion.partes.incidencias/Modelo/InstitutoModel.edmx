@@ -165,9 +165,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--Errores durante la generación:
-advertencia 6035: La relación 'fk_motivo_registro' tiene columnas que no forman parte de la clave de la tabla en el lado principal de la relación. Se excluyó la relación.
-        <Association Name="fk_motivo_registro" />-->
+        <Association Name="fk_motivo_registro">
+          <End Role="motivo_registro" Type="Self.motivo_registro" Multiplicity="0..1" />
+          <End Role="registro" Type="Self.registro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="motivo_registro">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="registro">
+              <PropertyRef Name="id_motivo_registro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_nia_alumno">
           <End Role="alumno" Type="Self.alumno" Multiplicity="0..1" />
           <End Role="registro" Type="Self.registro" Multiplicity="*" />
@@ -263,6 +272,10 @@ advertencia 6035: La relación 'fk_motivo_registro' tiene columnas que no forman
             <End Role="profesor" EntitySet="profesor" />
             <End Role="registro" EntitySet="registro" />
           </AssociationSet>
+          <AssociationSet Name="fk_motivo_registro" Association="Self.fk_motivo_registro">
+            <End Role="motivo_registro" EntitySet="motivo_registro" />
+            <End Role="registro" EntitySet="registro" />
+          </AssociationSet>
           <AssociationSet Name="fk_nia_alumno" Association="Self.fk_nia_alumno">
             <End Role="alumno" EntitySet="alumno" />
             <End Role="registro" EntitySet="registro" />
@@ -318,6 +331,7 @@ advertencia 6035: La relación 'fk_motivo_registro' tiene columnas que no forman
           <Property Name="id_tipo_registro" Type="Int32" />
           <Property Name="motivo" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
           <Property Name="descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="registro" Relationship="Self.fk_motivo_registro" FromRole="motivo_registro" ToRole="registro" />
           <NavigationProperty Name="tipo_registro" Relationship="Self.fk_tipo_registro2" FromRole="motivo_registro" ToRole="tipo_registro" />
         </EntityType>
         <EntityType Name="permiso">
@@ -367,6 +381,7 @@ advertencia 6035: La relación 'fk_motivo_registro' tiene columnas que no forman
           <Property Name="dni_profesor_registro" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
           <Property Name="sancionado" Type="Boolean" />
           <NavigationProperty Name="alumno" Relationship="Self.fk_nia_alumno" FromRole="registro" ToRole="alumno" />
+          <NavigationProperty Name="motivo_registro" Relationship="Self.fk_motivo_registro" FromRole="registro" ToRole="motivo_registro" />
           <NavigationProperty Name="profesor" Relationship="Self.fk_dni_profesor_registro" FromRole="registro" ToRole="profesor" />
           <NavigationProperty Name="profesor1" Relationship="Self.fk_registro_dni_profesor" FromRole="registro" ToRole="profesor" />
           <NavigationProperty Name="tipo_registro" Relationship="Self.fk_tipo_registro" FromRole="registro" ToRole="tipo_registro" />
@@ -432,6 +447,18 @@ advertencia 6035: La relación 'fk_motivo_registro' tiene columnas que no forman
             </Principal>
             <Dependent Role="profesor">
               <PropertyRef Name="tutor_grupo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_motivo_registro">
+          <End Role="motivo_registro" Type="Self.motivo_registro" Multiplicity="0..1" />
+          <End Role="registro" Type="Self.registro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="motivo_registro">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="registro">
+              <PropertyRef Name="id_motivo_registro" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -553,6 +580,10 @@ advertencia 6035: La relación 'fk_motivo_registro' tiene columnas que no forman
           <AssociationSet Name="fk_profesor_tutor_grupo" Association="Self.fk_profesor_tutor_grupo">
             <End Role="grupo" EntitySet="grupo" />
             <End Role="profesor" EntitySet="profesor" />
+          </AssociationSet>
+          <AssociationSet Name="fk_motivo_registro" Association="Self.fk_motivo_registro">
+            <End Role="motivo_registro" EntitySet="motivo_registro" />
+            <End Role="registro" EntitySet="registro" />
           </AssociationSet>
           <AssociationSet Name="fk_tipo_registro2" Association="Self.fk_tipo_registro2">
             <End Role="tipo_registro" EntitySet="tipo_registro" />
