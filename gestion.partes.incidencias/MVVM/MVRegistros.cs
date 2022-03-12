@@ -13,15 +13,21 @@ namespace gestion.partes.incidencias.MVVM
     {
         private tfgEntities _tfgEntities;
         private RegistroServicio _registroServicio;
+        private TipoRegistroServicio _tipoRegistroServicio;
+        private tipo_registro _tipoRegistroSeleccionado;
         private profesor _profesorLog;
         private ListCollectionView listaRegistros;
+        private DateTime _fechaDesde;
 
         public MVRegistros (tfgEntities ent, profesor profesorLog)
         {
             _tfgEntities = ent;
             _profesorLog = profesorLog;
             _registroServicio = new RegistroServicio(ent);
-            listaRegistros = new ListCollectionView(_registroServicio.getAll().ToList());
+            _tipoRegistroServicio = new TipoRegistroServicio(ent);
+            _tipoRegistroSeleccionado = new tipo_registro();
+            _fechaDesde = DateTime.Today;
+            listaRegistros = new ListCollectionView(_registroServicio.getAll().OrderByDescending(r => r.fecha_suceso).ToList());
         }
 
 
@@ -30,6 +36,37 @@ namespace gestion.partes.incidencias.MVVM
             get
             {
                 return listaRegistros;
+            }
+        }
+
+        public List<tipo_registro> listaTipoRegistros
+        {
+            get
+            {
+                return _tipoRegistroServicio.getAll().ToList();
+            }
+        }
+        public tipo_registro tipoRegistroSeleccionado
+        {
+            get
+            {
+                return _tipoRegistroSeleccionado;
+            }
+            set
+            {
+                _tipoRegistroSeleccionado = value; OnPropertyChanged("tipoRegistroSeleccionado");
+            }
+        }
+
+        public DateTime fechaDesde
+        {
+            get
+            {
+                return _fechaDesde;
+            }
+            set
+            {
+                _fechaDesde = value; OnPropertyChanged("fechaDesde");
             }
         }
     }

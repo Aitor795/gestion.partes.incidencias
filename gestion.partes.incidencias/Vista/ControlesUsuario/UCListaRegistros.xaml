@@ -7,7 +7,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="800" d:DesignWidth="1100">
     <DockPanel>
-        <!--
         <Grid DockPanel.Dock="Top" Background="BurlyWood">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
@@ -21,29 +20,29 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <TextBlock Text="LISTA ARTICULOS" FontSize="20" Grid.ColumnSpan="2"
+            <TextBlock Text="LISTADO DE INCIDENCIAS Y AMONESTACIONES" FontSize="20" Grid.ColumnSpan="2"
                        Margin="20" Foreground="Black" FontWeight="Bold" />
-            <CheckBox x:Name="checkModelo" Checked="CheckModelo_Checked" Unchecked="CheckModelo_Unchecked"
-                          Foreground="Black" Content="Agrupa por modelo de articulo"
-                          Grid.Row="1" Margin="20,10,0,10"/>
-            <ComboBox x:Name="comboFiltroEspacio" SelectionChanged="ComboFiltroEspacio_SelectionChanged"
-                      IsEditable="True" IsReadOnly="True" Text="Selecciona un Espacio"
-                      Width="200" Grid.Column="1" Grid.Row="1" Margin="10"
-                      ItemsSource="{Binding listaEspacios}" DisplayMemberPath="nombre"
-                      SelectedItem="{Binding espacioSeleccionado}"/>
-            <Button x:Name="btnResetFiltro" Click="BtnResetFiltro_Click" Background="Transparent"
-                    BorderBrush="Transparent" Grid.Column="2" Grid.Row="1" Margin="0,5,0,5">
-                <Image Source="/Recursos/Iconos/quitafiltro.png" Height="24"  />
-            </Button>
+            <ComboBox x:Name="comboFiltroTipoRegistros"
+                      IsEditable="True" IsReadOnly="True" Text="Selecciona un tipo de registro"
+                      Width="200" Grid.Column="0" Grid.Row="1" Margin="10"
+                      ItemsSource="{Binding listaTipoRegistros}" DisplayMemberPath="descripcion"
+                      SelectedItem="{Binding tipoRegistroSeleccionado}"/>
+            <TextBlock Text="Fecha desde:" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center"/>
+            <DatePicker x:Name="datePickerFechaDesde" SelectedDate="{Binding fechaDesde}" Grid.Column="2" Grid.Row="1" Width="100" VerticalAlignment="Center"
+                     Margin="10"/>
+            <!--
+            <TextBlock Text="Fecha hasta:" Grid.Column="3" Grid.Row="1" VerticalAlignment="Center"/>
+            <DatePicker SelectedDate="{Binding fecha_desde}" Grid.Column="4" Grid.Row="1" Width="100" VerticalAlignment="Center"
+                     Margin="10"/>
             <TextBlock Text="Escribe el número de serie" Grid.Column="3" Grid.Row="1"
                        Foreground="Black" VerticalAlignment="Center" />
             <TextBox Grid.Column="4" Grid.Row="1" Width="200" VerticalAlignment="Center"
                      Margin="10,0,0,0" x:Name="txtFiltroNumSerie" TextChanged="TxtFiltroNumSerie_TextChanged"
                      Text="{Binding textoFiltroNumSerie, UpdateSourceTrigger=PropertyChanged}"/>
-            <Button x:Name="btnFiltroCombinado" Click="BtnFiltroCombinado_Click" 
-                    Grid.Column="5" Grid.Row="1" Content="COMBINADO" Background="Beige" Margin="10"/>
-        </Grid>
-        -->
+            -->
+            <Button x:Name="btnFiltro" Click="BtnFiltro_Click" 
+                    Grid.Column="5" Grid.Row="1" Content="Buscar" Background="Beige" Margin="10"/>
+            </Grid>
 
         <Grid>
             <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding listaRegistrosTabla}" x:Name="dgArticulos" Background="Bisque">

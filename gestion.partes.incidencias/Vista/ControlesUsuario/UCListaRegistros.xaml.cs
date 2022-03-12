@@ -25,7 +25,7 @@ namespace gestion.partes.incidencias.Vista.ControlesUsuario
         private tfgEntities _tfgEnt;
         private MVRegistros mvRegistros;
         private List<Predicate<registro>> criterios = new List<Predicate<registro>>();
-        private Predicate<object> predicadoFiltroCombinado;
+        private Predicate<object> predicadoFiltro;
 
         public UCListaRegistros(tfgEntities ent)
         {
@@ -33,7 +33,7 @@ namespace gestion.partes.incidencias.Vista.ControlesUsuario
             _tfgEnt = ent;
             mvRegistros = new MVRegistros(_tfgEnt, null);
             DataContext = mvRegistros;
-            predicadoFiltroCombinado = new Predicate<object>(FiltroCombinado);
+            predicadoFiltro = new Predicate<object>(FiltroCombinado);
         }
 
         private bool FiltroCombinado(object item)
@@ -41,13 +41,28 @@ namespace gestion.partes.incidencias.Vista.ControlesUsuario
             bool esta = true;
             if (item != null)
             {
-                registro reg = item as registro;
+                registro _registro = item as registro;
                 if (criterios.Count() != 0)
                 {
-                    esta = criterios.TrueForAll(x => x(reg));
+                    esta = criterios.TrueForAll(x => x(_registro));
                 }
             }
             return esta;
+        }
+
+        private void BtnFiltro_Click(object sender, RoutedEventArgs e)
+        {
+            criterios.Clear();
+            if (comboFiltroTipoRegistros.SelectedItem != null)
+                criterios.Add(new Predicate<registro>(r => r.tipo_registro.id.Equals(mvRegistros.tipoRegistroSeleccionado.id)));
+            if (datePickerFechaDesde.SelectedDate != null)
+                criterios.Add(new Predicate<registro>(r => r.fecha_suceso >= mvRegistros.fechaDesde));
+            /*
+            if (!string.IsNullOrEmpty(mvArt.textoFiltroNumSerie))
+                criterios.Add(new Predicate<articulo>(a => (a.numserie != null) && a.numserie.Contains(mvArt.textoFiltroNumSerie)));
+            */
+
+            dgArticulos.Items.Filter = predicadoFiltro;
         }
     }
 }

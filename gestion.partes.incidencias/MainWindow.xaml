@@ -37,7 +37,7 @@
                         <mah:HamburgerMenuGlyphItem Glyph="&#59959;" Label="Listar Modelos" Tag="ListarModelos"/>
                         -->
 
-                        <mah:HamburgerMenuGlyphItem Glyph="&#xE8B7;" Label="Listar Registros" Tag="ListarRegistros"/>
+                        <mah:HamburgerMenuGlyphItem Glyph="&#xE8B7;" Label="Incidencias y Amonestaciones" Tag="ListarRegistros"/>
                         <!--
                         <mah:HamburgerMenuGlyphItem Glyph="&#59158;" Label="Listar Usuarios" Tag="ListarUsuarios"/>
                         -->
