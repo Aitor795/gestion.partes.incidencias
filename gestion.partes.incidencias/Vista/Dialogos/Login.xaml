@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:gestion.partes.incidencias.Vista.Dialogos"
         xmlns:material="http://materialdesigninxaml.net/winfx/xaml/themes"
-        
+        WindowStartupLocation="CenterScreen"
         mc:Ignorable="d"
         Title="Login" Height="450" Width="400">
 
@@ -20,6 +20,6 @@
         <!-- Posible mejora: bindear el boton Enter para evitar tener que pulsar el botón "Login" de forma manual. -->
         <PasswordBox x:Name="txtPassword" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"
                  material:HintAssist.Hint="Contraseña" Margin="20" FontSize="18" />
-        <Button Margin="20" Content="Login" x:Name="btnLogin" Click="BtnLogin_Click" />
+        <Button Margin="20" Content="Login" x:Name="btnLogin" Click="BtnLogin_Click" IsDefault="True" />
     </StackPanel>
 </Window>

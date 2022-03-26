@@ -35,7 +35,7 @@ namespace gestion.partes.incidencias.Vista.ControlesUsuario
             DataContext = mvRegistros;
             predicadoFiltro = new Predicate<object>(FiltroCombinado);
         }
-
+        
         private bool FiltroCombinado(object item)
         {
             bool esta = true;
@@ -50,6 +50,14 @@ namespace gestion.partes.incidencias.Vista.ControlesUsuario
             return esta;
         }
 
+        private void textBoxNiaAlumno_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (System.Text.RegularExpressions.Regex.IsMatch(mvRegistros.textFiltroNia, "[^0-9]"))
+            {
+                mvRegistros.textFiltroNia = mvRegistros.textFiltroNia.Remove(mvRegistros.textFiltroNia.Length - 1);
+            }
+        }
+
         private void BtnFiltro_Click(object sender, RoutedEventArgs e)
         {
             criterios.Clear();
@@ -57,12 +65,17 @@ namespace gestion.partes.incidencias.Vista.ControlesUsuario
                 criterios.Add(new Predicate<registro>(r => r.tipo_registro.id.Equals(mvRegistros.tipoRegistroSeleccionado.id)));
             if (datePickerFechaDesde.SelectedDate != null)
                 criterios.Add(new Predicate<registro>(r => r.fecha_suceso >= mvRegistros.fechaDesde));
-            /*
-            if (!string.IsNullOrEmpty(mvArt.textoFiltroNumSerie))
-                criterios.Add(new Predicate<articulo>(a => (a.numserie != null) && a.numserie.Contains(mvArt.textoFiltroNumSerie)));
-            */
+            if (datePickerFechaHasta.SelectedDate != null)
+                criterios.Add(new Predicate<registro>(r => r.fecha_suceso < mvRegistros.fechaHasta.AddDays(1)));
+            if (!string.IsNullOrEmpty(mvRegistros.textFiltroNia))
+                criterios.Add(new Predicate<registro>(r => (r.nia_alumno != null) && r.nia_alumno.Equals(int.Parse(mvRegistros.textFiltroNia))));
 
             dgArticulos.Items.Filter = predicadoFiltro;
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            BtnFiltro_Click(sender, e);
         }
     }
 }

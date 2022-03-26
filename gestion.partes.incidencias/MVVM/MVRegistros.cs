@@ -18,6 +18,8 @@ namespace gestion.partes.incidencias.MVVM
         private profesor _profesorLog;
         private ListCollectionView listaRegistros;
         private DateTime _fechaDesde;
+        private DateTime _fechaHasta;
+        private string _textFiltroNia;
 
         public MVRegistros (tfgEntities ent, profesor profesorLog)
         {
@@ -27,6 +29,7 @@ namespace gestion.partes.incidencias.MVVM
             _tipoRegistroServicio = new TipoRegistroServicio(ent);
             _tipoRegistroSeleccionado = new tipo_registro();
             _fechaDesde = DateTime.Today;
+            _fechaHasta = DateTime.Today;
             listaRegistros = new ListCollectionView(_registroServicio.getAll().OrderByDescending(r => r.fecha_suceso).ToList());
         }
 
@@ -67,6 +70,28 @@ namespace gestion.partes.incidencias.MVVM
             set
             {
                 _fechaDesde = value; OnPropertyChanged("fechaDesde");
+            }
+        }
+
+        public DateTime fechaHasta
+        {
+            get
+            {
+                return _fechaHasta;
+            }
+            set
+            {
+                _fechaHasta = value; OnPropertyChanged("fechaHasta");
+            }
+        }
+
+        public string textFiltroNia
+        {
+            get { return _textFiltroNia; }
+            set
+            {
+                _textFiltroNia = value;
+                OnPropertyChanged("textFiltroNia");
             }
         }
     }

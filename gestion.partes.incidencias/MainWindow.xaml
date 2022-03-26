@@ -6,6 +6,8 @@
         xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         WindowTitleBrush = "#3598db"
+        WindowStartupLocation="CenterScreen"
+        WindowState="Maximized"
         xmlns:local="clr-namespace:gestion.partes.incidencias"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
