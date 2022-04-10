@@ -11,11 +11,11 @@ namespace gestion.partes.incidencias
     public partial class MainWindow : MetroWindow
     {
         private tfgEntities _tfgEnt;
-        private profesor _profesor;
-        public MainWindow(tfgEntities tfgEnt, profesor profesor)
+        private profesor _profesorLogged;
+        public MainWindow(tfgEntities tfgEnt, profesor profesorLogged)
         {
             InitializeComponent();
-            _profesor = profesor;
+            _profesorLogged = profesorLogged;
             _tfgEnt = tfgEnt;
         }
 
@@ -39,7 +39,7 @@ namespace gestion.partes.incidencias
                         break;
                     */
                     case "ListarRegistros":
-                        uc = new UCListaRegistros(_tfgEnt);
+                        uc = new UCListaRegistros(_tfgEnt, _profesorLogged);
                         break;
                     
                     /*

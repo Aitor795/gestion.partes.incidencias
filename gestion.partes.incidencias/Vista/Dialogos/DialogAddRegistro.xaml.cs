@@ -1,4 +1,6 @@
-﻿using MahApps.Metro.Controls;
+﻿using gestion.partes.incidencias.Modelo;
+using gestion.partes.incidencias.MVVM;
+using MahApps.Metro.Controls;
 
 namespace gestion.partes.incidencias.Vista.Dialogos
 {
@@ -7,9 +9,16 @@ namespace gestion.partes.incidencias.Vista.Dialogos
     /// </summary>
     public partial class DialogAddRegistro : MetroWindow
     {
-        public DialogAddRegistro()
+        private registro _registro;
+        private MVRegistros _mvRegistros;
+
+        public DialogAddRegistro(tfgEntities tfgEnt, profesor profesorLogged, registro registro)
         {
             InitializeComponent();
+            _registro = registro;
+            _mvRegistros = new MVRegistros(tfgEnt, profesorLogged);
+            DataContext = _mvRegistros;
         }
+
     }
 }

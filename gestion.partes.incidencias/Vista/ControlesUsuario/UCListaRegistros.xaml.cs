@@ -1,5 +1,6 @@
 ﻿using gestion.partes.incidencias.Modelo;
 using gestion.partes.incidencias.MVVM;
+using gestion.partes.incidencias.Vista.Dialogos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,15 +24,17 @@ namespace gestion.partes.incidencias.Vista.ControlesUsuario
     public partial class UCListaRegistros : UserControl
     {
         private tfgEntities _tfgEnt;
+        private profesor _profesorLogged;
         private MVRegistros mvRegistros;
         private List<Predicate<registro>> criterios = new List<Predicate<registro>>();
         private Predicate<object> predicadoFiltro;
 
-        public UCListaRegistros(tfgEntities ent)
+        public UCListaRegistros(tfgEntities ent, profesor profesorLogged)
         {
             InitializeComponent();
             _tfgEnt = ent;
-            mvRegistros = new MVRegistros(_tfgEnt, null);
+            _profesorLogged = profesorLogged;
+            mvRegistros = new MVRegistros(_tfgEnt, _profesorLogged);
             DataContext = mvRegistros;
             predicadoFiltro = new Predicate<object>(FiltroCombinado);
         }
@@ -76,6 +79,12 @@ namespace gestion.partes.incidencias.Vista.ControlesUsuario
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             BtnFiltro_Click(sender, e);
+        }
+
+        private void btnAnyadirEditarRegistro_Click(object sender, RoutedEventArgs e)
+        {
+            DialogAddRegistro dialog = new DialogAddRegistro(_tfgEnt, _profesorLogged, new registro());
+            dialog.ShowDialog();
         }
     }
 }

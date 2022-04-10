@@ -19,7 +19,7 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -28,7 +28,7 @@
             <TextBlock Text="LISTADO DE INCIDENCIAS Y AMONESTACIONES" FontSize="20" Grid.ColumnSpan="9"
                        Margin="20" Foreground="Black" FontWeight="Bold" />
             <ComboBox x:Name="comboFiltroTipoRegistros" mah:TextBoxHelper.ClearTextButton="True"
-                      IsEditable="True" IsReadOnly="True" mah:TextBoxHelper.Watermark="Selecciona un tipo de registro"
+                      mah:TextBoxHelper.Watermark="Selecciona un tipo de registro"
                       Width="220" Grid.Column="0" Grid.Row="1" Margin="10"
                       ItemsSource="{Binding listaTipoRegistros}" DisplayMemberPath="descripcion"
                       SelectedItem="{Binding tipoRegistroSeleccionado}"/>
@@ -41,6 +41,8 @@
                      mah:TextBoxHelper.Watermark="NIA" mah:TextBoxHelper.ClearTextButton="True" Margin="10" Grid.Column="6" Grid.Row="1" VerticalAlignment="Center" Width="100"/>
             <Button x:Name="btnFiltro" Click="BtnFiltro_Click" 
                     Grid.Column="7" Grid.Row="1" Content="Buscar" Background="Beige" Margin="10"/>
+            <Button x:Name="btnAnyadirEditarRegistro" Click="btnAnyadirEditarRegistro_Click"
+                    Grid.Column="8" Grid.Row="1" Content="Añadir" Background="Beige" Margin="10" HorizontalAlignment="Right"/>
         </Grid>
 
         <Grid>
