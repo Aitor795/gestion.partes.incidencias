@@ -46,7 +46,7 @@
         </Grid>
 
         <Grid>
-            <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding listaRegistrosTabla}" x:Name="dgArticulos" Background="Bisque" CanUserAddRows="False">
+            <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding listaRegistrosTabla}" x:Name="dgRegistros" Background="Bisque" CanUserAddRows="False">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="TIPO DE REGISTRO" Binding="{Binding tipo_registro.descripcion}" />
                     <DataGridTextColumn Header="MOTIVO" Binding="{Binding motivo_registro.motivo}" />

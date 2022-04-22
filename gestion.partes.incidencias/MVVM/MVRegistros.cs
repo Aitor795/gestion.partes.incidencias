@@ -2,6 +2,7 @@
 using gestion.partes.incidencias.Servicio;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,7 +15,9 @@ namespace gestion.partes.incidencias.MVVM
         private tfgEntities _tfgEntities;
         private RegistroServicio _registroServicio;
         private TipoRegistroServicio _tipoRegistroServicio;
+        private MotivoRegistroServicio _motivoRegistroServicio;
         private tipo_registro _tipoRegistroSeleccionado;
+        private registro _registro;
         private profesor _profesorLog;
         private ListCollectionView listaRegistros;
         private DateTime _fechaDesde;
@@ -27,7 +30,9 @@ namespace gestion.partes.incidencias.MVVM
             _profesorLog = profesorLog;
             _registroServicio = new RegistroServicio(ent);
             _tipoRegistroServicio = new TipoRegistroServicio(ent);
+            _motivoRegistroServicio = new MotivoRegistroServicio(ent);
             _tipoRegistroSeleccionado = new tipo_registro();
+            _registro = new registro();
             _fechaDesde = DateTime.Today;
             _fechaHasta = DateTime.Today;
             listaRegistros = new ListCollectionView(_registroServicio.getAll().OrderByDescending(r => r.fecha_suceso).ToList());
@@ -42,11 +47,23 @@ namespace gestion.partes.incidencias.MVVM
             }
         }
 
+        public void recargarListaRegistrosTabla()
+        {
+            listaRegistros = new ListCollectionView(_registroServicio.getAll().OrderByDescending(r => r.fecha_suceso).ToList());
+        }
+
         public List<tipo_registro> listaTipoRegistros
         {
             get
             {
                 return _tipoRegistroServicio.getAll().ToList();
+            }
+        }
+        public List<motivo_registro> listaMotivoRegistro
+        {
+            get
+            {
+                return _motivoRegistroServicio.getAll().ToList();
             }
         }
         public tipo_registro tipoRegistroSeleccionado
@@ -60,7 +77,17 @@ namespace gestion.partes.incidencias.MVVM
                 _tipoRegistroSeleccionado = value; OnPropertyChanged("tipoRegistroSeleccionado");
             }
         }
-
+        public registro registroSeleccionado
+        {
+            get
+            {
+                return _registro;
+            }
+            set
+            {
+                _registro = value; OnPropertyChanged("registroSeleccionado");
+            }
+        }
         public DateTime fechaDesde
         {
             get
@@ -93,6 +120,22 @@ namespace gestion.partes.incidencias.MVVM
                 _textFiltroNia = value;
                 OnPropertyChanged("textFiltroNia");
             }
+        }
+
+        public bool guarda()
+        {
+            bool correcto = true;
+            _registroServicio.add(_registro);
+            try
+            {
+                _registroServicio.save();
+            }
+            catch (DbUpdateException dbex)
+            {
+                correcto = false;
+                System.Console.WriteLine(dbex.StackTrace);
+            }
+            return correcto;
         }
     }
 }

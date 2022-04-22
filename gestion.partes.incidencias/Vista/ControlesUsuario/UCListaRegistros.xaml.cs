@@ -73,7 +73,7 @@ namespace gestion.partes.incidencias.Vista.ControlesUsuario
             if (!string.IsNullOrEmpty(mvRegistros.textFiltroNia))
                 criterios.Add(new Predicate<registro>(r => (r.nia_alumno != null) && r.nia_alumno.Equals(int.Parse(mvRegistros.textFiltroNia))));
 
-            dgArticulos.Items.Filter = predicadoFiltro;
+            dgRegistros.Items.Filter = predicadoFiltro;
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
@@ -84,7 +84,11 @@ namespace gestion.partes.incidencias.Vista.ControlesUsuario
         private void btnAnyadirEditarRegistro_Click(object sender, RoutedEventArgs e)
         {
             DialogAddRegistro dialog = new DialogAddRegistro(_tfgEnt, _profesorLogged, new registro());
-            dialog.ShowDialog();
+            if (dialog.ShowDialog() == true)
+            {
+                mvRegistros.recargarListaRegistrosTabla();
+                dgRegistros.ItemsSource = mvRegistros.listaRegistrosTabla;
+            }
         }
     }
 }
