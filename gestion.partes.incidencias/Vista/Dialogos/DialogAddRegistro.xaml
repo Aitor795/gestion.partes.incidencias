@@ -6,14 +6,14 @@
         xmlns:local="clr-namespace:gestion.partes.incidencias.Vista.Dialogos"
         xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen"
-        Title="Añadir Nuevo Registro" SizeToContent="WidthAndHeight"
+        Title="Añadir Nuevo Registro" Width="420" Height="510"
                  Loaded="MetroWindow_Loaded">
+    
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="140"/>
+            <ColumnDefinition Width="140"/>
+            <ColumnDefinition Width="140"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -27,31 +27,36 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Border Background="#333" Padding="20" Grid.ColumnSpan="4">
+        <Border Background="#333" Padding="20" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3">
             <TextBlock Text="AÑADIR REGISTRO" Foreground="White" FontSize="20" 
                        HorizontalAlignment="Center"/>
         </Border>
-        <TextBlock Grid.Column="0" Grid.Row="2" Text="Tipo Registro" Margin="10,15,0,5" Grid.ColumnSpan="4" FontWeight="Bold" />
-        <ComboBox Grid.Column="0" Grid.Row="3" x:Name="comboTipoRegistro" Width="200" Margin="10,5,0,5" Grid.ColumnSpan="4" HorizontalAlignment="Left"
+        <TextBlock Grid.Column="0" Grid.Row="2" Text="Tipo Registro" Margin="10,15,0,5" Grid.ColumnSpan="2" FontWeight="Bold" />
+        <ComboBox Grid.Column="0" Grid.Row="3" x:Name="comboTipoRegistro" Width="200" Margin="10,5,0,5" Grid.ColumnSpan="2" HorizontalAlignment="Left"
                   mah:TextBoxHelper.Watermark="Tipo Registro" ItemsSource="{Binding listaTipoRegistros}" DisplayMemberPath="descripcion"
                       SelectedItem="{Binding registroSeleccionado.tipo_registro}" SelectionChanged="comboTipoRegistro_SelectionChanged"/>
         <TextBlock Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Text="Fecha Suceso" Margin="10,15,0,5" FontWeight="Bold"/>
-        <!-- TODO La fecha debe tener hora -->
-        <DatePicker Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" x:Name="dateFechaSuceso" SelectedDate="{Binding registroSeleccionado.fecha_suceso}" Margin="10,5,0,5"/>
-        <TextBlock Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="2" Text="Sancionado" Margin="10,15,0,5" x:Name="labelSeleccionado" FontWeight="Bold"/>
-        <CheckBox Grid.Column="2" Grid.Row="5" Grid.ColumnSpan="2" Margin="10,5,0,5" x:Name="checkSeleccionado" IsChecked="{Binding registroSeleccionado.sancionado}">
+        <!-- TODO hay que cambiar el formato de la fecha -->
+        <mah:DateTimePicker Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" x:Name="dateFechaSuceso" mah:TextBoxHelper.Watermark="Fecha Suceso" SelectedDateTime="{Binding registroSeleccionado.fecha_suceso}" Margin="10,5,0,5"/>
+        <TextBlock Grid.Column="2" Grid.Row="4" Text="Sancionado" Margin="10,15,0,5" x:Name="labelSeleccionado" FontWeight="Bold"/>
+        <CheckBox Grid.Column="2" Grid.Row="5" Margin="10,5,0,5" x:Name="checkSeleccionado" IsChecked="{Binding registroSeleccionado.sancionado}">
             <TextBlock Text="Se ha sancionado"/>
         </CheckBox>
-        <TextBlock Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="4" Text="Motivo de Registro" FontWeight="Bold" Margin="10,15,0,5"/>
-        <ComboBox Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="4" x:Name="comboMotivoRegistro" HorizontalAlignment="Left" Width="200" Margin="10,5,0,5"
+        <TextBlock Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2" Text="Motivo de Registro" FontWeight="Bold" Margin="10,15,0,5"/>
+        <ComboBox Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="2" x:Name="comboMotivoRegistro" HorizontalAlignment="Left" Width="200" Margin="10,5,0,5"
                   mah:TextBoxHelper.Watermark="Motivo de Registro" ItemsSource="{Binding listaMotivoRegistro}" DisplayMemberPath="motivo"
                   SelectedItem="{Binding registroSeleccionado.motivo_registro}"/>
         <TextBlock Grid.Column="0" Grid.Row="8" Text="Alumno Sancionado" Margin="10,15,0,5" FontWeight="Bold"/>
-        <TextBox Grid.Column="0" Grid.Row="9" x:Name="textAlumnoSeleccionado" Text="{Binding registroSeleccionado.nia_alumno}" mah:TextBoxHelper.Watermark="Alumno Sancionado" Margin="10,5,0,5"/>
-        <TextBlock Grid.Column="2" Grid.Row="8" Text="Profesor que Presencia" Margin="10,15,0,5" FontWeight="Bold"/>
-        <TextBox Grid.Column="2" Grid.Row="9" x:Name="textProfesorPresencia" Text="{Binding registroSeleccionado.dni_profesor}" mah:TextBoxHelper.Watermark="Profesor que Presencia" Margin="10,5,0,5"/>
-        <Button Grid.Column="0" Grid.Row="10" x:Name="btnGuardar" Content="Guardar" Margin="10" Background="Aqua" Click="btnGuardar_Click"/>
-        <!-- TODO terminar el diseño de la pantalla -->
+        <TextBox Grid.Column="0" Grid.Row="9" x:Name="textAlumnoSeleccionado" Text="{Binding registroSeleccionado.nia_alumno}" LostFocus="textAlumnoSeleccionado_LostFocus" mah:TextBoxHelper.Watermark="Alumno Sancionado" Margin="10,5,0,5"/>
+        <TextBlock Grid.Column="1" Grid.Row="8" Grid.ColumnSpan="2" Text="Nombre y Apellidos" Margin="10,15,0,5" FontWeight="Bold"/>
+        <TextBox Grid.Column="1" Grid.Row="9" Grid.ColumnSpan="2" mah:TextBoxHelper.Watermark="Nombre y Apellido" x:Name="textNombreAlumno" IsEnabled="False" Margin="10,5,0,5"/>
+        <TextBlock Grid.Column="0" Grid.Row="10" Text="Profesor que Presencia" Margin="10,15,0,5" FontWeight="Bold"/>
+        <TextBox Grid.Column="0" Grid.Row="11" x:Name="textProfesorPresencia" Text="{Binding registroSeleccionado.dni_profesor}" LostFocus="textProfesorPresencia_LostFocus" mah:TextBoxHelper.Watermark="Profesor que Presencia" Margin="10,5,0,5"/>
+        <TextBlock Grid.Column="1" Grid.Row="10" Grid.ColumnSpan="2" Text="Nombre y Apellidos" Margin="10,15,0,5" FontWeight="Bold"/>
+        <TextBox Grid.Column="1" Grid.Row="11" Grid.ColumnSpan="2" mah:TextBoxHelper.Watermark="Nombre y Apellido" x:Name="textNombreProfesor" IsEnabled="False" Margin="10,5,0,5"/>
+        <Button Grid.Column="2" Grid.Row="12" x:Name="btnGuardar" Content="Guardar" Margin="10" Background="Aqua" Click="btnGuardar_Click"/>
     </Grid>
 </mah:MetroWindow>

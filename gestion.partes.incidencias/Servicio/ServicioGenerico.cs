@@ -64,6 +64,10 @@ namespace gestion.partes.incidencias.Servicio
         {
             return _dbset.Find(id);
         }
+        public T findByID(string id)
+        {
+            return _dbset.Find(id);
+        }
         /*
          * Añade la entidad a la base de datos
          * Necesita de un commit para hacer la transacción persistente

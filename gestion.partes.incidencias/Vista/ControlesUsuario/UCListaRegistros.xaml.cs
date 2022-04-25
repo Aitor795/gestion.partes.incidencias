@@ -81,13 +81,41 @@ namespace gestion.partes.incidencias.Vista.ControlesUsuario
             BtnFiltro_Click(sender, e);
         }
 
-        private void btnAnyadirEditarRegistro_Click(object sender, RoutedEventArgs e)
+        private void btnAnyadirRegistro_Click(object sender, RoutedEventArgs e)
         {
             DialogAddRegistro dialog = new DialogAddRegistro(_tfgEnt, _profesorLogged, new registro());
             if (dialog.ShowDialog() == true)
             {
                 mvRegistros.recargarListaRegistrosTabla();
                 dgRegistros.ItemsSource = mvRegistros.listaRegistrosTabla;
+            }
+        }
+
+        private void btnEditarRegistro_Click(object sender, RoutedEventArgs e)
+        {
+            if(dgRegistros.SelectedItem != null)
+            {
+                DialogAddRegistro dialog = new DialogAddRegistro(_tfgEnt, _profesorLogged, (registro) dgRegistros.SelectedItem);
+                dialog.ShowDialog();
+            }
+        }
+
+        private void btnEliminarRegistro_Click(object sender, RoutedEventArgs e)
+        {
+            if(dgRegistros.SelectedItem != null)
+            {
+                MessageBoxResult result = MessageBox.Show("Se dispone a eliminar el registro seleccionado.", "¡ADVERTENCIA!", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                if(MessageBoxResult.Yes == result)
+                {
+                    MessageBoxResult result2 = MessageBox.Show("¿Serguro que quiere eliminar el registro de forma permanente?", "¡ADVERTENCIA!", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                    if(MessageBoxResult.Yes == result2)
+                    {
+                        mvRegistros.elimina((registro) dgRegistros.SelectedItem);
+                        MessageBox.Show("Registro eliminado correctamente", "GESTIÓN REGISTROS", MessageBoxButton.OK, MessageBoxImage.Information);
+                        mvRegistros.recargarListaRegistrosTabla();
+                        dgRegistros.ItemsSource = mvRegistros.listaRegistrosTabla;
+                    }
+                }
             }
         }
     }

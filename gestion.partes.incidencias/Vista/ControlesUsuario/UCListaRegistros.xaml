@@ -19,7 +19,9 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -40,22 +42,26 @@
             <TextBox x:Name="textBoxNiaAlumno" TextChanged="textBoxNiaAlumno_TextChanged" Text="{Binding textFiltroNia, UpdateSourceTrigger=PropertyChanged}" 
                      mah:TextBoxHelper.Watermark="NIA" mah:TextBoxHelper.ClearTextButton="True" Margin="10" Grid.Column="6" Grid.Row="1" VerticalAlignment="Center" Width="100"/>
             <Button x:Name="btnFiltro" Click="BtnFiltro_Click" 
-                    Grid.Column="7" Grid.Row="1" Content="Buscar" Background="Beige" Margin="10"/>
-            <Button x:Name="btnAnyadirEditarRegistro" Click="btnAnyadirEditarRegistro_Click"
+                    Grid.Column="7" Grid.Row="1" Content="Buscar" Background="Coral" Margin="10"/>
+            <Button x:Name="btnAnyadirRegistro" Click="btnAnyadirRegistro_Click"
                     Grid.Column="8" Grid.Row="1" Content="Añadir" Background="Beige" Margin="10" HorizontalAlignment="Right"/>
+            <Button x:Name="btnEditarRegistro" Click="btnEditarRegistro_Click"
+                    Grid.Column="9" Grid.Row="1" Content="Editar" Background="Beige" Margin="10" HorizontalAlignment="Right"/>
+            <Button x:Name="btnEliminarRegistro" Click="btnEliminarRegistro_Click"
+                     Grid.Column="10" Grid.Row="1" Content="Eliminar" Background="Beige" Margin="10" HorizontalAlignment="Right"/>
         </Grid>
 
         <Grid>
-            <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding listaRegistrosTabla}" x:Name="dgRegistros" Background="Bisque" CanUserAddRows="False">
+            <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding listaRegistrosTabla}" x:Name="dgRegistros" SelectionMode="Single" Background="Bisque" CanUserAddRows="False">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="TIPO DE REGISTRO" Binding="{Binding tipo_registro.descripcion}" />
                     <DataGridTextColumn Header="MOTIVO" Binding="{Binding motivo_registro.motivo}" />
                     <DataGridTemplateColumn Header="FECHA DE SUCESO" >
 
-                        <!-- TODO hay que conseguir mostrar la hora -->
+                        <!-- TODO hay que cambiar el formato de la fecha -->
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <DatePicker SelectedDate="{Binding fecha_suceso}" IsEnabled="False" />
+                                <mah:DateTimePicker SelectedDateTime="{Binding fecha_suceso}" IsEnabled="False" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
 
@@ -64,10 +70,10 @@
                     <DataGridTextColumn Header="PROFESOR" Binding="{Binding profesor.dni}" />
                     <DataGridTemplateColumn Header="FECHA DE REGISTRO" >
 
-                        <!-- TODO hay que conseguir mostrar la hora -->
+                        <!-- TODO hay que cambiar el formato de la fecha -->
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <DatePicker SelectedDate="{Binding fecha_registro}" IsEnabled="False" />
+                                <mah:DateTimePicker SelectedDateTime="{Binding fecha_registro}" IsEnabled="False" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
 

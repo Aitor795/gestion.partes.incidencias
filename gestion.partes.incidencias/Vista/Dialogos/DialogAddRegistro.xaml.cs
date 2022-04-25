@@ -1,5 +1,6 @@
 ﻿using gestion.partes.incidencias.Modelo;
 using gestion.partes.incidencias.MVVM;
+using gestion.partes.incidencias.Validacion;
 using MahApps.Metro.Controls;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,6 @@ namespace gestion.partes.incidencias.Vista.Dialogos
     /// </summary>
     public partial class DialogAddRegistro : MetroWindow
     {
-        private registro _registro;
         private MVRegistros _mvRegistros;
         private List<Predicate<motivo_registro>> criterios = new List<Predicate<motivo_registro>>();
         private Predicate<object> filtroMotivoRegistro;
@@ -21,8 +21,8 @@ namespace gestion.partes.incidencias.Vista.Dialogos
         public DialogAddRegistro(tfgEntities tfgEnt, profesor profesorLogged, registro registro)
         {
             InitializeComponent();
-            _registro = registro;
             _mvRegistros = new MVRegistros(tfgEnt, profesorLogged);
+            _mvRegistros.setRegistro(registro);
             filtroMotivoRegistro = new Predicate<object>(FiltroCombinado);
             DataContext = _mvRegistros;
             _mvRegistros.registroSeleccionado.dni_profesor_registro = profesorLogged.dni;
@@ -73,15 +73,121 @@ namespace gestion.partes.incidencias.Vista.Dialogos
 
         private void btnGuardar_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            if (_mvRegistros.guarda())
+            if(comprobarCamposObligatorios())
             {
-                MessageBox.Show("Artículo añadido correctamente", "GESTIÓN ARTÍCULOS", MessageBoxButton.OK, MessageBoxImage.Information);
+                if (_mvRegistros.guarda())
+                {
+                    MessageBox.Show("Registro añadido correctamente", "GESTIÓN REGISTROS", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Problemas con la base de datos.\nNo se ha añadido el registro", "GESTIÓN REGISTROS", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                DialogResult = true;
             }
             else
             {
-                MessageBox.Show("Problemas con la base de datos.\nNo se ha añadido el artículo", "GESTIÓN ARTÍCULOS", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Hay campos obligatorios sin rellenar", "GESTIÓN REGISTROS", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            DialogResult = true;
+        }
+
+        private void textAlumnoSeleccionado_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if(textAlumnoSeleccionado.Text != null && textAlumnoSeleccionado.Text != "")
+            {
+                alumno alumno = _mvRegistros.buscarAlumno(int.Parse(textAlumnoSeleccionado.Text));
+                if (alumno != null)
+                {
+                    textNombreAlumno.Text = alumno.nombre + " " + alumno.apellido1 + " " + alumno.apellido2;
+                    ValidacionErrores.quitarError(textAlumnoSeleccionado);
+                } 
+                else
+                {
+                    textNombreAlumno.Clear();
+                    ValidacionErrores.marcarError(textAlumnoSeleccionado);
+                }
+            }
+            else
+            {
+                textNombreAlumno.Clear();
+            }
+        }
+
+        private void textProfesorPresencia_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (textProfesorPresencia.Text != null && textProfesorPresencia.Text != "")
+            {
+                profesor profesor = _mvRegistros.buscarProfesor(textProfesorPresencia.Text);
+                if (profesor != null)
+                {
+                    textNombreProfesor.Text = profesor.nombre + " " + profesor.apellido1 + " " + profesor.apellido2;
+                    ValidacionErrores.quitarError(textProfesorPresencia);
+                }
+                else
+                {
+                    textNombreProfesor.Clear();
+                    ValidacionErrores.marcarError(textProfesorPresencia);
+                }
+            }
+            else
+            {
+                textNombreProfesor.Clear();
+            }
+        }
+
+        private Boolean comprobarCamposObligatorios()
+        {
+            bool correcto = true;
+            if(comboTipoRegistro.SelectedItem == null)
+            {
+                correcto = false;
+                ValidacionErrores.marcarError(comboTipoRegistro);
+            } 
+            else
+            {
+                ValidacionErrores.quitarError(comboTipoRegistro);
+            }
+
+            if (dateFechaSuceso.SelectedDateTime == null)
+            {
+                correcto = false;
+                ValidacionErrores.marcarError(dateFechaSuceso);
+            }
+            else
+            {
+                ValidacionErrores.quitarError(dateFechaSuceso);
+            }
+
+            if (comboMotivoRegistro.SelectedItem == null)
+            {
+                correcto = false;
+                ValidacionErrores.marcarError(comboMotivoRegistro);
+            }
+            else
+            {
+                ValidacionErrores.quitarError(comboMotivoRegistro);
+            }
+
+            if (textAlumnoSeleccionado.Text == null || textAlumnoSeleccionado.Text == "")
+            {
+                correcto = false;
+                ValidacionErrores.marcarError(textAlumnoSeleccionado);
+            }
+            else
+            {
+                ValidacionErrores.quitarError(textAlumnoSeleccionado);
+            }
+
+            if (textProfesorPresencia.Text == null || textProfesorPresencia.Text == "")
+            {
+                correcto = false;
+                ValidacionErrores.marcarError(textProfesorPresencia);
+            }
+            else
+            {
+                ValidacionErrores.quitarError(textProfesorPresencia);
+            }
+            return correcto;
         }
     }
 }

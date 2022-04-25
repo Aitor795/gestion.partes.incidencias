@@ -16,6 +16,8 @@ namespace gestion.partes.incidencias.MVVM
         private RegistroServicio _registroServicio;
         private TipoRegistroServicio _tipoRegistroServicio;
         private MotivoRegistroServicio _motivoRegistroServicio;
+        private AlumnoServicio _alumnoServicio;
+        private ProfesorServicio _profesorServicio;
         private tipo_registro _tipoRegistroSeleccionado;
         private registro _registro;
         private profesor _profesorLog;
@@ -31,11 +33,17 @@ namespace gestion.partes.incidencias.MVVM
             _registroServicio = new RegistroServicio(ent);
             _tipoRegistroServicio = new TipoRegistroServicio(ent);
             _motivoRegistroServicio = new MotivoRegistroServicio(ent);
+            _alumnoServicio = new AlumnoServicio(ent);
+            _profesorServicio = new ProfesorServicio(ent);
             _tipoRegistroSeleccionado = new tipo_registro();
-            _registro = new registro();
             _fechaDesde = DateTime.Today;
             _fechaHasta = DateTime.Today;
             listaRegistros = new ListCollectionView(_registroServicio.getAll().OrderByDescending(r => r.fecha_suceso).ToList());
+        }
+
+        public void setRegistro (registro registro)
+        {
+            _registro = registro;
         }
 
 
@@ -125,7 +133,16 @@ namespace gestion.partes.incidencias.MVVM
         public bool guarda()
         {
             bool correcto = true;
-            _registroServicio.add(_registro);
+
+            if(_registro.id == null)
+            {
+                _registroServicio.add(_registro);
+            }
+            else
+            {
+                _registroServicio.edit(_registro);
+            }
+
             try
             {
                 _registroServicio.save();
@@ -136,6 +153,30 @@ namespace gestion.partes.incidencias.MVVM
                 System.Console.WriteLine(dbex.StackTrace);
             }
             return correcto;
+        }
+        
+        public void elimina(registro registro)
+        {
+            _registroServicio.delete(registro);
+
+            try
+            {
+                _registroServicio.save();
+            }
+            catch (DbUpdateException dbex)
+            {
+                System.Console.WriteLine(dbex.StackTrace);
+            }
+        }
+
+        public alumno buscarAlumno (int nia)
+        {
+            return _alumnoServicio.findByID(nia);
+        }
+
+        public profesor buscarProfesor (string dni)
+        {
+            return _profesorServicio.findByID(dni);
         }
     }
 }

@@ -242,6 +242,7 @@
     <Compile Include="MVVM\MVGrupo.cs" />
     <Compile Include="MVVM\MVMotivoRegistro.cs" />
     <Compile Include="MVVM\MVRegistros.cs" />
+    <Compile Include="Servicio\AlumnoServicio.cs" />
     <Compile Include="Servicio\GrupoServicio.cs" />
     <Compile Include="Servicio\IServicioGenerico.cs" />
     <Compile Include="Servicio\MotivoRegistroServicio.cs" />
@@ -249,6 +250,7 @@
     <Compile Include="Servicio\RegistroServicio.cs" />
     <Compile Include="Servicio\ServicioGenerico.cs" />
     <Compile Include="Servicio\TipoRegistroServicio.cs" />
+    <Compile Include="Validacion\ValidacionErrores.cs" />
     <Compile Include="Vista\ControlesUsuario\UCListaRegistros.xaml.cs">
       <DependentUpon>UCListaRegistros.xaml</DependentUpon>
     </Compile>
