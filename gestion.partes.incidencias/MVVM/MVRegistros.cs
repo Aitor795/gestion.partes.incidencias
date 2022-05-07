@@ -41,6 +41,11 @@ namespace gestion.partes.incidencias.MVVM
             listaRegistros = new ListCollectionView(_registroServicio.getAll().OrderByDescending(r => r.fecha_suceso).ToList());
         }
 
+        public registro getRegistro ()
+        {
+            return _registro;
+        }
+
         public void setRegistro (registro registro)
         {
             _registro = registro;
@@ -134,7 +139,7 @@ namespace gestion.partes.incidencias.MVVM
         {
             bool correcto = true;
 
-            if(_registro.id == null)
+            if(_registro.id == 0)
             {
                 _registroServicio.add(_registro);
             }

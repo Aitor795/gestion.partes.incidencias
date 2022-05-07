@@ -43,16 +43,17 @@
                      mah:TextBoxHelper.Watermark="NIA" mah:TextBoxHelper.ClearTextButton="True" Margin="10" Grid.Column="6" Grid.Row="1" VerticalAlignment="Center" Width="100"/>
             <Button x:Name="btnFiltro" Click="BtnFiltro_Click" 
                     Grid.Column="7" Grid.Row="1" Content="Buscar" Background="Coral" Margin="10"/>
-            <Button x:Name="btnAnyadirRegistro" Click="btnAnyadirRegistro_Click"
+            <Button x:Name="btnAnyadirRegistro" Click="btnAnyadirRegistro_Click" IsEnabled="False"
                     Grid.Column="8" Grid.Row="1" Content="Añadir" Background="Beige" Margin="10" HorizontalAlignment="Right"/>
-            <Button x:Name="btnEditarRegistro" Click="btnEditarRegistro_Click"
+            <Button x:Name="btnEditarRegistro" Click="btnEditarRegistro_Click" IsEnabled="False"
                     Grid.Column="9" Grid.Row="1" Content="Editar" Background="Beige" Margin="10" HorizontalAlignment="Right"/>
-            <Button x:Name="btnEliminarRegistro" Click="btnEliminarRegistro_Click"
+            <Button x:Name="btnEliminarRegistro" Click="btnEliminarRegistro_Click" IsEnabled="False"
                      Grid.Column="10" Grid.Row="1" Content="Eliminar" Background="Beige" Margin="10" HorizontalAlignment="Right"/>
         </Grid>
 
         <Grid>
-            <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding listaRegistrosTabla}" x:Name="dgRegistros" SelectionMode="Single" Background="Bisque" CanUserAddRows="False">
+            <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding listaRegistrosTabla}" x:Name="dgRegistros"
+                      SelectionChanged="dgRegistros_SelectionChanged"  SelectionMode="Single" Background="Bisque" CanUserAddRows="False">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="TIPO DE REGISTRO" Binding="{Binding tipo_registro.descripcion}" />
                     <DataGridTextColumn Header="MOTIVO" Binding="{Binding motivo_registro.motivo}" />

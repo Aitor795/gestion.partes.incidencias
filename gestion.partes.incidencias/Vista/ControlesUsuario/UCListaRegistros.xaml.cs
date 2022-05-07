@@ -79,6 +79,26 @@ namespace gestion.partes.incidencias.Vista.ControlesUsuario
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             BtnFiltro_Click(sender, e);
+
+            List<roles_profesor> rolesprofesor = _profesorLogged.roles_profesor.ToList();
+
+            for (int i = 0; i < rolesprofesor.Count; i++)
+            {
+                rol rol = rolesprofesor[i].rol;
+
+                List<permisos_rol> permisosprofesor = rol.permisos_rol.ToList();
+
+                for (int j = 0; j < permisosprofesor.Count; j++)
+                {
+                    permiso permiso = permisosprofesor[j].permiso;
+
+                    if (permiso.codigo == "ADD_REGISTRO")
+                    {
+                        btnAnyadirRegistro.IsEnabled = true;
+                        return;
+                    }
+                }
+            }
         }
 
         private void btnAnyadirRegistro_Click(object sender, RoutedEventArgs e)
@@ -116,6 +136,71 @@ namespace gestion.partes.incidencias.Vista.ControlesUsuario
                         dgRegistros.ItemsSource = mvRegistros.listaRegistrosTabla;
                     }
                 }
+            }
+        }
+
+        private void dgRegistros_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (dgRegistros.SelectedItem != null)
+            {
+                registro registro = (registro)dgRegistros.SelectedItem;
+                List<roles_profesor> rolesprofesor = _profesorLogged.roles_profesor.ToList();
+
+                for (int i = 0; i < rolesprofesor.Count; i++)
+                {
+                    rol rol = rolesprofesor[i].rol;
+
+                    if (rol.codigo == "PROFESOR")
+                    {
+                        if (registro.dni_profesor == _profesorLogged.dni || registro.dni_profesor_registro == _profesorLogged.dni)
+                        {
+                            btnEditarRegistro.IsEnabled = true;
+                            btnEliminarRegistro.IsEnabled = true;
+                            break;
+                        }
+                        else
+                        {
+                            btnEditarRegistro.IsEnabled = false;
+                            btnEliminarRegistro.IsEnabled = false;
+                        }
+                    }
+                    else if (rol.codigo == "TUTOR")
+                    {
+                        if (registro.alumno.grupo != null && _profesorLogged.grupo != null && registro.alumno.grupo == _profesorLogged.grupo)
+                        {
+                            btnEditarRegistro.IsEnabled = true;
+                            btnEliminarRegistro.IsEnabled = true;
+                            break;
+                        }
+                        else
+                        {
+                            btnEditarRegistro.IsEnabled = false;
+                            btnEliminarRegistro.IsEnabled = false;
+                        }
+                    }
+                    else if (rol.codigo == "ADMIN")
+                    {
+                        btnEditarRegistro.IsEnabled = true;
+                        btnEliminarRegistro.IsEnabled = true;
+                        break;
+                    }
+                    else if (rol.codigo == "DIRECTIVO")
+                    {
+                        btnEditarRegistro.IsEnabled = true;
+                        btnEliminarRegistro.IsEnabled = true;
+                        break;
+                    }
+                    else
+                    {
+                        btnEditarRegistro.IsEnabled = false;
+                        btnEliminarRegistro.IsEnabled = false;
+                    }
+                }
+            }
+            else
+            {
+                btnEditarRegistro.IsEnabled = false;
+                btnEliminarRegistro.IsEnabled = false;
             }
         }
     }
