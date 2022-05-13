@@ -10,7 +10,8 @@
         WindowState="Maximized"
         xmlns:local="clr-namespace:gestion.partes.incidencias"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800"
+        Loaded="MetroWindow_Loaded">
     <mah:MetroWindow.RightWindowCommands>
         <mah:WindowCommands>
             <Button Content="Login" />
@@ -38,9 +39,9 @@
                         <mah:HamburgerMenuGlyphItem Glyph="&#59959;" Label="Listar Modelos" Tag="ListarModelos"/>
                         -->
                         <!-- TODO aplicar visibilidad en base a permisos -->
-                        <mah:HamburgerMenuGlyphItem Glyph="&#xE8B7;" Label="Incidencias y Amonestaciones" Tag="ListarRegistros"/>
+                        <mah:HamburgerMenuGlyphItem x:Name="listaRegistroUC" Glyph="&#xE8B7;" Label="Incidencias y Amonestaciones" Tag="ListarRegistros" IsVisible="False"/>
 
-                        <mah:HamburgerMenuGlyphItem Glyph="&#xE77b;" Label="Alumnos" Tag="Alumnos"/>
+                        <mah:HamburgerMenuGlyphItem x:Name="listaAlumnosUC" Glyph="&#xE77b;" Label="Alumnos" Tag="Alumnos"/>
                         <!--
                         <mah:HamburgerMenuGlyphItem Glyph="&#59158;" Label="Listar Usuarios" Tag="ListarUsuarios"/>
                         -->

@@ -25,6 +25,8 @@ namespace gestion.partes.incidencias.Modelo
         public string apellido1 { get; set; }
         public string apellido2 { get; set; }
         public string codigo_grupo { get; set; }
+        public Nullable<int> telefono { get; set; }
+        public Nullable<int> movil { get; set; }
     
         public virtual grupo grupo { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

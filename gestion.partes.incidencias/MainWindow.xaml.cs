@@ -1,6 +1,8 @@
 ﻿using gestion.partes.incidencias.Modelo;
 using gestion.partes.incidencias.Vista.ControlesUsuario;
 using MahApps.Metro.Controls;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Controls;
 
 namespace gestion.partes.incidencias
@@ -49,8 +51,29 @@ namespace gestion.partes.incidencias
                             break;
                         */
                 }
-                hm.Tag = uc;
                 hamMenuPrincipal.Content = uc;
+            }
+        }
+
+        private void MetroWindow_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            List<roles_profesor> rolesprofesor = _profesorLogged.roles_profesor.ToList();
+
+            for (int i = 0; i < rolesprofesor.Count; i++)
+            {
+                rol rol = rolesprofesor[i].rol;
+
+                List<permisos_rol> permisosprofesor = rol.permisos_rol.ToList();
+
+                for (int j = 0; j < permisosprofesor.Count; j++)
+                {
+                    permiso permiso = permisosprofesor[j].permiso;
+
+                    if (permiso.codigo == "ADD_REGISTRO")
+                    {
+                        listaRegistroUC.IsVisible = true;
+                    }
+                }
             }
         }
     }
