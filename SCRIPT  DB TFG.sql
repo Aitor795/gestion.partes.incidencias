@@ -31,6 +31,8 @@ nia INT PRIMARY KEY COMMENT 'identificacor único',
 nombre VARCHAR(15) COMMENT 'nombre alumno',
 apellido1 VARCHAR(15) COMMENT 'apellido 1',
 apellido2 VARCHAR(15) COMMENT 'apellido 2',
+telefono INT(9) COMMENT 'telefono',
+movil INT(9) COMMENT 'movil',
 codigo_grupo VARCHAR(15) COMMENT 'FK al grupo al que pertenece el alumno'
 ); 
 

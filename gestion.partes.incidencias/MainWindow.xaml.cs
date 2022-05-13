@@ -28,9 +28,6 @@ namespace gestion.partes.incidencias
                 switch (hm.Tag)
                 {
                     /*
-                    case "Usuario":
-                        uc = new UCUsuario(invEnt, usuLogin);
-                        break;
                     case "Articulos":
                         uc = new UCArticulos(invEnt, usuLogin);
                         break;
@@ -41,12 +38,16 @@ namespace gestion.partes.incidencias
                     case "ListarRegistros":
                         uc = new UCListaRegistros(_tfgEnt, _profesorLogged);
                         break;
-                    
-                    /*
-                    case "Listar Usuarios":
-                        uc = new UCListaUsuarios(invEnt);
+
+                    case "Alumnos":
+                        uc = new UCListaAlumnos(_tfgEnt, _profesorLogged);
                         break;
-                    */
+
+                        /*
+                        case "Listar Usuarios":
+                            uc = new UCListaUsuarios(invEnt);
+                            break;
+                        */
                 }
                 hm.Tag = uc;
                 hamMenuPrincipal.Content = uc;

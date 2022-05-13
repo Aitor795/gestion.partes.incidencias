@@ -239,6 +239,7 @@
     <Compile Include="Modelo\tipo_registro.cs">
       <DependentUpon>InstitutoModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="MVVM\MVAlumno.cs" />
     <Compile Include="MVVM\MVGrupo.cs" />
     <Compile Include="MVVM\MVMotivoRegistro.cs" />
     <Compile Include="MVVM\MVRegistros.cs" />
@@ -251,6 +252,9 @@
     <Compile Include="Servicio\ServicioGenerico.cs" />
     <Compile Include="Servicio\TipoRegistroServicio.cs" />
     <Compile Include="Validacion\ValidacionErrores.cs" />
+    <Compile Include="Vista\ControlesUsuario\UCListaAlumnos.xaml.cs">
+      <DependentUpon>UCListaAlumnos.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vista\ControlesUsuario\UCListaRegistros.xaml.cs">
       <DependentUpon>UCListaRegistros.xaml</DependentUpon>
     </Compile>
@@ -283,6 +287,10 @@
     <Page Include="Resources\IconsNonShared.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Vista\ControlesUsuario\UCListaAlumnos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Vista\ControlesUsuario\UCListaRegistros.xaml">
       <SubType>Designer</SubType>
