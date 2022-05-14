@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:gestion.partes.incidencias.Vista.Dialogos"
         xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen"
-        Title="Añadir Nuevo Registro" Width="420" Height="510"
+        Title="Gestionar Registro" Width="420" Height="510"
                  Loaded="MetroWindow_Loaded">
     
     <Grid>
@@ -31,7 +31,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Border Background="#333" Padding="20" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3">
-            <TextBlock Text="AÑADIR REGISTRO" Foreground="White" FontSize="20" 
+            <TextBlock Text="GESTION REGISTRO" Foreground="White" FontSize="20" 
                        HorizontalAlignment="Center"/>
         </Border>
         <TextBlock Grid.Column="0" Grid.Row="2" Text="Tipo Registro" Margin="10,15,0,5" Grid.ColumnSpan="2" FontWeight="Bold" />
@@ -50,11 +50,11 @@
                   mah:TextBoxHelper.Watermark="Motivo de Registro" ItemsSource="{Binding listaMotivoRegistro}" DisplayMemberPath="motivo"
                   SelectedItem="{Binding registroSeleccionado.motivo_registro}"/>
         <TextBlock Grid.Column="0" Grid.Row="8" Text="Alumno Sancionado" Margin="10,15,0,5" FontWeight="Bold"/>
-        <TextBox Grid.Column="0" Grid.Row="9" x:Name="textAlumnoSeleccionado" Text="{Binding registroSeleccionado.nia_alumno}" LostFocus="textAlumnoSeleccionado_LostFocus" mah:TextBoxHelper.Watermark="Alumno Sancionado" Margin="10,5,0,5"/>
+        <TextBox Grid.Column="0" Grid.Row="9" x:Name="textAlumnoSeleccionado" Text="{Binding registroSeleccionado.nia_alumno}" TextChanged="textBoxNiaAlumno_TextChanged" LostFocus="textAlumnoSeleccionado_LostFocus" mah:TextBoxHelper.Watermark="Alumno Sancionado" Margin="10,5,0,5" MaxLength="11"/>
         <TextBlock Grid.Column="1" Grid.Row="8" Grid.ColumnSpan="2" Text="Nombre y Apellidos" Margin="10,15,0,5" FontWeight="Bold"/>
         <TextBox Grid.Column="1" Grid.Row="9" Grid.ColumnSpan="2" mah:TextBoxHelper.Watermark="Nombre y Apellido" x:Name="textNombreAlumno" IsEnabled="False" Margin="10,5,0,5"/>
         <TextBlock Grid.Column="0" Grid.Row="10" Text="Profesor que Presencia" Margin="10,15,0,5" FontWeight="Bold"/>
-        <TextBox Grid.Column="0" Grid.Row="11" x:Name="textProfesorPresencia" Text="{Binding registroSeleccionado.dni_profesor}" LostFocus="textProfesorPresencia_LostFocus" mah:TextBoxHelper.Watermark="Profesor que Presencia" Margin="10,5,0,5"/>
+        <TextBox Grid.Column="0" Grid.Row="11" x:Name="textProfesorPresencia" Text="{Binding registroSeleccionado.dni_profesor}" LostFocus="textProfesorPresencia_LostFocus" mah:TextBoxHelper.Watermark="Profesor que Presencia" Margin="10,5,0,5" MaxLength="9"/>
         <TextBlock Grid.Column="1" Grid.Row="10" Grid.ColumnSpan="2" Text="Nombre y Apellidos" Margin="10,15,0,5" FontWeight="Bold"/>
         <TextBox Grid.Column="1" Grid.Row="11" Grid.ColumnSpan="2" mah:TextBoxHelper.Watermark="Nombre y Apellido" x:Name="textNombreProfesor" IsEnabled="False" Margin="10,5,0,5"/>
         <Button Grid.Column="2" Grid.Row="12" x:Name="btnGuardar" Content="Guardar" Margin="10" Background="Aqua" Click="btnGuardar_Click"/>

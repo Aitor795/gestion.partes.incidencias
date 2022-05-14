@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace gestion.partes.incidencias.Vista.Dialogos
 {
@@ -69,26 +70,6 @@ namespace gestion.partes.incidencias.Vista.Dialogos
         private void MetroWindow_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
             comboTipoRegistro_SelectionChanged(sender, null);
-        }
-
-        private void btnGuardar_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            if(comprobarCamposObligatorios())
-            {
-                if (_mvRegistros.guarda())
-                {
-                    MessageBox.Show("Registro añadido correctamente", "GESTIÓN REGISTROS", MessageBoxButton.OK, MessageBoxImage.Information);
-                }
-                else
-                {
-                    MessageBox.Show("Problemas con la base de datos.\nNo se ha añadido el registro", "GESTIÓN REGISTROS", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-                DialogResult = true;
-            }
-            else
-            {
-                MessageBox.Show("Hay campos obligatorios sin rellenar", "GESTIÓN REGISTROS", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
         }
 
         private void textAlumnoSeleccionado_LostFocus(object sender, RoutedEventArgs e)
@@ -188,6 +169,34 @@ namespace gestion.partes.incidencias.Vista.Dialogos
                 ValidacionErrores.quitarError(textProfesorPresencia);
             }
             return correcto;
+        }
+
+        private void textBoxNiaAlumno_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (System.Text.RegularExpressions.Regex.IsMatch(textAlumnoSeleccionado.Text, "[^0-9]"))
+            {
+                textAlumnoSeleccionado.Text = textAlumnoSeleccionado.Text.Remove(textAlumnoSeleccionado.Text.Length - 1);
+            }
+        }
+
+        private void btnGuardar_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            if (comprobarCamposObligatorios())
+            {
+                if (_mvRegistros.guarda())
+                {
+                    MessageBox.Show("Registro añadido correctamente", "GESTIÓN REGISTROS", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Problemas con la base de datos.\nNo se ha añadido el registro", "GESTIÓN REGISTROS", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                DialogResult = true;
+            }
+            else
+            {
+                MessageBox.Show("Hay campos obligatorios sin rellenar", "GESTIÓN REGISTROS", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

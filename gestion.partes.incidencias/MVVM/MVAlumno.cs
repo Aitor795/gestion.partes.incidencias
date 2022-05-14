@@ -2,6 +2,7 @@
 using gestion.partes.incidencias.Servicio;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,6 +21,7 @@ namespace gestion.partes.incidencias.MVVM
         private string _textFiltroNombre;
         private string _textFiltroApellido1;
         private string _textFiltroApellido2;
+        private alumno _alumno;
 
         public MVAlumno(tfgEntities ent)
         {
@@ -62,6 +64,52 @@ namespace gestion.partes.incidencias.MVVM
             }
         }
 
+        public bool guarda()
+        {
+            bool correcto = true;
+
+            if (alumnoExiste(_alumno.nia))
+            {
+                alumnoServicio.edit(_alumno);
+            }
+            else
+            {
+                alumnoServicio.add(_alumno);
+            }
+
+            try
+            {
+                alumnoServicio.save();
+            }
+            catch (DbUpdateException dbex)
+            {
+                correcto = false;
+                System.Console.WriteLine(dbex.StackTrace);
+            }
+            return correcto;
+        }
+
+        public void elimina(alumno alumno)
+        {
+            alumnoServicio.delete(alumno);
+
+            try
+            {
+                alumnoServicio.save();
+            }
+            catch (DbUpdateException dbex)
+            {
+                System.Console.WriteLine(dbex.StackTrace);
+            }
+        }
+
+        public bool alumnoExiste(int nia)
+        {
+            alumno alumnoGuardado = alumnoServicio.findByID(nia);
+
+            return alumnoGuardado != null;
+        }
+
         public string textFiltroNia
         {
             get { return _textFiltroNia; }
@@ -97,6 +145,17 @@ namespace gestion.partes.incidencias.MVVM
             {
                 _textFiltroApellido2 = value;
                 OnPropertyChanged("textFiltroApellido2");
+            }
+        }
+        public alumno alumnoSeleccionado
+        {
+            get
+            {
+                return _alumno;
+            }
+            set
+            {
+                _alumno = value; OnPropertyChanged("alumnoSeleccionado");
             }
         }
     }

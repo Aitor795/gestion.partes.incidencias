@@ -258,6 +258,9 @@
     <Compile Include="Vista\ControlesUsuario\UCListaRegistros.xaml.cs">
       <DependentUpon>UCListaRegistros.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Vista\Dialogos\DialogAddAlumno.xaml.cs">
+      <DependentUpon>DialogAddAlumno.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vista\Dialogos\DialogAddRegistro.xaml.cs">
       <DependentUpon>DialogAddRegistro.xaml</DependentUpon>
     </Compile>
@@ -293,6 +296,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Vista\ControlesUsuario\UCListaRegistros.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vista\Dialogos\DialogAddAlumno.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -21,12 +21,15 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <TextBlock Text="LISTADO DE INCIDENCIAS Y AMONESTACIONES" FontSize="20" Grid.ColumnSpan="9"
+            <TextBlock Text="LISTADO DE ALUMNOS" FontSize="20" Grid.ColumnSpan="9"
                        Margin="20" Foreground="Black" FontWeight="Bold" />
             <ComboBox x:Name="comboFiltroGrupos" mah:TextBoxHelper.ClearTextButton="True"
                       mah:TextBoxHelper.Watermark="Selecciona el grupo"
@@ -48,14 +51,12 @@
                      mah:TextBoxHelper.Watermark="Segundo Apellido" mah:TextBoxHelper.ClearTextButton="True" Margin="10" Grid.Column="8" Grid.Row="1" VerticalAlignment="Center" Width="100"/>
             <Button x:Name="btnFiltro" Click="btnFiltro_Click" 
                     Grid.Column="9" Grid.Row="1" Content="Buscar" Background="Coral" Margin="10"/>
-            <!--
-            <Button x:Name="btnAnyadirRegistro" Click="btnAnyadirRegistro_Click" IsEnabled="False"
-                    Grid.Column="8" Grid.Row="1" Content="Añadir" Background="Beige" Margin="10" HorizontalAlignment="Right"/>
-            <Button x:Name="btnEditarRegistro" Click="btnEditarRegistro_Click" IsEnabled="False"
-                    Grid.Column="9" Grid.Row="1" Content="Editar" Background="Beige" Margin="10" HorizontalAlignment="Right"/>
-            <Button x:Name="btnEliminarRegistro" Click="btnEliminarRegistro_Click" IsEnabled="False"
-                     Grid.Column="10" Grid.Row="1" Content="Eliminar" Background="Beige" Margin="10" HorizontalAlignment="Right"/>
-            -->
+            <Button x:Name="btnAnyadirAlumno" Click="btnAnyadirAlumno_Click"
+                    Grid.Column="10" Grid.Row="1" Content="Añadir" Background="Beige" Margin="10" HorizontalAlignment="Right"/>
+            <Button x:Name="btnEditarAlumno" Click="btnEditarAlumno_Click"
+                    Grid.Column="11" Grid.Row="1" Content="Editar" Background="Beige" Margin="10" HorizontalAlignment="Right"/>
+            <Button x:Name="btnEliminarAlumno" Click="btnEliminarAlumno_Click"
+                     Grid.Column="12" Grid.Row="1" Content="Eliminar" Background="Beige" Margin="10" HorizontalAlignment="Right"/>
         </Grid>
 
         <Grid>
