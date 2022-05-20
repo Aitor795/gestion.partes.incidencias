@@ -1,0 +1,65 @@
+﻿<UserControl x:Class="gestion.partes.incidencias.Vista.ControlesUsuario.UCGestionPermisos"
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:local="clr-namespace:gestion.partes.incidencias.Vista.ControlesUsuario"
+             mc:Ignorable="d" 
+             d:DesignHeight="800" d:DesignWidth="800">
+    <DockPanel>
+        <Grid DockPanel.Dock="Top" Background="BurlyWood">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="GESTIÓN DE ROLES Y PERMISOS" Grid.Row="0" FontSize="20"
+                       Margin="20" Foreground="Black" FontWeight="Bold" />
+            <TextBlock Text="¡ADVERTENCIA! Los cambios se aplican automaticamente al pulsar sobre los CheckBox." Margin="2" FontStyle="Italic" Foreground="DarkRed" FontWeight="Bold" Grid.Row="1"/>
+        </Grid>
+        <Grid>
+            <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding listaPermisosTabla}" x:Name="dgPermiso"
+                      SelectionMode="Single" Background="Bisque" CanUserAddRows="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="PERMISOS" Binding="{Binding permiso.descripcion}"/>
+                    <DataGridTemplateColumn Header="PROFESOR" >
+
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox x:Name="cbProfesor" Tag="PROFESOR" IsChecked="{Binding profesor}" Checked="cb_Checked" Unchecked="cb_Unchecked"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="TUTOR" >
+
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox x:Name="cbTutor" Tag="TUTOR" IsChecked="{Binding tutor}" Checked="cb_Checked" Unchecked="cb_Unchecked" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="DIRECTIVO" >
+
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox x:Name="cbDIRECTIVO" Tag="DIRECTIVO" IsChecked="{Binding directivo}" Checked="cb_Checked" Unchecked="cb_Unchecked" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="ADMINISTRADOR" >
+
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox x:Name="cbAdmin" Tag="ADMIN" IsChecked="{Binding administrador}" Checked="cb_Checked" Unchecked="cb_Unchecked" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </DockPanel>
+</UserControl>

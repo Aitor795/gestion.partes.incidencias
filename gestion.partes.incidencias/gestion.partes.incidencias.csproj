@@ -245,15 +245,22 @@
     <Compile Include="MVVM\MVGrupo.cs" />
     <Compile Include="MVVM\MVMotivoRegistro.cs" />
     <Compile Include="MVVM\MVRegistros.cs" />
+    <Compile Include="MVVM\MVRol.cs" />
     <Compile Include="Servicio\AlumnoServicio.cs" />
     <Compile Include="Servicio\GrupoServicio.cs" />
     <Compile Include="Servicio\IServicioGenerico.cs" />
     <Compile Include="Servicio\MotivoRegistroServicio.cs" />
+    <Compile Include="Servicio\PermisoServicio.cs" />
+    <Compile Include="Servicio\PermisosRolServicio.cs" />
     <Compile Include="Servicio\ProfesorServicio.cs" />
     <Compile Include="Servicio\RegistroServicio.cs" />
+    <Compile Include="Servicio\RolServicio.cs" />
     <Compile Include="Servicio\ServicioGenerico.cs" />
     <Compile Include="Servicio\TipoRegistroServicio.cs" />
     <Compile Include="Validacion\ValidacionErrores.cs" />
+    <Compile Include="Vista\ControlesUsuario\UCGestionPermisos.xaml.cs">
+      <DependentUpon>UCGestionPermisos.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vista\ControlesUsuario\UCListaAlumnos.xaml.cs">
       <DependentUpon>UCListaAlumnos.xaml</DependentUpon>
     </Compile>
@@ -281,6 +288,7 @@
     <Compile Include="Vista\Dialogos\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
+    <Compile Include="VO\GestionPermisoVO.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -304,6 +312,10 @@
     <Page Include="Resources\IconsNonShared.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Vista\ControlesUsuario\UCGestionPermisos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Vista\ControlesUsuario\UCListaAlumnos.xaml">
       <SubType>Designer</SubType>
