@@ -34,6 +34,10 @@ namespace gestion.partes.incidencias.Servicio
             {
                 correcto = false;
             }
+            else if (contrasenya == null || contrasenya == "")
+            {
+                correcto = false;
+            }
             else if (!profesor.dni.Equals(dni) || !profesor.contrasenya.Equals(contrasenya))
             {
                 correcto = false;

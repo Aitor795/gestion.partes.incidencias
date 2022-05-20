@@ -38,6 +38,12 @@ namespace gestion.partes.incidencias.MVVM
                 OnPropertyChanged("grupoNuevo");
             }
         }
+        public bool grupoExiste(string codigo)
+        {
+            grupo grupoGuardado = grupoServicio.findByID(codigo);
+
+            return grupoGuardado != null;
+        }
 
         public bool guarda()
         {

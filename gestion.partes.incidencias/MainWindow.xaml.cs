@@ -29,27 +29,17 @@ namespace gestion.partes.incidencias
                 UserControl uc = new UserControl();
                 switch (hm.Tag)
                 {
-                    /*
-                    case "Articulos":
-                        uc = new UCArticulos(invEnt, usuLogin);
-                        break;
-                    case "Listar Modelos":
-                        uc = new UCListaModelos(invEnt);
-                        break;
-                    */
-                    case "ListarRegistros":
+                    case "ListaRegistros":
                         uc = new UCListaRegistros(_tfgEnt, _profesorLogged);
                         break;
 
-                    case "Alumnos":
+                    case "ListaAlumnos":
                         uc = new UCListaAlumnos(_tfgEnt, _profesorLogged);
                         break;
 
-                        /*
-                        case "Listar Usuarios":
-                            uc = new UCListaUsuarios(invEnt);
-                            break;
-                        */
+                    case "ListaProfesores":
+                        uc = new UCListaProfesores(_tfgEnt, _profesorLogged);
+                        break;
                 }
                 hamMenuPrincipal.Content = uc;
             }

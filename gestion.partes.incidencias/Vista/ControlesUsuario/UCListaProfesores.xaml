@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="gestion.partes.incidencias.Vista.ControlesUsuario.UCListaAlumnos"
+﻿<UserControl x:Class="gestion.partes.incidencias.Vista.ControlesUsuario.UCListaProfesores"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -29,44 +29,41 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <TextBlock Text="LISTADO DE ALUMNOS" FontSize="20" Grid.ColumnSpan="9"
+            <TextBlock Text="LISTADO DE PROFESORES" FontSize="20" Grid.ColumnSpan="9"
                        Margin="20" Foreground="Black" FontWeight="Bold" />
+            <TextBlock Text="DNI:" Grid.Column="0" Grid.Row="1" Margin="5" VerticalAlignment="Center"/>
+            <TextBox x:Name="textBoxDni" Text="{Binding textFiltroDni, UpdateSourceTrigger=PropertyChanged}" 
+                     mah:TextBoxHelper.Watermark="DNI" mah:TextBoxHelper.ClearTextButton="True" Margin="10" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Width="100"/>
+            <TextBlock Text="Nombre:" Grid.Column="2" Grid.Row="1" VerticalAlignment="Center"/>
+            <TextBox x:Name="textBoxNombre" Text="{Binding textFiltroNombre, UpdateSourceTrigger=PropertyChanged}" 
+                     mah:TextBoxHelper.Watermark="Nombre" mah:TextBoxHelper.ClearTextButton="True" Margin="10" Grid.Column="3" Grid.Row="1" VerticalAlignment="Center" Width="100"/>
+            <TextBlock Text="Primer Apellido:" Grid.Column="4" Grid.Row="1" VerticalAlignment="Center"/>
+            <TextBox x:Name="textBoxPrimerApellido" Text="{Binding textFiltroApellido1, UpdateSourceTrigger=PropertyChanged}" 
+                     mah:TextBoxHelper.Watermark="Primer Apellido" mah:TextBoxHelper.ClearTextButton="True" Margin="10" Grid.Column="5" Grid.Row="1" VerticalAlignment="Center" Width="100"/>
+            <TextBlock Text="Segundo Apellido:" Grid.Column="6" Grid.Row="1" VerticalAlignment="Center"/>
+            <TextBox x:Name="textBoxSegundoApellido" Text="{Binding textFiltroApellido2, UpdateSourceTrigger=PropertyChanged}" 
+                     mah:TextBoxHelper.Watermark="Segundo Apellido" mah:TextBoxHelper.ClearTextButton="True" Margin="10" Grid.Column="7" Grid.Row="1" VerticalAlignment="Center" Width="100"/>
             <ComboBox x:Name="comboFiltroGrupos" mah:TextBoxHelper.ClearTextButton="True"
                       mah:TextBoxHelper.Watermark="Selecciona el grupo"
-                      Width="220" Grid.Column="0" Grid.Row="1" Margin="10"
+                      Width="220" Grid.Column="8" Grid.Row="1" Margin="10"
                       ItemsSource="{Binding listaGrupos}" DisplayMemberPath="nombre"
                       SelectedItem="{Binding grupoSeleccionado}"/>
-            <TextBlock Text="NIA Alumno:" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center"/>
-            <TextBox x:Name="textBoxNiaAlumno" TextChanged="textBoxNiaAlumno_TextChanged" Text="{Binding textFiltroNia, UpdateSourceTrigger=PropertyChanged}" 
-                     mah:TextBoxHelper.Watermark="NIA" mah:TextBoxHelper.ClearTextButton="True" Margin="10" Grid.Column="2" Grid.Row="1" VerticalAlignment="Center" Width="100"/>
-
-            <TextBlock Text="Nombre:" Grid.Column="3" Grid.Row="1" VerticalAlignment="Center"/>
-            <TextBox x:Name="textBoxNombreAlumno" Text="{Binding textFiltroNombre, UpdateSourceTrigger=PropertyChanged}" 
-                     mah:TextBoxHelper.Watermark="Nombre" mah:TextBoxHelper.ClearTextButton="True" Margin="10" Grid.Column="4" Grid.Row="1" VerticalAlignment="Center" Width="100"/>
-            <TextBlock Text="Primer Apellido:" Grid.Column="5" Grid.Row="1" VerticalAlignment="Center"/>
-            <TextBox x:Name="textBoxPrimerApellido" Text="{Binding textFiltroApellido1, UpdateSourceTrigger=PropertyChanged}" 
-                     mah:TextBoxHelper.Watermark="Primer Apellido" mah:TextBoxHelper.ClearTextButton="True" Margin="10" Grid.Column="6" Grid.Row="1" VerticalAlignment="Center" Width="100"/>
-            <TextBlock Text="Segundo Apellido:" Grid.Column="7" Grid.Row="1" VerticalAlignment="Center"/>
-            <TextBox x:Name="textBoxSegundoApellido" Text="{Binding textFiltroApellido2, UpdateSourceTrigger=PropertyChanged}" 
-                     mah:TextBoxHelper.Watermark="Segundo Apellido" mah:TextBoxHelper.ClearTextButton="True" Margin="10" Grid.Column="8" Grid.Row="1" VerticalAlignment="Center" Width="100"/>
             <Button x:Name="btnFiltro" Click="btnFiltro_Click" 
                     Grid.Column="9" Grid.Row="1" Content="Buscar" Background="Coral" Margin="10"/>
-            <Button x:Name="btnAnyadirAlumno" Click="btnAnyadirAlumno_Click"
+            <Button x:Name="btnAnyadirProfesor" Click="btnAnyadirProfesor_Click"
                     Grid.Column="10" Grid.Row="1" Content="Añadir" Background="Beige" Margin="10" HorizontalAlignment="Right"/>
-            <Button x:Name="btnEditarAlumno" Click="btnEditarAlumno_Click" IsEnabled="False"
+            <Button x:Name="btnEditarProfesor" Click="btnEditarProfesor_Click" IsEnabled="False"
                     Grid.Column="11" Grid.Row="1" Content="Editar" Background="Beige" Margin="10" HorizontalAlignment="Right"/>
         </Grid>
 
         <Grid>
-            <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding listaAlumnosTabla}" x:Name="dgAlumnos"
-                      SelectionChanged="dgAlumnos_SelectionChanged"  SelectionMode="Single" Background="Bisque" CanUserAddRows="False">
+            <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding listaProfesoresTabla}" x:Name="dgProfesor"
+                      SelectionChanged="dgProfesor_SelectionChanged"  SelectionMode="Single" Background="Bisque" CanUserAddRows="False">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="NIA" Binding="{Binding nia}" />
+                    <DataGridTextColumn Header="DNI" Binding="{Binding dni}" />
                     <DataGridTextColumn Header="NOMBRE" Binding="{Binding nombre}" />
                     <DataGridTextColumn Header="APELLIDO 1" Binding="{Binding apellido1}" />
                     <DataGridTextColumn Header="APELLIDO 2" Binding="{Binding apellido2}" />
-                    <DataGridTextColumn Header="TELÉFONO" Binding="{Binding telefono}" />
-                    <DataGridTextColumn Header="MÓVIL" Binding="{Binding movil}" />
                     <DataGridTextColumn Header="GRUPO" Binding="{Binding grupo.nombre}" />
                 </DataGrid.Columns>
             </DataGrid>

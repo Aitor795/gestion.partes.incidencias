@@ -6,8 +6,7 @@
         xmlns:local="clr-namespace:gestion.partes.incidencias.Vista.Dialogos"
         xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen"
-        Title="Gestionar Alumno" Width="450" Height="450"
-                 Loaded="MetroWindow_Loaded">
+        Title="Gestionar Alumno" Width="450" Height="450">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="150"/>

@@ -169,6 +169,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -176,6 +177,7 @@
     <Reference Include="System.Transactions" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -255,11 +257,23 @@
     <Compile Include="Vista\ControlesUsuario\UCListaAlumnos.xaml.cs">
       <DependentUpon>UCListaAlumnos.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Vista\ControlesUsuario\UCListaProfesores.xaml.cs">
+      <DependentUpon>UCListaProfesores.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vista\ControlesUsuario\UCListaRegistros.xaml.cs">
       <DependentUpon>UCListaRegistros.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vista\Dialogos\DialogAddAlumno.xaml.cs">
       <DependentUpon>DialogAddAlumno.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\Dialogos\DialogAddGrupo.xaml.cs">
+      <DependentUpon>DialogAddGrupo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\Dialogos\DialogAddMotivoRegistro.xaml.cs">
+      <DependentUpon>DialogAddMotivoRegistro.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\Dialogos\DialogAddProfesor.xaml.cs">
+      <DependentUpon>DialogAddProfesor.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vista\Dialogos\DialogAddRegistro.xaml.cs">
       <DependentUpon>DialogAddRegistro.xaml</DependentUpon>
@@ -295,11 +309,27 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Vista\ControlesUsuario\UCListaProfesores.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Vista\ControlesUsuario\UCListaRegistros.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Vista\Dialogos\DialogAddAlumno.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vista\Dialogos\DialogAddGrupo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vista\Dialogos\DialogAddMotivoRegistro.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vista\Dialogos\DialogAddProfesor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

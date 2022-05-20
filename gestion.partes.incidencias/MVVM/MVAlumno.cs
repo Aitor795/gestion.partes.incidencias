@@ -89,20 +89,6 @@ namespace gestion.partes.incidencias.MVVM
             return correcto;
         }
 
-        public void elimina(alumno alumno)
-        {
-            alumnoServicio.delete(alumno);
-
-            try
-            {
-                alumnoServicio.save();
-            }
-            catch (DbUpdateException dbex)
-            {
-                System.Console.WriteLine(dbex.StackTrace);
-            }
-        }
-
         public bool alumnoExiste(int nia)
         {
             alumno alumnoGuardado = alumnoServicio.findByID(nia);

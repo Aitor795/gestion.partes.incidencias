@@ -10,11 +10,13 @@ namespace gestion.partes.incidencias.MVVM
     {
         private MotivoRegistroServicio motivoRegistroServicio;
         private motivo_registro _motivoRegistroNuevo;
+        private tipo_registro _tipoRegistroSeleccionado;
 
         public MVMotivoRegistro(tfgEntities ent)
         {
             motivoRegistroServicio = new MotivoRegistroServicio(ent);
-            motivoRegistroNuevo = new motivo_registro();
+            _motivoRegistroNuevo = new motivo_registro();
+            _tipoRegistroSeleccionado = new tipo_registro();
         }
 
         public List<motivo_registro> listaMotivoRegistro
@@ -39,9 +41,23 @@ namespace gestion.partes.incidencias.MVVM
             }
         }
 
+        public tipo_registro tipoRegistroSeleccionado
+        {
+            get
+            {
+                return _tipoRegistroSeleccionado;
+            }
+            set
+            {
+                _tipoRegistroSeleccionado = value;
+                OnPropertyChanged("_tipoRegistroSeleccionado");
+            }
+        }
+
         public bool guarda()
         {
             bool correcto = true;
+            motivoRegistroNuevo.id_tipo_registro = tipoRegistroSeleccionado.id;
             motivoRegistroServicio.add(motivoRegistroNuevo);
 
             try

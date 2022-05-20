@@ -18,10 +18,12 @@ namespace gestion.partes.incidencias.Vista.Dialogos
         private MVRegistros _mvRegistros;
         private List<Predicate<motivo_registro>> criterios = new List<Predicate<motivo_registro>>();
         private Predicate<object> filtroMotivoRegistro;
+        private tfgEntities _tfgEnt;
 
         public DialogAddRegistro(tfgEntities tfgEnt, profesor profesorLogged, registro registro)
         {
             InitializeComponent();
+            _tfgEnt = tfgEnt;
             _mvRegistros = new MVRegistros(tfgEnt, profesorLogged);
             _mvRegistros.setRegistro(registro);
             filtroMotivoRegistro = new Predicate<object>(FiltroCombinado);
@@ -45,17 +47,27 @@ namespace gestion.partes.incidencias.Vista.Dialogos
 
         private void comboTipoRegistro_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-            if(comboTipoRegistro.SelectedItem == null || _mvRegistros.registroSeleccionado.tipo_registro.id != 2)
+            if(comboTipoRegistro.SelectedItem == null)
             {
+                btnCrearMotivoRegistro.IsEnabled = false;
                 labelSeleccionado.Visibility = Visibility.Collapsed;
                 checkSeleccionado.Visibility = Visibility.Collapsed;
                 checkSeleccionado.IsChecked = null;
-            } 
+            }
+            else if (_mvRegistros.registroSeleccionado.tipo_registro.id != 2)
+            {
+                btnCrearMotivoRegistro.IsEnabled = true;
+                labelSeleccionado.Visibility = Visibility.Collapsed;
+                checkSeleccionado.Visibility = Visibility.Collapsed;
+                checkSeleccionado.IsChecked = null;
+            }
             else
             {
+                btnCrearMotivoRegistro.IsEnabled = true;
                 labelSeleccionado.Visibility = Visibility.Visible;
                 checkSeleccionado.Visibility = Visibility.Visible;
             }
+
             criterios.Clear();
             criterios.Add(new Predicate<motivo_registro>(r => {
                 if (comboTipoRegistro.SelectedItem != null)
@@ -196,6 +208,16 @@ namespace gestion.partes.incidencias.Vista.Dialogos
             else
             {
                 MessageBox.Show("Hay campos obligatorios sin rellenar", "GESTIÓN REGISTROS", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void btnCrearMotivoRegistro_Click(object sender, RoutedEventArgs e)
+        {
+            DialogAddMotivoRegistro dialog = new DialogAddMotivoRegistro(_tfgEnt, (tipo_registro) comboTipoRegistro.SelectedItem);
+            if (dialog.ShowDialog() == true)
+            {
+                comboMotivoRegistro.ItemsSource = _mvRegistros.recargarListaMotivoRegistro();
+                comboTipoRegistro_SelectionChanged(null, null);
             }
         }
     }

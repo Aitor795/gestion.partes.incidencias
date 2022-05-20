@@ -39,8 +39,8 @@
                   mah:TextBoxHelper.Watermark="Tipo Registro" ItemsSource="{Binding listaTipoRegistros}" DisplayMemberPath="descripcion"
                       SelectedItem="{Binding registroSeleccionado.tipo_registro}" SelectionChanged="comboTipoRegistro_SelectionChanged"/>
         <TextBlock Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Text="Fecha Suceso" Margin="10,15,0,5" FontWeight="Bold"/>
-        <!-- TODO hay que cambiar el formato de la fecha -->
-        <mah:DateTimePicker Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" x:Name="dateFechaSuceso" mah:TextBoxHelper.Watermark="Fecha Suceso" SelectedDateTime="{Binding registroSeleccionado.fecha_suceso}" Margin="10,5,0,5"/>
+        <mah:DateTimePicker Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" x:Name="dateFechaSuceso" mah:TextBoxHelper.Watermark="Fecha Suceso"
+                            SelectedDateTime="{Binding registroSeleccionado.fecha_suceso}" Culture="es-ES" Margin="10,5,0,5"/>
         <TextBlock Grid.Column="2" Grid.Row="4" Text="Sancionado" Margin="10,15,0,5" x:Name="labelSeleccionado" FontWeight="Bold"/>
         <CheckBox Grid.Column="2" Grid.Row="5" Margin="10,5,0,5" x:Name="checkSeleccionado" IsChecked="{Binding registroSeleccionado.sancionado}">
             <TextBlock Text="Se ha sancionado"/>
@@ -49,6 +49,7 @@
         <ComboBox Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="2" x:Name="comboMotivoRegistro" HorizontalAlignment="Left" Width="200" Margin="10,5,0,5"
                   mah:TextBoxHelper.Watermark="Motivo de Registro" ItemsSource="{Binding listaMotivoRegistro}" DisplayMemberPath="motivo"
                   SelectedItem="{Binding registroSeleccionado.motivo_registro}"/>
+        <Button Grid.Column="3" Grid.Row="7" x:Name="btnCrearMotivoRegistro" Content="Crear Motivo" Margin="10" Background="LightGray" Click="btnCrearMotivoRegistro_Click"/>
         <TextBlock Grid.Column="0" Grid.Row="8" Text="Alumno Sancionado" Margin="10,15,0,5" FontWeight="Bold"/>
         <TextBox Grid.Column="0" Grid.Row="9" x:Name="textAlumnoSeleccionado" Text="{Binding registroSeleccionado.nia_alumno}" TextChanged="textBoxNiaAlumno_TextChanged" LostFocus="textAlumnoSeleccionado_LostFocus" mah:TextBoxHelper.Watermark="Alumno Sancionado" Margin="10,5,0,5" MaxLength="11"/>
         <TextBlock Grid.Column="1" Grid.Row="8" Grid.ColumnSpan="2" Text="Nombre y Apellidos" Margin="10,15,0,5" FontWeight="Bold"/>

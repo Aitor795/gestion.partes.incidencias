@@ -46,31 +46,6 @@ namespace gestion.partes.incidencias.Vista.Dialogos
             }
         }
 
-        private void MetroWindow_Loaded(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btnGuardar_Click(object sender, RoutedEventArgs e)
-        {
-            if (comprobarCamposObligatorios())
-            {
-                if (mvAlumno.guarda())
-                {
-                    MessageBox.Show("Registro añadido correctamente", "GESTIÓN REGISTROS", MessageBoxButton.OK, MessageBoxImage.Information);
-                }
-                else
-                {
-                    MessageBox.Show("Problemas con la base de datos.\nNo se ha añadido el registro", "GESTIÓN REGISTROS", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-                DialogResult = true;
-            }
-            else
-            {
-                MessageBox.Show("Hay campos obligatorios sin rellenar", "GESTIÓN REGISTROS", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
-
         private Boolean comprobarCamposObligatorios()
         {
             bool correcto = true;
@@ -138,6 +113,26 @@ namespace gestion.partes.incidencias.Vista.Dialogos
             {
                 MessageBox.Show("El NIA introducido ya está siendo utilizado, por favor, verifique que el alumno que está intentando crear no existe ya en el sistema", "GESTIÓN ALUMNOS", MessageBoxButton.OK, MessageBoxImage.Error);
                 textNiaAlumno.Text = null;
+            }
+        }
+
+        private void btnGuardar_Click(object sender, RoutedEventArgs e)
+        {
+            if (comprobarCamposObligatorios())
+            {
+                if (mvAlumno.guarda())
+                {
+                    MessageBox.Show("Alumno añadido correctamente", "GESTIÓN ALUMNOS", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Problemas con la base de datos.\nNo se ha añadido el alumno", "GESTIÓN ALUMNOS", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                DialogResult = true;
+            }
+            else
+            {
+                MessageBox.Show("Hay campos obligatorios sin rellenar", "GESTIÓN ALUMNOS", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

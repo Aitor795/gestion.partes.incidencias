@@ -79,6 +79,11 @@ namespace gestion.partes.incidencias.MVVM
                 return _motivoRegistroServicio.getAll().ToList();
             }
         }
+
+        public List<motivo_registro> recargarListaMotivoRegistro()
+        {
+            return _motivoRegistroServicio.getAll().ToList();
+        }
         public tipo_registro tipoRegistroSeleccionado
         {
             get

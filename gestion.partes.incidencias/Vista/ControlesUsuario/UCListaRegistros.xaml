@@ -59,27 +59,22 @@
                     <DataGridTextColumn Header="MOTIVO" Binding="{Binding motivo_registro.motivo}" />
                     <DataGridTemplateColumn Header="FECHA DE SUCESO" >
 
-                        <!-- TODO hay que cambiar el formato de la fecha -->
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <mah:DateTimePicker SelectedDateTime="{Binding fecha_suceso}" IsEnabled="False" />
+                                <mah:DateTimePicker SelectedDateTime="{Binding fecha_suceso}" IsEnabled="False" Culture="es-ES"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
 
                     </DataGridTemplateColumn>
                     <DataGridTextColumn Header="ALUMNO" Binding="{Binding alumno.nia}" />
-                    <DataGridTextColumn Header="PROFESOR" Binding="{Binding profesor.dni}" />
-                    <DataGridTemplateColumn Header="FECHA DE REGISTRO" >
+                    <DataGridTextColumn Header="NOMBRE" Binding="{Binding alumno.nombre}" />
+                    <DataGridTextColumn Header="APELLIDO1" Binding="{Binding alumno.apellido1}" />
+                    <DataGridTextColumn Header="APELLIDO2" Binding="{Binding alumno.apellido2}" />
 
-                        <!-- TODO hay que cambiar el formato de la fecha -->
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <mah:DateTimePicker SelectedDateTime="{Binding fecha_registro}" IsEnabled="False" />
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-
-                    </DataGridTemplateColumn>
-                    <DataGridTextColumn Header="USUARIO QUE REGISTRA" Binding="{Binding profesor1.dni}" />
+                    <DataGridTextColumn Header="PROFESOR" Binding="{Binding profesor1.dni}" />
+                    <DataGridTextColumn Header="NOMBRE" Binding="{Binding profesor1.nombre}" />
+                    <DataGridTextColumn Header="APELLIDO1" Binding="{Binding profesor1.apellido1}" />
+                    <DataGridTextColumn Header="APELLIDO2" Binding="{Binding profesor1.apellido2}" />
                     <DataGridTemplateColumn Header="SANCIONADO" >
 
                         <DataGridTemplateColumn.CellTemplate>

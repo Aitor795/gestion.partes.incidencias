@@ -71,7 +71,14 @@ namespace gestion.partes.incidencias.Vista.ControlesUsuario
 
         private void dgAlumnos_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+           if(dgAlumnos.SelectedItem == null)
+            {
+                btnEditarAlumno.IsEnabled = false;
+            }
+           else
+            {
+                btnEditarAlumno.IsEnabled = true;
+            }
         }
 
         private void textBoxNiaAlumno_TextChanged(object sender, TextChangedEventArgs e)
@@ -80,11 +87,6 @@ namespace gestion.partes.incidencias.Vista.ControlesUsuario
             {
                 mvAlumno.textFiltroNia = mvAlumno.textFiltroNia.Remove(mvAlumno.textFiltroNia.Length - 1);
             }
-        }
-
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
-        {
-
         }
 
         private void btnAnyadirAlumno_Click(object sender, RoutedEventArgs e)
@@ -106,25 +108,9 @@ namespace gestion.partes.incidencias.Vista.ControlesUsuario
             }
         }
 
-        private void btnEliminarAlumno_Click(object sender, RoutedEventArgs e)
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            if (dgAlumnos.SelectedItem != null)
-            {
-                MessageBoxResult result = MessageBox.Show("Se dispone a eliminar el alumno seleccionado.", "¡ADVERTENCIA!", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-                if (MessageBoxResult.Yes == result)
-                {
-                    // TODO comprobar que el alumno no tenga registros
-
-                    MessageBoxResult result2 = MessageBox.Show("¿Serguro que quiere eliminar el alumno de forma permanente?", "¡ADVERTENCIA!", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-                    if (MessageBoxResult.Yes == result2)
-                    {
-                        mvAlumno.elimina((alumno) dgAlumnos.SelectedItem);
-                        MessageBox.Show("Alumno eliminado correctamente", "GESTIÓN DE ALUMNOS", MessageBoxButton.OK, MessageBoxImage.Information);
-                        mvAlumno.recargarListaAlumnosTabla();
-                        dgAlumnos.ItemsSource = mvAlumno.listaAlumnosTabla;
-                    }
-                }
-            }
+            dgAlumnos.SelectedItem = null;
         }
     }
 }

@@ -80,6 +80,8 @@ namespace gestion.partes.incidencias.Vista.ControlesUsuario
         {
             BtnFiltro_Click(sender, e);
 
+            dgRegistros.SelectedItem = null;
+
             List<roles_profesor> rolesprofesor = _profesorLogged.roles_profesor.ToList();
 
             for (int i = 0; i < rolesprofesor.Count; i++)
