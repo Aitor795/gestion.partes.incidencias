@@ -1,5 +1,6 @@
 ﻿using gestion.partes.incidencias.Modelo;
 using gestion.partes.incidencias.Vista.ControlesUsuario;
+using gestion.partes.incidencias.Vista.Dialogos;
 using MahApps.Metro.Controls;
 using System.Collections.Generic;
 using System.Linq;
@@ -51,6 +52,8 @@ namespace gestion.partes.incidencias
 
         private void MetroWindow_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
+            userBox.Text = _profesorLogged.nombre + " " + _profesorLogged.apellido1 + " " + _profesorLogged.apellido2;
+
             List<roles_profesor> rolesprofesor = _profesorLogged.roles_profesor.ToList();
 
             for (int i = 0; i < rolesprofesor.Count; i++)
@@ -72,6 +75,18 @@ namespace gestion.partes.incidencias
                         gestionPermisosUC.IsVisible = true;
                     }
                 }
+            }
+        }
+
+        private void btnUsuario_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            User dialog = new User(_tfgEnt, _profesorLogged);
+
+            if (dialog.ShowDialog() == true)
+            {
+                Login login = new Login();
+                login.Show();
+                this.Close();
             }
         }
     }

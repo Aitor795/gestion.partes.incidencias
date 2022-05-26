@@ -71,7 +71,7 @@ namespace gestion.partes.incidencias.Vista.ControlesUsuario
 
         private void btnAnyadirProfesor_Click(object sender, RoutedEventArgs e)
         {
-            DialogAddProfesor dialog = new DialogAddProfesor(_tfgEnt, new profesor());
+            DialogAddProfesor dialog = new DialogAddProfesor(_tfgEnt, _profesorLogged, new profesor());
             if (dialog.ShowDialog() == true)
             {
                 mvProfesor.recargarListaProfesoresTabla();
@@ -85,7 +85,7 @@ namespace gestion.partes.incidencias.Vista.ControlesUsuario
         {
             if (dgProfesor.SelectedItem != null)
             {
-                DialogAddProfesor dialog = new DialogAddProfesor(_tfgEnt, (profesor) dgProfesor.SelectedItem);
+                DialogAddProfesor dialog = new DialogAddProfesor(_tfgEnt, _profesorLogged, (profesor) dgProfesor.SelectedItem);
                 if (dialog.ShowDialog() == true)
                 {
                     mvProfesor.recargarListaGrupos();

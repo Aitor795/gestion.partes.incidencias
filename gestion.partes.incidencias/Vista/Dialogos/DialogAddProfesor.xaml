@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:gestion.partes.incidencias.Vista.Dialogos"
         xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen"
-        Title="Gestionar Profesor" Width="450" Height="450">
+        Title="Gestionar Profesor" Width="450" Height="380"
+        Loaded="MetroWindow_Loaded">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="150"/>
@@ -43,7 +44,8 @@
         <ComboBox x:Name="comboFiltroGrupos" mah:TextBoxHelper.ClearTextButton="True" mah:TextBoxHelper.Watermark="Selecciona el grupo"
                   Width="220" Grid.Column="0" Grid.Row="6" Margin="5" Grid.ColumnSpan="2" HorizontalAlignment="Left" ItemsSource="{Binding listaGrupos}" 
                   DisplayMemberPath="nombre" SelectedItem="{Binding profesorSeleccionado.grupo}"/>
-        <Button Grid.Column="3" Grid.Row="6" x:Name="btnCrearGrupo" Content="Crear Grupo" Margin="10" Background="LightGray" Click="btnCrearGrupo_Click"/>
+        <Button Grid.Column="2" Grid.Row="6" x:Name="btnCrearGrupo" Content="Crear Grupo" Margin="10" Background="LightGray" Click="btnCrearGrupo_Click"/>
+        <Button Grid.Column="1" Grid.Row="7" x:Name="btnCambiarContrasenya" Content="Nueva Contraseña" Margin="10" Background="LightGray" Click="btnCambiarContrasenya_Click" Visibility="Collapsed" />
         <Button Grid.Column="2" Grid.Row="7" x:Name="btnGuardar" Content="Guardar" Margin="10" Background="Aqua" Click="btnGuardar_Click"/>
     </Grid>
 </mah:MetroWindow>

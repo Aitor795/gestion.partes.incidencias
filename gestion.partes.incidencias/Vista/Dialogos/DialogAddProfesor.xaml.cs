@@ -25,12 +25,16 @@ namespace gestion.partes.incidencias.Vista.Dialogos
     {
         private MVProfesor mvProfesor;
         private tfgEntities _tfgEnt;
-        public DialogAddProfesor(tfgEntities tfgEnt, profesor profesor)
+        private profesor _profesor;
+        private profesor _profesorLogged;
+        public DialogAddProfesor(tfgEntities tfgEnt, profesor profesorLogged, profesor profesor)
         {
             InitializeComponent();
             _tfgEnt = tfgEnt;
             mvProfesor = new MVProfesor(tfgEnt);
             mvProfesor.profesorSeleccionado = profesor;
+            _profesor = profesor;
+            _profesorLogged = profesorLogged;
             DataContext = mvProfesor;
 
             if (profesor.dni == null || profesor.dni == "")
@@ -110,6 +114,27 @@ namespace gestion.partes.incidencias.Vista.Dialogos
             {
                 mvProfesor.recargarListaGrupos();
                 comboFiltroGrupos.ItemsSource = mvProfesor.listaGrupos;
+            }
+        }
+
+        private void btnCambiarContrasenya_Click(object sender, RoutedEventArgs e)
+        {
+            DialogNewPassword dialog = new DialogNewPassword(_tfgEnt, _profesorLogged, _profesor);
+            dialog.ShowDialog();
+        }
+
+        private void MetroWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            List<roles_profesor> rolesprofesor = _profesorLogged.roles_profesor.ToList();
+
+            for (int i = 0; i < rolesprofesor.Count; i++)
+            {
+                rol rol = rolesprofesor[i].rol;
+
+                if (rol.codigo == "ADMIN")
+                {
+                    btnCambiarContrasenya.Visibility = Visibility.Visible;
+                }
             }
         }
     }

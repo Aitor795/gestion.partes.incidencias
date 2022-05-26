@@ -285,8 +285,14 @@
     <Compile Include="Vista\Dialogos\DialogAddRegistro.xaml.cs">
       <DependentUpon>DialogAddRegistro.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Vista\Dialogos\DialogNewPassword.xaml.cs">
+      <DependentUpon>DialogNewPassword.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vista\Dialogos\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\Dialogos\User.xaml.cs">
+      <DependentUpon>User.xaml</DependentUpon>
     </Compile>
     <Compile Include="VO\GestionPermisoVO.cs" />
     <Page Include="MainWindow.xaml">
@@ -349,7 +355,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Vista\Dialogos\DialogNewPassword.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Vista\Dialogos\Login.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vista\Dialogos\User.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

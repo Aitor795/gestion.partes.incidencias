@@ -14,11 +14,10 @@
         Loaded="MetroWindow_Loaded">
     <mah:MetroWindow.RightWindowCommands>
         <mah:WindowCommands>
-            <Button Content="Login" />
-            <Button>
+            <Button x:Name="btnUsuario" Click="btnUsuario_Click">
                 <StackPanel Orientation="Horizontal">
                     <iconPacks:PackIconModern Width="24" Height="24" Kind="User" />
-                    <TextBlock Margin="4 0 0 0" VerticalAlignment="Center" x:Name="userBox" />
+                    <TextBlock Margin="4" VerticalAlignment="Center" x:Name="userBox" />
                 </StackPanel>
             </Button>
         </mah:WindowCommands>
