@@ -155,6 +155,11 @@
     <Reference Include="MaterialDesignThemes.Wpf, Version=4.3.0.3, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignThemes.4.3.0\lib\net452\MaterialDesignThemes.Wpf.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.ReportViewer.WinForms.v12.12.0.0.1\lib\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Xaml.Behaviors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Xaml.Behaviors.Wpf.1.1.31\lib\net45\Microsoft.Xaml.Behaviors.dll</HintPath>
     </Reference>
@@ -190,6 +195,7 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -261,6 +267,9 @@
     <Compile Include="Vista\ControlesUsuario\UCGestionPermisos.xaml.cs">
       <DependentUpon>UCGestionPermisos.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Vista\ControlesUsuario\UCIncidenciasReport.xaml.cs">
+      <DependentUpon>UCIncidenciasReport.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vista\ControlesUsuario\UCListaAlumnos.xaml.cs">
       <DependentUpon>UCListaAlumnos.xaml</DependentUpon>
     </Compile>
@@ -295,6 +304,7 @@
       <DependentUpon>User.xaml</DependentUpon>
     </Compile>
     <Compile Include="VO\GestionPermisoVO.cs" />
+    <Compile Include="VO\RegistrosReportVO.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -320,6 +330,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Vista\ControlesUsuario\UCGestionPermisos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vista\ControlesUsuario\UCIncidenciasReport.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -390,6 +404,7 @@
     <Resource Include="Resources\Entypo-license.txt" />
     <Resource Include="Resources\Entypo.ttf" />
     <Resource Include="Resources\WindowsIcons-license.txt" />
+    <EmbeddedResource Include="Informes\RegistrosReport.rdlc" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -418,6 +433,12 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\gestion.partes.incidencias.Modelo.alumno.datasource" />
+    <None Include="Properties\DataSources\gestion.partes.incidencias.Modelo.motivo_registro.datasource" />
+    <None Include="Properties\DataSources\gestion.partes.incidencias.Modelo.profesor.datasource" />
+    <None Include="Properties\DataSources\gestion.partes.incidencias.Modelo.registro.datasource" />
+    <None Include="Properties\DataSources\gestion.partes.incidencias.Modelo.tipo_registro.datasource" />
+    <None Include="Properties\DataSources\gestion.partes.incidencias.VO.RegistrosReportVO.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

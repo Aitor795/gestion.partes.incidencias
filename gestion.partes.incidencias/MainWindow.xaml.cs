@@ -45,6 +45,10 @@ namespace gestion.partes.incidencias
                     case "GestionPermisos":
                         uc = new UCGestionPermisos(_tfgEnt);
                         break;
+
+                    case "InformeRegistros":
+                        uc = new UCIncidenciasReport(_tfgEnt, _profesorLogged);
+                        break;
                 }
                 hamMenuPrincipal.Content = uc;
             }
@@ -73,6 +77,10 @@ namespace gestion.partes.incidencias
                     else if (permiso.codigo == "MOD_ROL")
                     {
                         gestionPermisosUC.IsVisible = true;
+                    }
+                    else if (permiso.codigo == "REPORT_INCID")
+                    {
+                        informeRegistrosUC.IsVisible = true;
                     }
                 }
             }

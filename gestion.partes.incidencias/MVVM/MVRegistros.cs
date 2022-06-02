@@ -60,6 +60,14 @@ namespace gestion.partes.incidencias.MVVM
             }
         }
 
+        public List<registro> listaRegistrosReport
+        {
+            get 
+            {
+                return _registroServicio.getAll().OrderByDescending(r => r.fecha_suceso).ToList();
+            }
+        }
+
         public void recargarListaRegistrosTabla()
         {
             listaRegistros = new ListCollectionView(_registroServicio.getAll().OrderByDescending(r => r.fecha_suceso).ToList());
