@@ -18,6 +18,8 @@ namespace gestion.partes.incidencias.MVVM
         private MotivoRegistroServicio _motivoRegistroServicio;
         private AlumnoServicio _alumnoServicio;
         private ProfesorServicio _profesorServicio;
+        private GrupoServicio grupoServicio;
+        private grupo _grupoSeleccionado;
         private tipo_registro _tipoRegistroSeleccionado;
         private registro _registro;
         private profesor _profesorLog;
@@ -25,6 +27,7 @@ namespace gestion.partes.incidencias.MVVM
         private DateTime _fechaDesde;
         private DateTime _fechaHasta;
         private string _textFiltroNia;
+        private string _textFiltroDni;
 
         public MVRegistros (tfgEntities ent, profesor profesorLog)
         {
@@ -35,6 +38,8 @@ namespace gestion.partes.incidencias.MVVM
             _motivoRegistroServicio = new MotivoRegistroServicio(ent);
             _alumnoServicio = new AlumnoServicio(ent);
             _profesorServicio = new ProfesorServicio(ent);
+            grupoServicio = new GrupoServicio(ent);
+            _grupoSeleccionado = new grupo();
             _tipoRegistroSeleccionado = new tipo_registro();
             _fechaDesde = DateTime.Today;
             _fechaHasta = DateTime.Today;
@@ -195,6 +200,36 @@ namespace gestion.partes.incidencias.MVVM
         public profesor buscarProfesor (string dni)
         {
             return _profesorServicio.findByID(dni);
+        }
+
+        public List<grupo> listaGrupos
+        {
+            get
+            {
+                return grupoServicio.getAll().ToList();
+            }
+        }
+
+        public grupo grupoSeleccionado
+        {
+            get
+            {
+                return _grupoSeleccionado;
+            }
+            set
+            {
+                _grupoSeleccionado = value; OnPropertyChanged("grupoSeleccionado");
+            }
+        }
+
+        public string textFiltroDni
+        {
+            get { return _textFiltroDni; }
+            set
+            {
+                _textFiltroDni = value;
+                OnPropertyChanged("textFiltroDni");
+            }
         }
     }
 }

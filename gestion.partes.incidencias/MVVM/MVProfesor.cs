@@ -118,6 +118,7 @@ namespace gestion.partes.incidencias.MVVM
                 OnPropertyChanged("textFiltroDni");
             }
         }
+
         public string textFiltroNombre
         {
             get { return _textFiltroNombre; }

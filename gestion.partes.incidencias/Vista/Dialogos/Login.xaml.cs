@@ -17,7 +17,7 @@ namespace gestion.partes.incidencias.Vista.Dialogos
             InitializeComponent();
             tfgEnt = new tfgEntities();
             profesorServicio = new ProfesorServicio(tfgEnt);
-            SplashScreen bienvenida = new SplashScreen("/Recursos/Imagenes/Ulquiorra 3.jpg");
+            SplashScreen bienvenida = new SplashScreen("/Recursos/Imagenes/LogoMatisse.jpg");
             bienvenida.Show(true);
         }
 

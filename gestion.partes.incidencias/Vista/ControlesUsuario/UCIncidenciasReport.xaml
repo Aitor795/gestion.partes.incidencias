@@ -6,12 +6,22 @@
              xmlns:rv="clr-namespace:Microsoft.Reporting.WinForms;assembly=Microsoft.ReportViewer.WinForms"
              xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:local="clr-namespace:gestion.partes.incidencias.Vista.ControlesUsuario"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800"
+             mc:Ignorable="d"
+             d:DesignHeight="920" d:DesignWidth="1300"
              Loaded="UserControl_Loaded">
     <DockPanel>
         <Grid DockPanel.Dock="Top" Background="BurlyWood">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
@@ -26,6 +36,24 @@
                       Width="220" Grid.Column="0" Grid.Row="1" Margin="10"
                       ItemsSource="{Binding listaTipoRegistros}" DisplayMemberPath="descripcion"
                       SelectedItem="{Binding tipoRegistroSeleccionado}"/>
+            <ComboBox x:Name="comboFiltroGrupos" mah:TextBoxHelper.ClearTextButton="True"
+                      mah:TextBoxHelper.Watermark="Selecciona el grupo"
+                      Width="220" Grid.Column="1" Grid.Row="1" Margin="10"
+                      ItemsSource="{Binding listaGrupos}" DisplayMemberPath="nombre"
+                      SelectedItem="{Binding grupoSeleccionado}"/>
+            <TextBlock Text="DNI:" Grid.Column="2" Grid.Row="1" Margin="5" VerticalAlignment="Center"/>
+            <TextBox x:Name="textBoxDni" Text="{Binding textFiltroDni, UpdateSourceTrigger=PropertyChanged}" 
+                     mah:TextBoxHelper.Watermark="DNI" mah:TextBoxHelper.ClearTextButton="True" Margin="10"
+                     Grid.Column="3" Grid.Row="1" VerticalAlignment="Center" Width="100"/>
+            <TextBlock Text="Fecha desde:" Grid.Column="4" Grid.Row="1" VerticalAlignment="Center"/>
+            <DatePicker x:Name="datePickerFechaDesde" SelectedDate="{Binding fechaDesde}" Grid.Column="5" Grid.Row="1" Width="100" VerticalAlignment="Center" Margin="10"/>
+            <TextBlock Text="Fecha hasta:" Grid.Column="6" Grid.Row="1" VerticalAlignment="Center"/>
+            <DatePicker  x:Name="datePickerFechaHasta" SelectedDate="{Binding fechaHasta}" Grid.Column="7" Grid.Row="1" Width="100" VerticalAlignment="Center" Margin="10"/>
+            <TextBlock Text="NIA Alumno:" Grid.Column="8" Grid.Row="1" VerticalAlignment="Center"/>
+            <TextBox x:Name="textBoxNiaAlumno" TextChanged="textBoxNiaAlumno_TextChanged" Text="{Binding textFiltroNia, UpdateSourceTrigger=PropertyChanged}" 
+                     mah:TextBoxHelper.Watermark="NIA" mah:TextBoxHelper.ClearTextButton="True" Margin="10" Grid.Column="9" Grid.Row="1" VerticalAlignment="Center" Width="100"/>
+            <Button x:Name="btnFiltro" Click="BtnFiltro_Click" 
+                    Grid.Column="10" Grid.Row="1" Content="Filtrar" Background="Coral" Margin="10"/>
             
         </Grid>
 

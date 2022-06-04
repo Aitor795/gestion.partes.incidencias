@@ -39,7 +39,7 @@
 
                         <mah:HamburgerMenuGlyphItem x:Name="gestionPermisosUC" Glyph="&#xE9F5;" Label="Gestion de Permisos" Tag="GestionPermisos" IsVisible="False"/>
 
-                        <mah:HamburgerMenuGlyphItem x:Name="informeRegistrosUC" Glyph="&#xE9F5;" Label="Informe de Registros" Tag="InformeRegistros" IsVisible="False"/>
+                        <mah:HamburgerMenuGlyphItem x:Name="informeRegistrosUC" Glyph="&#xF571;" Label="Informe de Registros" Tag="InformeRegistros" IsVisible="False"/>
                     </mah:HamburgerMenuItemCollection>
                 </mah:HamburgerMenu.ItemsSource>
             </mah:HamburgerMenu>

@@ -26,28 +26,77 @@ namespace gestion.partes.incidencias.Vista.ControlesUsuario
     public partial class UCIncidenciasReport : UserControl
     {
         private MVRegistros mvRegistros;
+        private List<Predicate<RegistrosReportVO>> criterios = new List<Predicate<RegistrosReportVO>>();
+        private Predicate<object> predicadoFiltro;
+        private ListCollectionView listaRegistros;
+        private ReportDataSource reportDataSource1;
 
         public UCIncidenciasReport(tfgEntities tfgEnt, profesor profesorLogged)
         {
             InitializeComponent();
             mvRegistros = new MVRegistros(tfgEnt, profesorLogged);
             DataContext = mvRegistros;
+            predicadoFiltro = new Predicate<object>(FiltroCombinado);
+            mvRegistros.fechaDesde = new DateTime(mvRegistros.fechaDesde.Year, 1, 1);
         }
 
         //TODO Intentar poner las subentidades en el Report
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            var data = obtenerDatos();
-            var reportDataSource1 = new ReportDataSource();
+            listaRegistros = obtenerDatos();
+            reportDataSource1 = new ReportDataSource();
             reportDataSource1.Name = "DataSetRegistros";
-            reportDataSource1.Value = data;
+            reportDataSource1.Value = listaRegistros.Cast<RegistrosReportVO>().ToList();
             rvRegistro.LocalReport.DataSources.Add(reportDataSource1);
             rvRegistro.LocalReport.ReportPath = "../../Informes/RegistrosReport.rdlc";
             rvRegistro.RefreshReport();
         }
 
-        private List<RegistrosReportVO> obtenerDatos()
+        private bool FiltroCombinado(object item)
+        {
+            bool esta = true;
+            if (item != null)
+            {
+                RegistrosReportVO _registro = item as RegistrosReportVO;
+                if (criterios.Count() != 0)
+                {
+                    esta = criterios.TrueForAll(x => x(_registro));
+                }
+            }
+            return esta;
+        }
+
+        private void textBoxNiaAlumno_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (System.Text.RegularExpressions.Regex.IsMatch(mvRegistros.textFiltroNia, "[^0-9]"))
+            {
+                mvRegistros.textFiltroNia = mvRegistros.textFiltroNia.Remove(mvRegistros.textFiltroNia.Length - 1);
+            }
+        }
+
+        private void BtnFiltro_Click(object sender, RoutedEventArgs e)
+        {
+            criterios.Clear();
+            
+            if (comboFiltroTipoRegistros.SelectedItem != null)
+                criterios.Add(new Predicate<RegistrosReportVO>(r => r.idTipoRegistro.Equals(mvRegistros.tipoRegistroSeleccionado.id)));
+            if (comboFiltroGrupos.SelectedItem != null)
+                criterios.Add(new Predicate<RegistrosReportVO>(r => r.codigoGrupoAlumno != null && r.codigoGrupoAlumno.Equals(mvRegistros.grupoSeleccionado.codigo)));
+            if (!string.IsNullOrEmpty(mvRegistros.textFiltroDni))
+                criterios.Add(new Predicate<RegistrosReportVO>(r => r.dniProfesor.Equals(mvRegistros.textFiltroDni)));
+            if (datePickerFechaDesde.SelectedDate != null)
+                criterios.Add(new Predicate<RegistrosReportVO>(r => r.fechaSuceso >= mvRegistros.fechaDesde));
+            if (datePickerFechaHasta.SelectedDate != null)
+                criterios.Add(new Predicate<RegistrosReportVO>(r => r.fechaSuceso < mvRegistros.fechaHasta.AddDays(1)));
+            if (!string.IsNullOrEmpty(mvRegistros.textFiltroNia))
+                criterios.Add(new Predicate<RegistrosReportVO>(r => r.niaAlumno.Equals(int.Parse(mvRegistros.textFiltroNia))));
+            listaRegistros.Filter = predicadoFiltro;
+            reportDataSource1.Value = listaRegistros.Cast<RegistrosReportVO>().ToList();
+            rvRegistro.RefreshReport();
+        }
+
+        private ListCollectionView obtenerDatos()
         {
             List<RegistrosReportVO> listaDatos = new List<RegistrosReportVO>();
 
@@ -91,7 +140,8 @@ namespace gestion.partes.incidencias.Vista.ControlesUsuario
                 listaDatos.Add(registrosReportVO);
             }
 
-            return listaDatos;
+            return new ListCollectionView(listaDatos);
         }
+
     }
 }
