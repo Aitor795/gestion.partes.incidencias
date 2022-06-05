@@ -156,13 +156,7 @@ INSERT INTO permiso (codigo, descripcion) VALUES ('REPORT_INCID', 'Realizar info
 
 INSERT INTO permiso (codigo, descripcion) VALUES ('MOD_CONTRASENYA', 'Modificar contraseña');
 
-INSERT INTO permiso (codigo, descripcion) VALUES ('ADD_ROL', 'Alta de rol');
-INSERT INTO permiso (codigo, descripcion) VALUES ('DEL_ROL', 'Borrar rol');
 INSERT INTO permiso (codigo, descripcion) VALUES ('MOD_ROL', 'Modificar rol');
-
-INSERT INTO permiso (codigo, descripcion) VALUES ('ADD_PERMISO', 'Alta permiso');
-INSERT INTO permiso (codigo, descripcion) VALUES ('DEL_PERMISO', 'Borrar permiso');
-INSERT INTO permiso (codigo, descripcion) VALUES ('MOD_PERMISDO', 'Modificar permiso');
 
 INSERT INTO permiso (codigo, descripcion) VALUES ('IMPORT_EXPORT', 'Importación y exportación de datos');
 
