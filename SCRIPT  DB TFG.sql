@@ -17,8 +17,6 @@ ALTER TABLE motivo_registro
 ADD CONSTRAINT fk_tipo_registro2
 FOREIGN KEY (id_tipo_registro) REFERENCES tipo_registro(id);
 
--- TODO: Preguntar la codificación de los grupos.
-
 CREATE TABLE grupo (
 codigo VARCHAR(15) PRIMARY KEY COMMENT 'código del grupo',
 nombre VARCHAR(20) COMMENT 'nombre del grupo'
@@ -170,34 +168,34 @@ INSERT INTO permiso (codigo, descripcion) VALUES ('IMPORT_EXPORT', 'Importación
 
 INSERT INTO permiso (codigo, descripcion) VALUES ('GRAPH_VIWER', 'Visualización de gráficos');
 
-INSERT INTO `tfg`.`permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('PROFESOR', 'ADD_REGISTRO');
-INSERT INTO `tfg`.`permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('PROFESOR', 'DEL_REGISTRO');
-INSERT INTO `tfg`.`permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('PROFESOR', 'MOD_REGISTRO');
-INSERT INTO `tfg`.`permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('PROFESOR', 'MOD_CONTRASENYA');
-INSERT INTO `tfg`.`permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('TUTOR', 'ADD_REGISTRO');
-INSERT INTO `tfg`.`permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('TUTOR', 'DEL_REGISTRO');
-INSERT INTO `tfg`.`permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('TUTOR', 'MOD_REGISTRO');
-INSERT INTO `tfg`.`permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('TUTOR', 'REPORT_ALUMN');
-INSERT INTO `tfg`.`permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('TUTOR', 'REPORT_GRUPO');
-INSERT INTO `tfg`.`permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('TUTOR', 'MOD_CONTRASENYA');
-INSERT INTO `tfg`.`permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('TUTOR', 'GRAPH_VIWER');
-INSERT INTO `tfg`.`permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('ADMIN', 'ADD_REGISTRO');
-INSERT INTO `tfg`.`permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('ADMIN', 'DEL_REGISTRO');
-INSERT INTO `tfg`.`permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('ADMIN', 'GRAPH_VIWER');
-INSERT INTO `tfg`.`permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('ADMIN', 'IMPORT_EXPORT');
-INSERT INTO `tfg`.`permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('ADMIN', 'MOD_CONTRASENYA');
-INSERT INTO `tfg`.`permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('ADMIN', 'MOD_REGISTRO');
-INSERT INTO `tfg`.`permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('ADMIN', 'MOD_ROL');
-INSERT INTO `tfg`.`permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('ADMIN', 'REPORT_ALUMN');
-INSERT INTO `tfg`.`permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('ADMIN', 'REPORT_GRUPO');
-INSERT INTO `tfg`.`permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('ADMIN', 'REPORT_INCID');
-INSERT INTO `tfg`.`permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('ADMIN', 'REPORT_PROFE');
-INSERT INTO `tfg`.`permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('DIRECTIVO', 'ADD_REGISTRO');
-INSERT INTO `tfg`.`permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('DIRECTIVO', 'DEL_REGISTRO');
-INSERT INTO `tfg`.`permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('DIRECTIVO', 'GRAPH_VIWER');
-INSERT INTO `tfg`.`permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('DIRECTIVO', 'MOD_CONTRASENYA');
-INSERT INTO `tfg`.`permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('DIRECTIVO', 'MOD_REGISTRO');
-INSERT INTO `tfg`.`permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('DIRECTIVO', 'REPORT_ALUMN');
-INSERT INTO `tfg`.`permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('DIRECTIVO', 'REPORT_GRUPO');
-INSERT INTO `tfg`.`permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('DIRECTIVO', 'REPORT_INCID');
-INSERT INTO `tfg`.`permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('DIRECTIVO', 'REPORT_PROFE');
+INSERT INTO `permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('PROFESOR', 'ADD_REGISTRO');
+INSERT INTO `permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('PROFESOR', 'DEL_REGISTRO');
+INSERT INTO `permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('PROFESOR', 'MOD_REGISTRO');
+INSERT INTO `permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('PROFESOR', 'MOD_CONTRASENYA');
+INSERT INTO `permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('TUTOR', 'ADD_REGISTRO');
+INSERT INTO `permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('TUTOR', 'DEL_REGISTRO');
+INSERT INTO `permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('TUTOR', 'MOD_REGISTRO');
+INSERT INTO `permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('TUTOR', 'REPORT_ALUMN');
+INSERT INTO `permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('TUTOR', 'REPORT_GRUPO');
+INSERT INTO `permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('TUTOR', 'MOD_CONTRASENYA');
+INSERT INTO `permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('TUTOR', 'GRAPH_VIWER');
+INSERT INTO `permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('ADMIN', 'ADD_REGISTRO');
+INSERT INTO `permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('ADMIN', 'DEL_REGISTRO');
+INSERT INTO `permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('ADMIN', 'GRAPH_VIWER');
+INSERT INTO `permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('ADMIN', 'IMPORT_EXPORT');
+INSERT INTO `permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('ADMIN', 'MOD_CONTRASENYA');
+INSERT INTO `permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('ADMIN', 'MOD_REGISTRO');
+INSERT INTO `permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('ADMIN', 'MOD_ROL');
+INSERT INTO `permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('ADMIN', 'REPORT_ALUMN');
+INSERT INTO `permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('ADMIN', 'REPORT_GRUPO');
+INSERT INTO `permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('ADMIN', 'REPORT_INCID');
+INSERT INTO `permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('ADMIN', 'REPORT_PROFE');
+INSERT INTO `permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('DIRECTIVO', 'ADD_REGISTRO');
+INSERT INTO `permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('DIRECTIVO', 'DEL_REGISTRO');
+INSERT INTO `permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('DIRECTIVO', 'GRAPH_VIWER');
+INSERT INTO `permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('DIRECTIVO', 'MOD_CONTRASENYA');
+INSERT INTO `permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('DIRECTIVO', 'MOD_REGISTRO');
+INSERT INTO `permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('DIRECTIVO', 'REPORT_ALUMN');
+INSERT INTO `permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('DIRECTIVO', 'REPORT_GRUPO');
+INSERT INTO `permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('DIRECTIVO', 'REPORT_INCID');
+INSERT INTO `permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('DIRECTIVO', 'REPORT_PROFE');

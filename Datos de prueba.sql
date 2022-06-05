@@ -1,1 +1,71 @@
-INSERT INTO `tfg`.`profesor` (`dni`, `nombre`, `apellido1`, `apellido2`, `contrasenya`) VALUES ('1', 'prueba', 'prueba', 'prueba', '1');
+INSERT INTO `grupo` (`codigo`, `nombre`) VALUES ('1A', 'Primero A');
+INSERT INTO `grupo` (`codigo`, `nombre`) VALUES ('1B', 'Primero B');
+INSERT INTO `grupo` (`codigo`, `nombre`) VALUES ('2A', 'Segundo A');
+
+INSERT INTO `profesor` (`dni`, `nombre`, `apellido1`, `apellido2`, `contrasenya`, `tutor_grupo`) VALUES ('77616778N', 'Alejandro', 'Burgos', 'Araujo', '111111', '1A');
+INSERT INTO `profesor` (`dni`, `nombre`, `apellido1`, `apellido2`, `contrasenya`, `tutor_grupo`) VALUES ('59621251F', 'Marco Antonio', 'Herranz', 'Sevilla', '111111', '1A');
+INSERT INTO `profesor` (`dni`, `nombre`, `apellido1`, `apellido2`, `contrasenya`, `tutor_grupo`) VALUES ('44842840Q', 'Kevin', 'Soto', 'Navarrete', '111111', '1B');
+INSERT INTO `profesor` (`dni`, `nombre`, `apellido1`, `apellido2`, `contrasenya`, `tutor_grupo`) VALUES ('00662794A', 'Pedro Jose', 'Esteve', 'Otero', '111111', '2A');
+INSERT INTO `profesor` (`dni`, `nombre`, `apellido1`, `apellido2`, `contrasenya`) VALUES ('69800024S', 'Lydia', 'Segovia', 'Olmo', '111111');
+INSERT INTO `profesor` (`dni`, `nombre`, `apellido1`, `apellido2`, `contrasenya`) VALUES ('58612488R', 'Berta', 'Hervas', 'Cortes', '111111');
+
+INSERT INTO `roles_profesor` (`dni_profesor`, `codigo_rol`) VALUES ('77616778N', 'PROFESOR');
+INSERT INTO `roles_profesor` (`dni_profesor`, `codigo_rol`) VALUES ('77616778N', 'TUTOR');
+INSERT INTO `roles_profesor` (`dni_profesor`, `codigo_rol`) VALUES ('77616778N', 'ADMIN');
+INSERT INTO `roles_profesor` (`dni_profesor`, `codigo_rol`) VALUES ('59621251F', 'PROFESOR');
+INSERT INTO `roles_profesor` (`dni_profesor`, `codigo_rol`) VALUES ('59621251F', 'TUTOR');
+INSERT INTO `roles_profesor` (`dni_profesor`, `codigo_rol`) VALUES ('44842840Q', 'PROFESOR');
+INSERT INTO `roles_profesor` (`dni_profesor`, `codigo_rol`) VALUES ('44842840Q', 'TUTOR');
+INSERT INTO `roles_profesor` (`dni_profesor`, `codigo_rol`) VALUES ('00662794A', 'PROFESOR');
+INSERT INTO `roles_profesor` (`dni_profesor`, `codigo_rol`) VALUES ('00662794A', 'TUTOR');
+INSERT INTO `roles_profesor` (`dni_profesor`, `codigo_rol`) VALUES ('69800024S', 'PROFESOR');
+INSERT INTO `roles_profesor` (`dni_profesor`, `codigo_rol`) VALUES ('58612488R', 'DIRECTIVO');
+
+INSERT INTO `alumno` (`nia`, `nombre`, `apellido1`, `apellido2`, `codigo_grupo`, `telefono`, `movil`) VALUES ('27740051', 'Belen', 'Burgos', 'Pascual', '1A', '991464502', '683637505');
+INSERT INTO `alumno` (`nia`, `nombre`, `apellido1`, `apellido2`, `codigo_grupo`, `telefono`, `movil`) VALUES ('11017869', 'Aurora', 'Aranda', 'Soto', '1A', '905913165', '644605388');
+INSERT INTO `alumno` (`nia`, `nombre`, `apellido1`, `apellido2`, `codigo_grupo`, `telefono`, `movil`) VALUES ('98739303', 'Faustino', 'Alfonso', 'Bueno', '1A', '967642444', '764264353');
+INSERT INTO `alumno` (`nia`, `nombre`, `apellido1`, `apellido2`, `codigo_grupo`, `telefono`, `movil`) VALUES ('51666148', 'Francisco', 'Roca', 'Arroyo', '1A', '915657337', '649655588');
+INSERT INTO `alumno` (`nia`, `nombre`, `apellido1`, `apellido2`, `codigo_grupo`, `telefono`, `movil`) VALUES ('43709049', 'Gorka', 'Arjona', 'Cid', '1A', '925625717', '604982387');
+INSERT INTO `alumno` (`nia`, `nombre`, `apellido1`, `apellido2`, `codigo_grupo`, `telefono`, `movil`) VALUES ('57673542', 'Soraya', 'Caballero', 'Ferrer', '1A', '943460871', '671344768');
+INSERT INTO `alumno` (`nia`, `nombre`, `apellido1`, `apellido2`, `codigo_grupo`, `telefono`, `movil`) VALUES ('60773065', 'Ramon', 'Crespo', 'Ramirez', '1A', '925563744', '671094471');
+INSERT INTO `alumno` (`nia`, `nombre`, `apellido1`, `apellido2`, `codigo_grupo`, `telefono`, `movil`) VALUES ('01556935', 'Judith', 'Marin', 'Roman', '1A', '992754397', '718959530');
+INSERT INTO `alumno` (`nia`, `nombre`, `apellido1`, `apellido2`, `codigo_grupo`, `telefono`, `movil`) VALUES ('13548621', 'Blanca', 'Caro', 'Mendoza', '1B', '999064969', '696940275');
+INSERT INTO `alumno` (`nia`, `nombre`, `apellido1`, `apellido2`, `codigo_grupo`, `telefono`, `movil`) VALUES ('18496102', 'Josefa', 'Cordoba', 'Santana', '1B', '965355249', '650875917');
+INSERT INTO `alumno` (`nia`, `nombre`, `apellido1`, `apellido2`, `codigo_grupo`, `telefono`, `movil`) VALUES ('48816405', 'Juan Ignacio', 'Poveda', 'Andres', '1B', '920895281', '655233327');
+INSERT INTO `alumno` (`nia`, `nombre`, `apellido1`, `apellido2`, `codigo_grupo`, `telefono`, `movil`) VALUES ('74096967', 'Maria Jesus', 'Arce', 'Cantero', '1B', '914512014', '795792266');
+INSERT INTO `alumno` (`nia`, `nombre`, `apellido1`, `apellido2`, `codigo_grupo`, `telefono`, `movil`) VALUES ('49152072', 'Remedios', 'Riera', 'Becerra', '1B', '964490136', '640356750');
+INSERT INTO `alumno` (`nia`, `nombre`, `apellido1`, `apellido2`, `codigo_grupo`, `telefono`, `movil`) VALUES ('44387558', 'Manuel Jose', 'Duarte', 'Barrera', '1B', '918550777', '650699414');
+INSERT INTO `alumno` (`nia`, `nombre`, `apellido1`, `apellido2`, `codigo_grupo`, `telefono`, `movil`) VALUES ('73900021', 'Itziar', 'Prado', 'Pujol', '1B', '986463662', '718336685');
+INSERT INTO `alumno` (`nia`, `nombre`, `apellido1`, `apellido2`, `codigo_grupo`, `telefono`, `movil`) VALUES ('03171625', 'Alvaro', 'Lorenzo', 'Mateu', '1B', '933671982', '635332748');
+INSERT INTO `alumno` (`nia`, `nombre`, `apellido1`, `apellido2`, `codigo_grupo`, `telefono`, `movil`) VALUES ('22628424', 'Blas', 'Ochoa', 'Ocaña', '2A', '920082833', '727756890');
+INSERT INTO `alumno` (`nia`, `nombre`, `apellido1`, `apellido2`, `codigo_grupo`, `telefono`, `movil`) VALUES ('96596828', 'Blanca', 'Pardo', 'Saez', '2A', '958326304', '799730944');
+INSERT INTO `alumno` (`nia`, `nombre`, `apellido1`, `apellido2`, `codigo_grupo`, `telefono`, `movil`) VALUES ('72104824', 'Pau', 'Hurtado', 'Galvez', '2A', '958261721', '651528898');
+INSERT INTO `alumno` (`nia`, `nombre`, `apellido1`, `apellido2`, `codigo_grupo`, `telefono`, `movil`) VALUES ('33204342', 'Amaia', 'Puente', 'Del Pozo', '2A', '976382277', '638449586');
+INSERT INTO `alumno` (`nia`, `nombre`, `apellido1`, `apellido2`, `codigo_grupo`, `telefono`, `movil`) VALUES ('22477245', 'Francisco', 'Mendoza', 'Correa', '2A', '937245042', '659857676');
+INSERT INTO `alumno` (`nia`, `nombre`, `apellido1`, `apellido2`, `codigo_grupo`, `telefono`, `movil`) VALUES ('20150325', 'Almudena', 'Serna', 'Carbonell', '2A', '962796213', '610959349');
+INSERT INTO `alumno` (`nia`, `nombre`, `apellido1`, `apellido2`, `codigo_grupo`, `telefono`, `movil`) VALUES ('26489012', 'Valeria', 'Plaza', 'Romero', '2A', '940976448', '639599376');
+INSERT INTO `alumno` (`nia`, `nombre`, `apellido1`, `apellido2`, `codigo_grupo`, `telefono`, `movil`) VALUES ('51713589', 'Adelina', 'Rivero', 'Soria', '2A', '984975419', '671998861');
+
+INSERT INTO `motivo_registro` (`id_tipo_registro`, `motivo`, `descripcion`) VALUES ('1', 'Llegar tarde a clase', 'El alumno ha llegado tarde y no se le ha permitido entrar a clase');
+INSERT INTO `motivo_registro` (`id_tipo_registro`, `motivo`, `descripcion`) VALUES ('1', 'Alumno enfermo', 'El alumno se ausencia de la clase por motivos de salud');
+INSERT INTO `motivo_registro` (`id_tipo_registro`, `motivo`, `descripcion`) VALUES ('2', 'Insultar a un compañero', 'Faltar al respeto de un compañero insultándolo');
+INSERT INTO `motivo_registro` (`id_tipo_registro`, `motivo`, `descripcion`) VALUES ('2', 'Gritar en clase', 'Impedir que la clase se realice correctamente por gritar en clase');
+INSERT INTO `motivo_registro` (`id_tipo_registro`, `motivo`, `descripcion`) VALUES ('2', 'No asistir a clase', 'Impedir que la clase se realice correctamente por gritar en clase');
+INSERT INTO `motivo_registro` (`id_tipo_registro`, `motivo`, `descripcion`) VALUES ('2', 'Pelearse', 'El alumno se ha peleado con un compañero.');
+
+INSERT INTO `registro` (`id_tipo_registro`, `id_motivo_registro`, `fecha_suceso`, `nia_alumno`, `dni_profesor`, `fecha_registro`, `dni_profesor_registro`, `sancionado`) VALUES ('2', '3', '2022-05-02 10:30:00', '1556935', '00662794A', '2022-06-05 00:00:00', '00662794A', '1');
+INSERT INTO `registro` (`id_tipo_registro`, `id_motivo_registro`, `fecha_suceso`, `nia_alumno`, `dni_profesor`, `fecha_registro`, `dni_profesor_registro`, `sancionado`) VALUES ('2', '4', '2022-05-05 11:00:00', '3171625', '00662794A', '2022-06-05 00:00:00', '44842840Q', '0');
+INSERT INTO `registro` (`id_tipo_registro`, `id_motivo_registro`, `fecha_suceso`, `nia_alumno`, `dni_profesor`, `fecha_registro`, `dni_profesor_registro`, `sancionado`) VALUES ('2', '6', '2022-05-05 11:15:00', '11017869', '00662794A', '2022-06-05 00:00:00', '58612488R', '1');
+INSERT INTO `registro` (`id_tipo_registro`, `id_motivo_registro`, `fecha_suceso`, `nia_alumno`, `dni_profesor`, `fecha_registro`, `dni_profesor_registro`, `sancionado`) VALUES ('1', '1', '2022-05-05 10:23:00', '13548621', '44842840Q', '2022-06-05 00:00:00', '00662794A', null);
+INSERT INTO `registro` (`id_tipo_registro`, `id_motivo_registro`, `fecha_suceso`, `nia_alumno`, `dni_profesor`, `fecha_registro`, `dni_profesor_registro`, `sancionado`) VALUES ('1', '1', '2022-05-10 09:44:00', '18496102', '44842840Q', '2022-06-05 00:00:00', '77616778N', null);
+INSERT INTO `registro` (`id_tipo_registro`, `id_motivo_registro`, `fecha_suceso`, `nia_alumno`, `dni_profesor`, `fecha_registro`, `dni_profesor_registro`, `sancionado`) VALUES ('2', '3', '2022-05-10 08:52:00', '20150325', '58612488R', '2022-06-05 00:00:00', '44842840Q', '0');
+INSERT INTO `registro` (`id_tipo_registro`, `id_motivo_registro`, `fecha_suceso`, `nia_alumno`, `dni_profesor`, `fecha_registro`, `dni_profesor_registro`, `sancionado`) VALUES ('2', '4', '2022-05-12 12:21:00', '13548621', '58612488R', '2022-06-05 00:00:00', '00662794A', '0');
+INSERT INTO `registro` (`id_tipo_registro`, `id_motivo_registro`, `fecha_suceso`, `nia_alumno`, `dni_profesor`, `fecha_registro`, `dni_profesor_registro`, `sancionado`) VALUES ('2', '5', '2022-05-15 15:45:00', '27740051', '59621251F', '2022-06-05 00:00:00', '58612488R', '1');
+INSERT INTO `registro` (`id_tipo_registro`, `id_motivo_registro`, `fecha_suceso`, `nia_alumno`, `dni_profesor`, `fecha_registro`, `dni_profesor_registro`, `sancionado`) VALUES ('2', '5', '2022-05-15 14:36:00', '44387558', '69800024S', '2022-06-05 00:00:00', '00662794A', '1');
+INSERT INTO `registro` (`id_tipo_registro`, `id_motivo_registro`, `fecha_suceso`, `nia_alumno`, `dni_profesor`, `fecha_registro`, `dni_profesor_registro`, `sancionado`) VALUES ('1', '2', '2022-05-15 17:17:00', '51713589', '69800024S', '2022-06-05 00:00:00', '44842840Q', null);
+INSERT INTO `registro` (`id_tipo_registro`, `id_motivo_registro`, `fecha_suceso`, `nia_alumno`, `dni_profesor`, `fecha_registro`, `dni_profesor_registro`, `sancionado`) VALUES ('2', '3', '2022-05-25 11:18:00', '18496102', '77616778N', '2022-06-05 00:00:00', '58612488R', '1');
+INSERT INTO `registro` (`id_tipo_registro`, `id_motivo_registro`, `fecha_suceso`, `nia_alumno`, `dni_profesor`, `fecha_registro`, `dni_profesor_registro`, `sancionado`) VALUES ('2', '6', '2022-06-01 12:25:00', '60773065', '77616778N', '2022-06-05 00:00:00', '77616778N', '0');
+INSERT INTO `registro` (`id_tipo_registro`, `id_motivo_registro`, `fecha_suceso`, `nia_alumno`, `dni_profesor`, `fecha_registro`, `dni_profesor_registro`, `sancionado`) VALUES ('1', '2', '2022-06-01 10:37:00', '18496102', '77616778N', '2022-06-05 00:00:00', '00662794A', null);
+INSERT INTO `registro` (`id_tipo_registro`, `id_motivo_registro`, `fecha_suceso`, `nia_alumno`, `dni_profesor`, `fecha_registro`, `dni_profesor_registro`, `sancionado`) VALUES ('1', '1', '2022-06-03 08:53:00', '74096967', '58612488R', '2022-06-05 00:00:00', '58612488R', null);
+INSERT INTO `registro` (`id_tipo_registro`, `id_motivo_registro`, `fecha_suceso`, `nia_alumno`, `dni_profesor`, `fecha_registro`, `dni_profesor_registro`, `sancionado`) VALUES ('1', '1', '2022-06-05 09:45:00', '74096967', '58612488R', '2022-06-05 00:00:00', '00662794A', null);
+
