@@ -181,16 +181,11 @@ INSERT INTO `tfg`.`permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('TUTOR
 INSERT INTO `tfg`.`permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('TUTOR', 'REPORT_GRUPO');
 INSERT INTO `tfg`.`permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('TUTOR', 'MOD_CONTRASENYA');
 INSERT INTO `tfg`.`permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('TUTOR', 'GRAPH_VIWER');
-INSERT INTO `tfg`.`permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('ADMIN', 'ADD_PERMISO');
 INSERT INTO `tfg`.`permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('ADMIN', 'ADD_REGISTRO');
-INSERT INTO `tfg`.`permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('ADMIN', 'ADD_ROL');
-INSERT INTO `tfg`.`permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('ADMIN', 'DEL_PERMISO');
 INSERT INTO `tfg`.`permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('ADMIN', 'DEL_REGISTRO');
-INSERT INTO `tfg`.`permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('ADMIN', 'DEL_ROL');
 INSERT INTO `tfg`.`permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('ADMIN', 'GRAPH_VIWER');
 INSERT INTO `tfg`.`permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('ADMIN', 'IMPORT_EXPORT');
 INSERT INTO `tfg`.`permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('ADMIN', 'MOD_CONTRASENYA');
-INSERT INTO `tfg`.`permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('ADMIN', 'MOD_PERMISDO');
 INSERT INTO `tfg`.`permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('ADMIN', 'MOD_REGISTRO');
 INSERT INTO `tfg`.`permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('ADMIN', 'MOD_ROL');
 INSERT INTO `tfg`.`permisos_rol` (`codigo_rol`, `codigo_permiso`) VALUES ('ADMIN', 'REPORT_ALUMN');
